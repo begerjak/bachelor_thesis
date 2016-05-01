@@ -66,7 +66,7 @@
         <attribute name="outputdirectory" type="string"></attribute>
         <attribute name="openconsole" type="bool">0</attribute>
         <attribute name="ncompile" type="int16">3</attribute>
-        <attribute name="language" type="string">en</attribute>
+        <attribute name="language" type="string">cs_CZ</attribute>
         <attribute name="enginename" type="string">pdflates_se</attribute>
         <attribute name="dops2pdf" type="bool">1</attribute>
         <attribute name="doliveupdate" type="bool">0</attribute>
@@ -79,15 +79,15 @@
         <attribute name="name" type="string">thesis_begerjak</attribute>
         <attribute name="folder" type="string">/Users/Jakub/Dropbox/CVUT/6. semestr/thesis</attribute>
         <relationship name="mainfile" type="1/1" destination="FILE" idrefs="z108"></relationship>
-        <relationship name="selected" type="1/1" destination="FILE" idrefs="z106"></relationship>
+        <relationship name="selected" type="1/1" destination="FILE" idrefs="z121"></relationship>
         <relationship name="settings" type="1/1" destination="SETTINGS" idrefs="z102"></relationship>
         <relationship name="uisettings" type="1/1" destination="UISETTINGS" idrefs="z104"></relationship>
-        <relationship name="items" type="0/0" destination="PROJECTITEM" idrefs="z125 z110 z122 z121 z116 z115 z108 z107 z106 z124 z117 z123 z129 z130 z112 z119 z114 z118 z128 z120 z105 z131 z126 z111 z132 z113 z127 z109"></relationship>
+        <relationship name="items" type="0/0" destination="PROJECTITEM" idrefs="z108 z131 z127 z114 z119 z105 z110 z112 z129 z126 z124 z106 z132 z121 z117 z122 z128 z109 z120 z111 z113 z116 z107 z118 z130 z125 z123 z115"></relationship>
     </object>
     <object type="UISETTINGS" id="z104">
-        <attribute name="pdfviewscrollrect" type="string">{{0, 2272.167101935916}, {604, 1081.8381201033803}}</attribute>
+        <attribute name="pdfviewscrollrect" type="string">{{0, 4202.7676241233066}, {604, 857.9007832885427}}</attribute>
         <attribute name="showpdfthumbnails" type="bool">0</attribute>
-        <attribute name="selectedcontrolstab" type="int16">0</attribute>
+        <attribute name="selectedcontrolstab" type="int16">6</attribute>
         <attribute name="maxoutlinedepth" type="int16">7</attribute>
         <attribute name="logoutputlevel" type="int16">0</attribute>
         <attribute name="editorwidth" type="float">1038</attribute>
@@ -96,10 +96,10 @@
         <relationship name="project" type="1/1" destination="PROJECT" idrefs="z103"></relationship>
     </object>
     <object type="FILE" id="z105">
-        <attribute name="wasopen" type="bool">8</attribute>
+        <attribute name="wasopen" type="bool">15</attribute>
         <attribute name="lasteditdate" type="date">483210651.81071001291275024414</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483220684.96236997842788696289</attribute>
+        <attribute name="fileloaddate" type="date">483807044.73580098152160644531</attribute>
         <attribute name="extension" type="string">md</attribute>
         <attribute name="sortindex" type="int32">13</attribute>
         <attribute name="name" type="string">README.md</attribute>
@@ -112,11 +112,11 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="FILE" id="z106">
-        <attribute name="wasopen" type="bool">3</attribute>
-        <attribute name="visiblerect" type="string">{{0, 1510}, {1016, 394}}</attribute>
+        <attribute name="wasopen" type="bool">20</attribute>
+        <attribute name="visiblerect" type="string">{{0, 1527}, {1016, 305}}</attribute>
         <attribute name="lasteditdate" type="date">483221665.83911198377609252930</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483221666.34423702955245971680</attribute>
+        <attribute name="fileloaddate" type="date">483807044.73793399333953857422</attribute>
         <attribute name="extension" type="string">bib</attribute>
         <attribute name="cursor" type="string">{8166, 0}</attribute>
         <attribute name="sortindex" type="int32">16</attribute>
@@ -139,11 +139,11 @@
         <relationship name="children" type="0/0" destination="PROJECTITEM" idrefs="z113"></relationship>
     </object>
     <object type="TEXFILE" id="z108">
-        <attribute name="wasopen" type="bool">2</attribute>
-        <attribute name="visiblerect" type="string">{{0, 2098}, {1010, 394}}</attribute>
-        <attribute name="lasteditdate" type="date">483221283.33979701995849609375</attribute>
+        <attribute name="wasopen" type="bool">21</attribute>
+        <attribute name="visiblerect" type="string">{{0, 2236}, {1010, 305}}</attribute>
+        <attribute name="lasteditdate" type="date">483807068.44941997528076171875</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483221283.74972897768020629883</attribute>
+        <attribute name="fileloaddate" type="date">483807044.71497398614883422852</attribute>
         <attribute name="extension" type="string">tex</attribute>
         <attribute name="cursor" type="string">{6757, 0}</attribute>
         <attribute name="sortindex" type="int32">0</attribute>
@@ -166,7 +166,7 @@
         <relationship name="children" type="0/0" destination="PROJECTITEM" idrefs="z119 z120 z107 z110 z116"></relationship>
     </object>
     <object type="FILE" id="z110">
-        <attribute name="wasopen" type="bool">14</attribute>
+        <attribute name="wasopen" type="bool">9</attribute>
         <attribute name="lasteditdate" type="date">483210651.78266298770904541016</attribute>
         <attribute name="istext" type="bool">0</attribute>
         <attribute name="fileloaddate" type="date">483210651.78266000747680664062</attribute>
@@ -198,11 +198,11 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="FILE" id="z112">
-        <attribute name="wasopen" type="bool">5</attribute>
+        <attribute name="wasopen" type="bool">18</attribute>
         <attribute name="visiblerect" type="string">{{0, 5}, {1034, 393}}</attribute>
         <attribute name="lasteditdate" type="date">483210651.77162301540374755859</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483220684.95843398571014404297</attribute>
+        <attribute name="fileloaddate" type="date">483807044.73264700174331665039</attribute>
         <attribute name="extension" type="string">bst</attribute>
         <attribute name="cursor" type="string">{0, 0}</attribute>
         <attribute name="sortindex" type="int32">17</attribute>
@@ -218,10 +218,10 @@
     <object type="FILE" id="z113">
         <attribute name="visiblerect" type="string">{{0, 0}, {1034, 393}}</attribute>
         <attribute name="cursor" type="string">{0, 0}</attribute>
-        <attribute name="wasopen" type="bool">7</attribute>
+        <attribute name="wasopen" type="bool">16</attribute>
         <attribute name="lasteditdate" type="date">483210651.76614397764205932617</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483220684.97351002693176269531</attribute>
+        <attribute name="fileloaddate" type="date">483807044.74471098184585571289</attribute>
         <attribute name="extension" type="string">c</attribute>
         <attribute name="sortindex" type="int32">23</attribute>
         <attribute name="name" type="string">hello.c</attribute>
@@ -236,10 +236,10 @@
     <object type="TEXFILE" id="z114">
         <attribute name="visiblerect" type="string">{{0, 0}, {1016, 394}}</attribute>
         <attribute name="cursor" type="string">{5093, 0}</attribute>
-        <attribute name="wasopen" type="bool">12</attribute>
+        <attribute name="wasopen" type="bool">11</attribute>
         <attribute name="lasteditdate" type="date">483210651.79434597492218017578</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483220684.96339702606201171875</attribute>
+        <attribute name="fileloaddate" type="date">483807044.73464202880859375000</attribute>
         <attribute name="extension" type="string">tex</attribute>
         <attribute name="sortindex" type="int32">14</attribute>
         <attribute name="name" type="string">hyphen.tex</attribute>
@@ -252,11 +252,11 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="FILE" id="z115">
-        <attribute name="wasopen" type="bool">4</attribute>
+        <attribute name="wasopen" type="bool">19</attribute>
         <attribute name="visiblerect" type="string">{{0, 5}, {1034, 393}}</attribute>
         <attribute name="lasteditdate" type="date">483210701.77915298938751220703</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483220684.96494197845458984375</attribute>
+        <attribute name="fileloaddate" type="date">483807044.73073399066925048828</attribute>
         <attribute name="extension" type="string">sty</attribute>
         <attribute name="cursor" type="string">{0, 0}</attribute>
         <attribute name="sortindex" type="int32">15</attribute>
@@ -270,7 +270,7 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="FILE" id="z116">
-        <attribute name="wasopen" type="bool">11</attribute>
+        <attribute name="wasopen" type="bool">12</attribute>
         <attribute name="lasteditdate" type="date">483210651.77947598695755004883</attribute>
         <attribute name="istext" type="bool">0</attribute>
         <attribute name="fileloaddate" type="date">483210651.77947002649307250977</attribute>
@@ -286,12 +286,12 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="TEXFILE" id="z117">
-        <attribute name="visiblerect" type="string">{{0, 5}, {1016, 394}}</attribute>
+        <attribute name="visiblerect" type="string">{{0, 5}, {1016, 305}}</attribute>
         <attribute name="cursor" type="string">{0, 0}</attribute>
-        <attribute name="wasopen" type="bool">6</attribute>
+        <attribute name="wasopen" type="bool">17</attribute>
         <attribute name="lasteditdate" type="date">483218100.22518897056579589844</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483220684.95972102880477905273</attribute>
+        <attribute name="fileloaddate" type="date">483807044.73377001285552978516</attribute>
         <attribute name="extension" type="string">tex</attribute>
         <attribute name="sortindex" type="int32">12</attribute>
         <attribute name="name" type="string">obrazky.tex</attribute>
@@ -313,7 +313,7 @@
         <relationship name="children" type="0/0" destination="PROJECTITEM" idrefs="z121"></relationship>
     </object>
     <object type="FILE" id="z119">
-        <attribute name="wasopen" type="bool">13</attribute>
+        <attribute name="wasopen" type="bool">10</attribute>
         <attribute name="lasteditdate" type="date">483210651.78607201576232910156</attribute>
         <attribute name="istext" type="bool">0</attribute>
         <attribute name="fileloaddate" type="date">483210651.78606700897216796875</attribute>
@@ -329,7 +329,7 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="FILE" id="z120">
-        <attribute name="wasopen" type="bool">9</attribute>
+        <attribute name="wasopen" type="bool">14</attribute>
         <attribute name="lasteditdate" type="date">483210651.77578902244567871094</attribute>
         <attribute name="istext" type="bool">0</attribute>
         <attribute name="fileloaddate" type="date">483210651.77578598260879516602</attribute>
@@ -345,13 +345,13 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="TEXFILE" id="z121">
-        <attribute name="wasopen" type="bool">10</attribute>
-        <attribute name="visiblerect" type="string">{{0, 0}, {1016, 394}}</attribute>
-        <attribute name="lasteditdate" type="date">483217365.87721502780914306641</attribute>
+        <attribute name="wasopen" type="bool">13</attribute>
+        <attribute name="visiblerect" type="string">{{0, 0}, {1016, 389}}</attribute>
+        <attribute name="lasteditdate" type="date">483807844.24195802211761474609</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483220684.97056299448013305664</attribute>
+        <attribute name="fileloaddate" type="date">483807845.21627002954483032227</attribute>
         <attribute name="extension" type="string">tex</attribute>
-        <attribute name="cursor" type="string">{13, 0}</attribute>
+        <attribute name="cursor" type="string">{104, 0}</attribute>
         <attribute name="sortindex" type="int32">20</attribute>
         <attribute name="name" type="string">chap01.tex</attribute>
         <attribute name="isexpanded" type="bool">0</attribute>
@@ -363,11 +363,11 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="TEXFILE" id="z122">
-        <attribute name="wasopen" type="bool">0</attribute>
-        <attribute name="visiblerect" type="string">{{0, 937}, {1016, 394}}</attribute>
-        <attribute name="lasteditdate" type="date">483219880.93508899211883544922</attribute>
+        <attribute name="wasopen" type="bool">22</attribute>
+        <attribute name="visiblerect" type="string">{{0, 937}, {1022, 329.5}}</attribute>
+        <attribute name="lasteditdate" type="date">483807044.92476397752761840820</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483220684.96767199039459228516</attribute>
+        <attribute name="fileloaddate" type="date">483807044.73941701650619506836</attribute>
         <attribute name="extension" type="string">tex</attribute>
         <attribute name="cursor" type="string">{1276, 0}</attribute>
         <attribute name="sortindex" type="int32">18</attribute>
@@ -381,7 +381,7 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="FILE" id="z123">
-        <attribute name="wasopen" type="bool">21</attribute>
+        <attribute name="wasopen" type="bool">2</attribute>
         <attribute name="lasteditdate" type="date">483220439.44299501180648803711</attribute>
         <attribute name="istext" type="bool">0</attribute>
         <attribute name="fileloaddate" type="date">483220439.44299197196960449219</attribute>
@@ -399,10 +399,10 @@
     <object type="FILE" id="z124">
         <attribute name="visiblerect" type="string">{{0, 0}, {1016, 394}}</attribute>
         <attribute name="cursor" type="string">{0, 1428}</attribute>
-        <attribute name="wasopen" type="bool">18</attribute>
+        <attribute name="wasopen" type="bool">5</attribute>
         <attribute name="lasteditdate" type="date">483221620.02723902463912963867</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483221640.54768097400665283203</attribute>
+        <attribute name="fileloaddate" type="date">483807044.86704498529434204102</attribute>
         <attribute name="extension" type="string">bib</attribute>
         <attribute name="sortindex" type="int32">6</attribute>
         <attribute name="name" type="string">Pixelman.bib</attribute>
@@ -415,11 +415,11 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="FILE" id="z125">
-        <attribute name="wasopen" type="bool">20</attribute>
+        <attribute name="wasopen" type="bool">3</attribute>
         <attribute name="visiblerect" type="string">{{0, 21}, {1016, 394}}</attribute>
         <attribute name="lasteditdate" type="date">483220502.35601097345352172852</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483220685.09252899885177612305</attribute>
+        <attribute name="fileloaddate" type="date">483807044.86891800165176391602</attribute>
         <attribute name="extension" type="string">bib</attribute>
         <attribute name="cursor" type="string">{0, 2102}</attribute>
         <attribute name="sortindex" type="int32">9</attribute>
@@ -433,7 +433,7 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="FILE" id="z126">
-        <attribute name="wasopen" type="bool">23</attribute>
+        <attribute name="wasopen" type="bool">0</attribute>
         <attribute name="lasteditdate" type="date">483220439.44862198829650878906</attribute>
         <attribute name="istext" type="bool">0</attribute>
         <attribute name="fileloaddate" type="date">483220439.44862002134323120117</attribute>
@@ -449,11 +449,11 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="FILE" id="z127">
-        <attribute name="wasopen" type="bool">15</attribute>
+        <attribute name="wasopen" type="bool">8</attribute>
         <attribute name="visiblerect" type="string">{{0, 0}, {1016, 394}}</attribute>
         <attribute name="lasteditdate" type="date">483221329.01584297418594360352</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483220685.09355300664901733398</attribute>
+        <attribute name="fileloaddate" type="date">483807044.86970299482345581055</attribute>
         <attribute name="extension" type="string">bib</attribute>
         <attribute name="cursor" type="string">{0, 676}</attribute>
         <attribute name="sortindex" type="int32">4</attribute>
@@ -476,7 +476,7 @@
         <relationship name="children" type="0/0" destination="PROJECTITEM" idrefs="z123 z124 z125 z126 z127 z129 z130 z131 z132"></relationship>
     </object>
     <object type="FILE" id="z129">
-        <attribute name="wasopen" type="bool">19</attribute>
+        <attribute name="wasopen" type="bool">4</attribute>
         <attribute name="lasteditdate" type="date">483220439.45797300338745117188</attribute>
         <attribute name="istext" type="bool">0</attribute>
         <attribute name="fileloaddate" type="date">483220439.45796298980712890625</attribute>
@@ -492,10 +492,10 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="FILE" id="z130">
-        <attribute name="wasopen" type="bool">17</attribute>
+        <attribute name="wasopen" type="bool">6</attribute>
         <attribute name="lasteditdate" type="date">483220439.45502400398254394531</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483220685.09581899642944335938</attribute>
+        <attribute name="fileloaddate" type="date">483807044.86804002523422241211</attribute>
         <attribute name="extension" type="string">bib</attribute>
         <attribute name="sortindex" type="int32">3</attribute>
         <attribute name="name" type="string">TurecekThesis.bib</attribute>
@@ -508,7 +508,7 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="FILE" id="z131">
-        <attribute name="wasopen" type="bool">16</attribute>
+        <attribute name="wasopen" type="bool">7</attribute>
         <attribute name="lasteditdate" type="date">483220439.43752998113632202148</attribute>
         <attribute name="istext" type="bool">0</attribute>
         <attribute name="fileloaddate" type="date">483220439.43752801418304443359</attribute>
@@ -524,10 +524,10 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="FILE" id="z132">
-        <attribute name="wasopen" type="bool">22</attribute>
+        <attribute name="wasopen" type="bool">1</attribute>
         <attribute name="lasteditdate" type="date">483220439.44031697511672973633</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">483220685.09086602926254272461</attribute>
+        <attribute name="fileloaddate" type="date">483807044.87068200111389160156</attribute>
         <attribute name="extension" type="string">bib</attribute>
         <attribute name="sortindex" type="int32">8</attribute>
         <attribute name="name" type="string">MedipixNetwork.bib</attribute>
