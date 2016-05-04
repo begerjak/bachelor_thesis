@@ -40,7 +40,9 @@ unicode=true,
 \usepackage{listings} 			%slouží pro tisk zdrojových kódů se syntax higlighting
 \usepackage{algorithmicx} 		%slouží pro zápis algoritmů
 \usepackage{algpseudocode} 		%slouží pro výpis pseudokódu
-\usepackage{xr}
+\usepackage{inconsolata}		%monospace font
+\usepackage{soul}				%zvýrazňovač
+\usepackage[final]{pdfpages}    %PDF include
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % příkazy šablony
@@ -89,9 +91,14 @@ unicode=true,
 	% Titulni stranka / Title page 
 	\coverpagestarts
 
+	%%%%%%%%%%%%%%%%%%%%%%%%%%    
+	% Zadani / Assignment
+	\newpage~
+	\includepdf[pages=1]{zadani.pdf}
+	\newpage
+
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%    
 	% Poděkovani / Acknowledgements 
-
 	\acknowledgements
 	\noindent
 	Zde můžete napsat své poděkování, pokud chcete a máte komu děkovat.
