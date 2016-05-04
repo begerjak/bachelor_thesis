@@ -1,10 +1,41 @@
 \addbibresource{reference.bib}
 
 \chapter{Atlas TPX}\label{atlas}
-\todo popis AtlasTPX
+Atlas TPX je síť 15\footnote{V průběhu LS3\textsuperscript{\ref{ls}} (plánováno 2017 - 2018) je plánováno rozšíření teto sítě o nové detektory} hybridních pixelových detektorů typu Timepix \ref{det:tim}, nainstalovaných na různé pozice experimentu Atlas na LHC\footnote{z angl. Large Hadron Collider} v CERN během LS2\footnote{\label{ls}z angl. long shutdown - dlouhodobá technologická přestávka LHC} (leden 2013 až březen 2015) je následníkem svého předchůdce - sítě Atlas MPX (viz \ref{atlas:mpx}). Hlavní motivací výměny této sítě bylo využití nových technologií, především pak nového detekčního čipu Timepix. Ten na rozdíl od svého předchůdce Medipix2 \ref{det:med} umožňuje rozšíření naměřené informace i o časovou oblast (viz \ref{det:tim}). To nově umožňuje provozovat detektory v módech TOA\footnote{z angl. Time of Arrival - čas příletu částice v hodinových cyklech detektoru od začátku akvizice} a TOT\footnote{z angl. Time Over Treshold - počet hodinových cyklů, kdy komparační napětí je větší, než referenční (ekvivalent energie deponované částice, viz kapitola \ref{calib})}. 
 
+Další změnou oproti svému předchůdci je, že každý detektor obsahuje dva detekční čipy s tloušťkami $300~\mu m$ a $500~\mu m$, umístěné předními stranami k sobě - viz \ref{fig:tpx_detector_layers}. To přináší možnost měřit koincidence. Když částice projde oběma (\todo češtin) vrstvami  detektoru a zároveň v každé nechá jisté měřitelné množství své energie, je detekována oběma vrstvami a je možné zpětně zrekonstruovat její trajektorii. Tyto koincidence se nejsnáze detekují, pokud oba Timepix čipy pracují v módu TOA - jelikož rychlost částic se blíží rychlosti světla, je vysoce pravděpodobné, že zasažené pixely budou mít stejnou hodnotu.
+
+
+\begin{figure}[th]
+	\begin{center}
+		\begin{subfigure}{6cm}
+			\includegraphics[width=6cm]{figures/tpx_lay.png}	
+			\caption{Vrstvy detektoru}
+			\label{fig:tpx_detector_layers}
+		\end{subfigure}
+		\hspace{0.5cm}
+		\begin{subfigure}{5cm}
+			\includegraphics[width=5cm]{figures/tpx_conv.png}
+			\caption{Rozmístění konvetorů}
+			\label{fig:tpx_detector_convertors}
+		\end{subfigure}
+		\caption{Atlas TPX detektor - vrstvy a rozmístění konvertorů}
+		\label{fig:tpx_detector}
+	\end{center}			
+\end{figure}
+
+Mezi vrstvami detektoru je umístěn konvertující materiál pro detekci termálních a rychlých neutronů. Rozmístění těchto konvertorů je na obrázku \ref{fig:tpx_detector_convertors}.
+
+Hlavním úkolem Atlas TPX je online monitorování spektrální charakteristiky velice různorodého radiačního prostředí Atlas experimentu, založeny na prostorovém uspořádání sítě a (vzhledem k aktuálním módu detektoru) i informaci o deponované energii zainteragovaných částic a časovou informaci. 
+
+
+Detektory, instalované blízko interakčnímu bodu, jsou rovněž použity jako monitory integrované luminozity, což je veličina, která udává počet realizovaných srážek, resp. s intenzitou svazku urychlovače. Ve \cite{wagner:o_lhc} se uvádí, že je to veličina, která v případě srážení dvou proti sobě letících svazků ukazuje, jaký je součin počtů částic v jednotlivých svazcích prolétajících jednotkovou plochou v srážkové oblasti, vynásobený počtem obletů svazků za jednotku času (nejčastěji se vyjadřuje v jednotkách na centimetr čtvereční a sekundu).
+
+%********************************************************************************
+% Atlas MPX
+%********************************************************************************
 \section{Atlas MPX}\label{atlas:mpx}
-Atlas MPX\cite{Vykydal200935}\cite{atlasmpx} je předchůdcem detektorové sítě Atlas TPX, kterou v současné době je plně nahrazena. Skládala se z 16 Medipix2 detektorů, které byly instalovány na různé pozice Atlas detektoru - viz obr. \ref{fig:mpx_positions}. Hlavním cílem této sítě bylo měření vlastností radiačního pole atlasu, jeho složení, spektroskopických charakteristik a částečně také přispěla k měření neutronů. 
+Atlas MPX\cite{Vykydal200935}\cite{atlasmpx} je předchůdcem detektorové sítě Atlas TPX, která v současné době je plně nahrazena. Skládala se z 16 Medipix2 detektorů, které byly instalovány na různé pozice Atlas detektoru - viz obr. \ref{fig:mpx_positions}. Hlavním cílem této sítě bylo měření vlastností radiačního pole uvnitř experimentu Atlas, jeho složení, spektroskopických charakteristik a částečně také přispěla k měření neutronů. 
 
 \begin{figure}[ht]
 	\begin{center}
@@ -15,7 +46,6 @@ Atlas MPX\cite{Vykydal200935}\cite{atlasmpx} je předchůdcem detektorové sít�
 \end{figure}
 
 Všechny detektory operovaly v tzv. \texttt{Medipix módu}, který se vyznačují tím, že v rámci jedné akvizice počítá počet částic, které interagovaly pixelovou maticí detektoru a jejichž deponovaná energie byla vyšší, než prahová. Na obrázku \ref{fig:mpx_cluster} je znázorněn snímek z jednoho detektoru s detailem zachycených částic. Na obrázku vpravo nahoře je částice typu \texttt{heavy blob} (těžce nabitá částice, jejíž trajektorie byla kolmá s povrchem detektoru), vpravo dole je pak zachycena částice typu \texttt{heavy track} (také těžce nabitá částice, která ale přiletěla pod větším a proto zanechala větší stopu) - více klasifikaci částic se dočtete v podkapitole \ref{det:ca}.
-
 
 
 \begin{figure}[ht]
@@ -37,7 +67,7 @@ Každý z těchto detektorů byl osazen $300~\mu m$ tlustým křemíkovým senzo
 	\end{center}
 \end{figure}
 
-\subsection{Hardwarová a softwarová architektura}
+\subsection{Hardwarová a softwarová architektura sítě Atlas MPX}
 Tato síť se skládala z 16 \texttt{Medipix2} \ref{det:med} detektorů, které byly pomocí USB vyčítacího rozhraní \texttt{FITPix} \ref{det:fitpix} připojeny ke třem počítačům (z důvodu distribuce toku dat a výkonu). Na každém počítači se o komunikaci s detektory staral software \texttt{Pixelman} \ref{det:pixelman}, který řídil akvizici dat, nastavování parametrů detektorů apod. 
 
 Pro vzdálené obládání každého byl vyvinut plugin pro Pixelman, který umožňoval jeho rozšíření o TCP/IP ovládací vrstvu. Pomocí jednoduchého textového protokolu bylo tedy možné řídit každý ze třech uzlů. Pro tyto účely byla vyvinuta centrální řídící aplikace \cite{Turecek2011S45}, pomocí které bylo možné řídit řídit akvizici všech detektorů a nastavovat jejich parametry. Tato aplikace poskytovala webové rozhraní (obr. \ref{fig:mpx_web}), které díky tou dobou méně striktní CERNské politiky síťové bezpečnosti bylo možné tento experiment ovládat z internetu.
@@ -50,5 +80,24 @@ Pro vzdálené obládání každého byl vyvinut plugin pro Pixelman, který umo
 	\end{center}
 \end{figure}
 
+%********************************************************************************
+% Hardwarová architektura
+%********************************************************************************
+\section{Hardwarová architektura}\label{atlas:hw_arch}
+
+\begin{figure}[ht]
+	\begin{center}
+		\includegraphics[width=10cm]{figures/tpx_hw_diagram.png}
+		\caption{Atlas TPX - diagram hw komponent}
+		\label{fig:tpx_hw_diagram}
+	\end{center}
+\end{figure}
+
+
+\section{Softwarová architektura}\label{atlas:sw_arch}
+\section{Řídící software}\label{atlas:cont}
+\subsection{Řízení detektorů}
+\subsection{REST API server}
+\subsection{Zpracování a ukládání dat}
 
 

@@ -1,4 +1,4 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{5}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -32,6 +32,13 @@ TURECEK, D.
 \newblock {Software for Radiation Detectors Medipix}.
 \newblock Master's thesis, Czech Technical University in Prague, Czech
   Republic, 2011.
+
+\bibitem[{Vladimír Wagner}(2009)]{wagner:o_lhc}
+{Vladimír Wagner}.
+\newblock \emph{Článek: Jak se daří urychlovači LHC} [online]. 2009.
+  [cit.~4.\,5.\,2016].
+\newblock Dostupn{\'{e}} z:
+  \url{http://hp.ujf.cas.cz/~wagner/popclan/lhc/lhc_rok2010.htm}.
 
 \bibitem[Vykydal et~al.(2009)Vykydal, Bouchami, Campbell, Dolezal, Fiederle,
   Greiffenberg, Gutierrez, Heijne, Holy, Idarraga, Jakubek, Kral, Kralik,
