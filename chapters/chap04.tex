@@ -84,17 +84,17 @@ Pro vzdálené obládání každého byl vyvinut plugin pro Pixelman, který umo
 % Hardwarová architektura
 %********************************************************************************
 \section{Hardwarová architektura}\label{atlas:hw_arch}
-Při návrhu hardwarové architekty sítě Atlas TPX musela být zohledněna zvýšená intenzita radiačního a elektromagnetického pole v okolí Atlas detektoru. Snahou proto bylo, co nejvíce hardwarových komponent umístit z dosahu tohoto pole. Z pohledu hardwarové instalace naší detektorové sítě se prostory Atlas experimentu dělí na dvě části - \texttt{UX15} a \texttt{USA15} (viz obr. \ref{fig:tpx_hw_diagram}). V \texttt{UX15} se nachází vlastní experiment. V tomto prostoru byly umístěny jen vlastní detektory (na obr. \ref{fig:tpx_hw_diagram} \texttt{TPX01} až \texttt{TPX15}) a zbytek sítě je instalován v \texttt{USA15}, kterou od zbytku experimentu dělí cca $60~m$ tlustá železobetonová stěna. Tady se nachází vyčítací elektronika a další nezbytný hardware.
+Při návrhu hardwarové architekty sítě Atlas TPX musela být zohledněna zvýšená intenzita radiačního a elektromagnetického pole v okolí Atlas detektoru. Snahou proto bylo, co nejvíce hardwarových komponent umístit z dosahu tohoto pole. Z pohledu hardwarové instalace této detektorové sítě se prostory Atlas experimentu dělí na dvě části - \texttt{UX15} a \texttt{USA15} (viz obr. \ref{fig:tpx_hw_diagram}). V \texttt{UX15} se nachází vlastní experiment. V tomto prostoru byly umístěny jen vlastní detektory (na obr. \ref{fig:tpx_hw_diagram} \texttt{TPX01} až \texttt{TPX15}) a zbytek sítě je instalován v \texttt{USA15}, kterou od zbytku experimentu dělí cca $60~m$ tlustá železobetonová stěna. Tady se nachází vyčítací elektronika a další nezbytný hardware.
 
 \begin{figure}[t]
 	\begin{center}
-		\includegraphics[width=8cm]{figures/tpx_hw_diagram.png}
+		\includegraphics[width=6cm]{figures/tpx_hw_diagram.png}
 		\caption{Atlas TPX - diagram hw komponent}
 		\label{fig:tpx_hw_diagram}
 	\end{center}
 \end{figure}
 
-Na obrázku \ref{fig:tpx_hw_foto} je fotografie fotografie těchto komponent. Jak již bylo zmíněno výše, detektor (z obr. \ref{fig:tpx_hw_foto}, na obr. \ref{fig:tpx_hw_diagram} jako \texttt{TPX01} až \texttt{TPX15}) se skládá z dvojice detekčních čipů \texttt{Timepix2}, které jsou pomocí \texttt{LVDS} zesilovačů a cca $100~m$ dlouhých ethernetových kabelů propojeny se zařízením \texttt{AtlasPix} (obr. \ref{fig:tpx_hw_foto} dole), které vzniklo modifikací vyčítacího rozhraní \texttt{FITPix} \ref{det:fitpix}. Toto zařízení obsahuje \texttt{FPGA}\footnote{z angl. Field Programmable Gate Array (programovatelné hradlové pole)}, minipočítač \texttt{Raspberry Pi} a další podpůrnou elektroniku. 
+Na obrázku \ref{fig:tpx_hw_foto} je fotografie  těchto komponent. Jak již bylo zmíněno výše, detektor (z obr. \ref{fig:tpx_hw_foto}, na obr. \ref{fig:tpx_hw_diagram} jako \texttt{TPX01} až \texttt{TPX15}) se skládá z dvojice detekčních čipů \texttt{Timepix2}, které jsou pomocí \texttt{LVDS} zesilovačů a cca $100~m$ dlouhých ethernetových kabelů propojeny se zařízením \texttt{AtlasPix} (obr. \ref{fig:tpx_hw_foto} dole), které vzniklo modifikací vyčítacího rozhraní \texttt{FITPix} \ref{det:fitpix}. Toto zařízení obsahuje \texttt{FPGA}\footnote{z angl. Field Programmable Gate Array (programovatelné hradlové pole)}, minipočítač \texttt{Raspberry Pi} a další podpůrnou elektroniku. 
 
 \texttt{FPGA} se stará o komunikaci s \texttt{Timepix2} detektory, v rámci které dochází k nastavování řídících registrů \texttt{Timepix2} čipů, ovládání akvizice, vyčítání dat, řízení triggeru\footnote{řídící signál, který spouští resp. zastavuje (dle konfigurace) akvizici detektoru} apod.
 
@@ -110,14 +110,57 @@ Dalším článkem tohoto řetězce je minipočítač \texttt{Raspberry Pi}, kte
 
 Všechny tyto zařízení jsou pomocí ethernetového switche propojeny s \texttt{TPX serverem}, který je centrálním bodem této sítě, který jí pomocí řídícího softwaru \ref{atlas:cont} a komunikačního protokolu \ref{atlas:cont:det} ovládá. Zároveň je k síti připojen i \texttt{TPX DCS\footnote{z angl. Data Control System} server}, pomocí kterého jsou různé stavové informace \texttt{Atlas TPX} sítě předávány CERNu, resp. Atlas experimentu. Tyto stavové informace jsou převážně hardwarového charakteru (na př. napětí, časování apod.), ale také jsou předávána data o počtu pořízených snímků, jejich okupanci apod.
 
+%********************************************************************************
+% Softwarová architektura
+%********************************************************************************
+\section{Softwarová architektura}\label{atlas:sw_arch}
+Na obrázku \ref{fig:tpx_sw_diagram} je znázorněn diagram návrhu softwarové architektury sítě Atlas TPX z pohledu jejího řízení, vizualizace dat a předávání stavových informací CERNu. Diagram je členěn do dvou základních částí - ATCN\footnote{z angl. ATLAS Technical Control Network} (technická síť Atlas experimentu, která je oddělena od zbytku Atlas sítě a obsahuje systémy pro vyčítání dat a pro řízení, včetně TDAQ\footnote{z angl. Trigger and Data Aquisition (trigger a akvizice dat)} a DSC \cite{Ballestrero:atlas_network_upgrade}) a CERN služby, které poskytují perzistentní úložiště dat a web server pro jejich vizualizaci.
 
+\begin{figure}[th]
+	\begin{center}
+		\includegraphics[width=16cm]{figures/atlas_tpx_sw_diagram.pdf}
+		\caption{Atlas TPX - diagram softwarových komponent}
+		\label{fig:tpx_sw_diagram}
+	\end{center}
+\end{figure}
+
+\begin{description}
+	\item[Popis architektury z pohledu řízení:] 
+		Na obrázku \ref{fig:tpx_sw_diagram} se nachází Atlas TPX server, který je umístěn v serverové místnosti (USA15) Atlas experimentu, umístěné cca $100~m$ pod zemským povrchem. Tento server pomocí komunikačního protokolu (specifikovaném v \ref{atlas:cont:det}) řídí činnost detektorů (nastavování parametrů, ovládání akvizice apod.). Zároveň pomocí JSON REST API poskytuje rozhraní pro své řízení a předávání stavových informací (více v \ref{atlas:cont:api}). Díky tomuto rozhraní je možné činnost serveru řídit z ATCN sítě. Pro potřeby vzdáleného ovládání mimo síť ATCN slouží \texttt{LX plus server}, který zajistí spojení vytvořením SSH tunelu.\\
+		Předávání stavových informací zajišťuje \texttt{DCS server}, který je od \texttt{Atlas TPX serveru} získává pomocí jeho API. Hlavním úkolem DCS je zajištění získávání stavových informací ze všech experimentů a detektorů homogenním způsobem a interakce s LHC (předávání dat luminozitě, stavu svazku urychlovače, radiační pozadí apod.). Tyto data jsou dále předávána do Atlas Control Room, která se nachází na povrchu. Tam jsou tato data operátorů prezentována pomocí \texttt{FSM} panelu, což je aplikace, která vizualizuje stromovou strukturu všech systému a detektorů Atlas experimentu. Každý list této stromové struktury (detektor, senzor atd.) má několik proměnných, z nichž každá má předem definované intervaly s příslušnými stavy (\texttt{OK}, \texttt{WARNING}, \texttt{ERROR}, \texttt{FATAL} atd.). Výhodou této struktury je, že pokud kterýkoliv list změní svůj stav, tak se tato informace propaguje přes všechny nadřazené uzly, tudíž odhalení případné chyby je pro operátory mnohem snazší.
+	\item[Popis architektury z pohledu analýzy a vizualizace dat:] 
+		Když kterýkoliv detektor dokončí akvizici snímku, tak vygeneruje a pošle asynchronní událost \texttt{Atlas TPX serveru} s informací, že data jsou připravena k vyčtení. Následně server vyčte snímek z detektoru (i s jeho metadaty), zpracuje a připojí k němu informace o nastavení detektoru. Poté je třeba data přenést do \texttt{Data analysis serveru}, což v principu je možné dvěma\footnote{V současné době je možný pouze první způsob, protože díky politice CERNské síťové bezpečnosti a dlouhými schvalovacími termíny je Data analysis server a všechny s ním související systémy (web server, databáze s indexem a vlastní úložiště dat) prozatím umístěn v ÚTEF ČVUT v Praze.} způsoby:
+		\begin{enumerate}
+			\item \texttt{Atlas TPX server} uloží získaná data v textové podobě do lokálního (či síťového) datového úložiště, odkud jsou přenesena do \texttt{Data analysis serveru} pomocí automatického kopírovacího skriptu.
+			\item Druhou možností je přenesení dat pomocí JSON REST API protokolu, který je \texttt{Data analysis serverem} implementován. Tento druhý způsob je výhodnější, neb minimalizuje prodlevu mezi dobou pořízení snímku a následném zpracováním \texttt{Data analysis serverem} a dostupnosti jeho vizualizace pomocí web serveru a zároveň přináší úsporu přenesených dat.
+		\end{enumerate}
+		Hlavní úlohou \texttt{Data analysis serveru} provedení tzv. Cluter analýzy. Jde o proces, při kterém jsou z každého snímku získány shluky sousedních pixelů (tzv. clusterů), které mají nenulovou hodnotu. Z těchto clusterů, resp. z jejich tvaru a celkové deponované energie částice (pokud zasažení pixely operovaly v TOT módu) je možné zjistit typ částice, která danou událost způsobila. Na obrázku \ref{fig:tpx_ca} můžete vidět 6 základních dělení clusterů, kde
+		 \begin{enumerate}[label=(\alph*)]
+			\item je tzv. \texttt{DOT}, způsobený fotony, či elektrony o energii do $10~keV$
+			\item je tzv. \texttt{SMALL BLOB}, způsobený fotony, či elektrony s energií vetšinou nad $10~keV$
+			\item je tzv. \texttt{CURLY TRACK}, způsobený elektrony do $10~MeV$
+			\item je tzv. \texttt{HEAVY BLOBS}, způsobený těžce nabitými částicemi (na př. alfa)
+			\item je tzv. \texttt{HEAVY TRACK}, způsobený těžce nabitými částicemi (na př. protony)
+			\item je tzv. \texttt{STAIGHT TRACK}, způsobený těžce nabitými částicemi (muony apod.)
+		\end{enumerate}
+		Po dokončení analýzy dat, jsou data uložena do \texttt{ROOT}\footnote{\url{https://root.cern.ch/}} souborů (do souborové struktury po detektorech a hodinách). Jedná se o framework, který je vyvíjený v CERN a je určený pro ukládání dat a jejich analýzu. Vygenerované soubory jsou ukládány do \texttt{EOS úložiště}, což je služba pro perzistentní ukládání \texttt{ROOT} souborů provozovaná CERN.\\
+		Jelikož každý \texttt{ROOT} soubor má velikost řádově v jednotkách $GB$, jakékoliv operace nad nimi (na příklad vyhledávání) jsou velice časově náročné. Z tohoto důvodu vznikla \texttt{PostgreSQL} databáze s indexem na jednotlivé clustery, obsažené v \texttt{ROOT} souborech. 
+		Pro vizualizaci dat slouží web server, který pomocí databáze s indexem a \texttt{ROOT} souborů poskytuje online výsledky cluster analýzy a další informace.
+\end{description}
+
+\begin{figure}[t]
+	\begin{center}
+		\includegraphics[width=10cm]{figures/ca.png}
+		\caption{Cluster analýza - 6 základních typů clusterů (převzato z \cite{TurecekThesis2011})}
+		\label{fig:tpx_ca}
+	\end{center}
+\end{figure}
 
 
 \clearpage
-\section{Softwarová architektura}\label{atlas:sw_arch}
 \section{Řídící software}\label{atlas:cont}
-\subsection{Řízení detektorů}\label{atlas:cont:det}
-\subsection{REST API server}
+\subsection{Řízení detektorů}\label{atlas:cont:det} % + komunikační protokol
+\subsection{REST API server}\label{atlas:cont:api}
 \subsection{Zpracování a ukládání dat}
 
 

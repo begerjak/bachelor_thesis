@@ -1,4 +1,4 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{6}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -14,6 +14,17 @@ BOUCHAMI, J. et~al.
 \newblock \emph{Journal of Instrumentation}. 2011, 6, 01, s.~C01042.
 \newblock Dostupn{\'{e}} z:
   \url{http://stacks.iop.org/1748-0221/6/i=01/a=C01042}.
+
+\bibitem[{S. Ballestrero, A. Bogdanchikov , F. Brasolin, A. C. Contescu, S.
+  Dubrov, M. Hafeez, A. Korol , C. J.Lee, D. A. Scannicchio, M. Twomey, A.
+  Voronkov, A. Zaytsev}(2014)]{Ballestrero:atlas_network_upgrade}
+{S. Ballestrero, A. Bogdanchikov , F. Brasolin, A. C. Contescu, S. Dubrov, M.
+  Hafeez, A. Korol , C. J.Lee, D. A. Scannicchio, M. Twomey, A. Voronkov, A.
+  Zaytsev}.
+\newblock \emph{ATLAS TDAQ application gateway upgrade during LS1} [online].
+  2014. [cit.~7.\,5.\,2016].
+\newblock Dostupn{\'{e}} z:
+  \url{https://cds.cern.ch/record/1664275/files/ATL-DAQ-SLIDE-2014-054.pdf}.
 
 \bibitem[Turecek et~al.(2011)Turecek, Holy, Pospisil,, Vykydal]{Turecek2011S45}
 TURECEK, D. et~al.
