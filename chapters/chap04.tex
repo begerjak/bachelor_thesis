@@ -245,6 +245,217 @@ Struktura odchozího paketu je velice podobná, až na byte \texttt{ERR}, který
 	\label{tab:commands}
 \end{table}
 
+\subsubsection*{Popis příkazů komunikačního protokolu}
+Následuje struční popis příkazů komunikačního protokolu z pohledu obsahu vlastních přenesených dat odchozího a příchozího paketu (viz tabulka \ref{tab:com_packet})
+
+\begin{description}
+	\item[0x01 - Ping]:
+		Příkaz pro ověření spojení s detekorem. Na základě rozdílu času odeslání a přijetí paketu je vypočtena prodleva spojení v $ns$ (tzv. ping)
+		\begin{description}
+			\item[Odchozí data:] nic
+			\item[Příchozí data:] nic
+		\end{description}
+	\item[0x02 - Get status of the detector]:
+		Příkaz pro zjištění stavu detektoru.	
+		\begin{description}
+			\item[Odchozí data:] nic
+			\item[Příchozí data ($2~B$):] GST MST
+				\begin{itemize}
+					\item GST - General Status (obecný status)
+						\begin{itemize}
+							\item 0x00 - Ok
+							\item 0x01 - Chyba detekčního čipu
+							\item 0x02 - Obecná chyba
+						\end{itemize}
+					\item MST - Measurement Status (měřící status)
+						\begin{itemize}
+							\item 0x00 - Nečinný
+							\item 0x01 - Probíhá akvizice
+							\item 0x02 - Čekání na trigger
+							\item 0x03 - Data připravena k vyčtení
+							\item 0x04 - Chyba akvizice
+						\end{itemize}
+				\end{itemize}
+		\end{description}
+	\item[0x03 - Reset of the device]:
+		Tento příkaz slouží pro vyresetování \texttt{FPGA} a dalších řídících struktur detektoru.
+		\begin{description}
+			\item[Odchozí data:] nic
+			\item[Příchozí data:] nic
+		\end{description}
+	\item[0x04 - Set Bias and Timepix clock]:
+		Příkaz nastavující napětí (Bias) na obou Timepix čipech a jejich meřící frekvenci (Timepix clock)
+		\begin{description}
+			\item[Odchozí data ($24~B$):] BIAS1($8~B$) BIAS2($8~B$) CLK($8~B$)
+				\begin{itemize}
+					\item BIAS1, BIAS2 - hodnota napětí pro Timepix čipy (zakódovaná jako 64-bitové double-precision číslo dle standartu \texttt{IEEE 754})
+					\item CLK - Měřící frekvence obou Timepix čipů (zakódovaná jako 64-bitové double-precision číslo dle standartu \texttt{IEEE 754})
+				\end{itemize}
+			\item[Příchozí data:] nic
+		\end{description}
+	\item[0x05 - Get Bias and Timepix clock]:
+		Příkaz pro vyčtení úrovně napětí z obou Timepix čipů a jejich meřící frekvenci
+		\begin{description}
+			\item[Odchozí data:] nic
+			\item[Příchozí data ($24~B$):] BIAS1($8~B$) BIAS2($8~B$) CLK($8~B$)
+				\begin{itemize}
+					\item BIAS1, BIAS2 - hodnota napětí pro Timepix čipy (zakódovaná jako 64-bitové double-precision číslo dle standartu \texttt{IEEE 754})
+					\item CLK - Měřící frekvence obou Timepix čipů (zakódovaná jako 64-bitové double-precision číslo dle standartu \texttt{IEEE 754})
+				\end{itemize}
+		\end{description}
+	\item[0x06 - Set Pixel Configuration]:
+		Příkaz pro nastavení konfigurace pro každý pixel detektoru
+		\begin{description}
+			\item[Odchozí data ($(1+(65536~nebo~2*65536))~B$):] TYPE($1~B$) PIXCFG($(65536~nebo~2*65536)~B$)
+				\begin{itemize}
+					\item TYPE - Výběr čipu, pro který je konfigurace určena
+						\begin{itemize}
+							\item 0x00 - Konfigurace určena oboum čipům (délka PIXCFG je $2*65536~B$)
+							\item 0x01 - Konfigurace určena prvnímu čipu (délka PIXCFG je $65536~B$)
+							\item 0x02 - Konfigurace určena druhému čipu (délka PIXCFG je $65536~B$)
+						\end{itemize}
+					\item PIXCFG - Pole konfiguračních bytů (každý byte je pro jeden pixel) pro jednotlivé pixely. Délka tohoto pole je závyslá na parametru TYPE. Struktura bytu pro konfiguraci pixelu je následovná: \\ MASK\_BITE($1~b$) TEST\_BITE($1~b$) THL($4~b$) MODE($2~b$)
+						\begin{itemize}
+							\item MASK\_BITE - Pixel je aktivní při hodnotě $1$, zamaskovaný při $0$.
+							\item TEXT\_BITE - \todo
+							\item THL - Tyto čtyři bity udávají číslo od 0 do 15, které je použito pro posun globální hodnoty THL
+							\item MODE - Mód pixelu (0 - Medipix, 1 - Time-Over-Treshold, 2 One-Hit, 3 - Time-of-Arrival)
+						\end{itemize}
+				\end{itemize}
+			\item[Příchozí data:] nic
+		\end{description}
+	\item[0x07 - Get Pixel Configuration]:
+		Příkaz pro vyčtení konfigurace pixelů detektoru.
+		\begin{description}
+			\item[Odchozí data ($1~B$):] TYPE - Výběr čipu, pro který je konfigurace určena (viz předchozí příkaz)
+			\item[Příchozí data ($(65536~nebo~2*65536)~B$):] PIXCFG (viz předchozí příkaz)
+		\end{description}
+	\item[0x08 - Set DAC]:
+		Příkaz pro nastavení hodnot DAC převodníků detektoru.
+		\begin{description}
+			\item[Odchozí data ($3~B$):] DAC\_IDX DAC\_VAL DAC\_VAL
+				\begin{itemize}
+					\item DAC\_IDX - DAC index
+					\item DAC\_VAL - DAC hodnota
+				\end{itemize}
+			\item[Příchozí data:] nic
+		\end{description}
+	\item[0x09 - Get DAC]:
+		Příkaz pro vyčtení hodnoty DAC převodníků detektoru.
+		\begin{description}
+			\item[Odchozí data ($1~B$):] DAC\_IDX
+				\begin{itemize}
+					\item DAC\_IDX - DAC index
+				\end{itemize}
+			\item[Příchozí data ($2~B$):] DAC\_VAL DAC\_VAL
+				\begin{itemize}
+					\item DAC\_VAL - DAC hodnota
+				\end{itemize}
+		\end{description}
+	\item[0x0A - Perform Digital Test]:
+		Příkaz pro vykonání testu digitálních částí detektoru.
+		\begin{description}
+			\item[Odchozí data:] nic
+			\item[Příchozí data ($3~B$):] BPC BPC BPC
+				\begin{itemize}
+					\item BPC - Počet chybných pixelů detektoru
+				\end{itemize}
+		\end{description}
+	\item[0x0B - Perform Acquisition]:
+		Příkaz pro zahájení akvizice snímku/snímků.
+		\begin{description}
+			\item[Odchozí data ($13~B$):] ACQTM($8~B$) ACQCNT($4~B$) TGRMOD
+				\begin{itemize}
+					\item ACQTIM - Akviziční čas v sekundách (zakódovaný jako 64-bitové double-precision číslo dle standartu \texttt{IEEE 754}).
+					\item ACQCNT - Počet snímku (pokud je 0, detektor bude opakovat akvizici s těmito parametry až do její zastavení)
+					\item TRIGMOD - Mód triggeru
+						\begin{itemize}
+							\item 0x00 - bez triggeru
+							\item 0x01 - akvizice zahájena na signál triggeru
+							\item 0x02 - akvizice ukončena
+							 na signál triggeru
+						\end{itemize}
+				\end{itemize}
+			\item[Příchozí data:] nic
+		\end{description}
+	\item[0x0C - Read Measured Data]:
+		Tento příkaz slouží pro vyčtení naměřených dat z detektoru.
+		\begin{description}
+			\item[Odchozí data ($6~B$):] DET TYPE FRAME\_ID FRAME\_ID FRAME\_ID FRAME\_ID
+				\begin{itemize}
+					\item DET - selektor Timepix čipu
+						\begin{itemize}
+							\item 0x00 - oba čipy
+							\item 0x01 - jen první čip
+							\item 0x02 - jen druhý čip
+						\end{itemize}
+					\item TYPE - typ vyčítaných dat
+						\begin{itemize}
+							\item 0x00 - deserializovaný a derandomizovaný snímek
+							\item 0x01 - surová data z FPGA
+							\item 0x02\_ID - metadata k danému snímku (akviziční čas, napětí apod.)
+						\end{itemize}
+					\item FRAME\_ID - ID naměřeného snímku
+				\end{itemize}
+			\item[Příchozí data:] Velikost a typ příchozích dat se liší dle použitých parametrů DET a TYPE
+				\begin{itemize}
+					\item Pro TYPE 0x00 přijde pole bytů hodnot čítačů jednotlivých pixelů (hodnota každého pixelu je reprezentována pomocí dvou bytů)
+					\item Pro TYPE 0x01 přijdou blíže nespecifikovaná surová data z FPGA
+					\item Pro TYPE 0x02 přijdou metadata, vázající se k danému snímku s následující strukturou:
+						\begin{itemize}
+							\item UNIX časové razítko začátku akvizice [$ms$] ($5~B$)
+							\item Bias1 - měřící napětí prvního čipu [$V$] ($8~B$, double-precision dle \texttt{IEEE 757})
+							\item Bias2 - měřící napětí druhého čipu [$V$] ($8~B$, double-precision dle \texttt{IEEE 757})
+							\item Měřící frekvence [$Hz$] ($8~B$, double-precision dle \texttt{IEEE 757})
+							\item Doba akvizice [$s$] ($8~B$, double-precision dle \texttt{IEEE 757})
+						\end{itemize}	
+
+				\end{itemize}
+		\end{description}
+	\item[0x0D - Direct FPGA Command]:
+		Příkaz pro přímé poslání dat do FPGA a získání odpovědi.
+		\begin{description}
+			\item[Odchozí data:] Dle použitého příkazu
+			\item[Příchozí data:] Dle použitého příkazu
+		\end{description}
+	\item[0x0E - Stop acquisition]:
+		Příkaz pro zastavení aktuálně probíhající akvizice.
+		\begin{description}
+			\item[Odchozí data ($1~B$):] TYPE
+				\begin{itemize}
+					\item TYPE: Typ zastavení
+						\begin{itemize}
+							\item 0x00 - Zastavení akvizice po dokončení aktuálně pořizovaného snímku
+							\item 0x01 - Bezprostřední zastavení akvizice 
+						\end{itemize}
+				\end{itemize}
+			\item[Příchozí data:] nic
+		\end{description}
+	\item[0xFD - Asynchronous Event From Device]:
+		Tento typ příkazu je asynchronní a detektor ho posílá samovolně dle nastalé události - na příklad dokončení akvizice.
+		\begin{description}
+			\item[Příchozí data ($5~B$):] EVID VAL VAL VAL VAL
+				\begin{itemize}
+					\item EVID - Typ nastalé události (na př. 0x00 pro událost dokončení akvizice)
+					\item VAL - Doplňující data (na př. ID snímku pro událost dokončení akvizice)
+				\end{itemize}
+		\end{description}
+	\item[0xFE - Reboot of the Device]:
+		Příkaz pro restartování detektoru.
+		\begin{description}
+			\item[Odchozí data:] nic
+			\item[Příchozí data:] nic
+		\end{description}
+	\item[0xFF - Shutdown of the Device]:
+		Příkaz pro vypnutí detektoru.
+		\begin{description}
+			\item[Odchozí data:] nic
+			\item[Příchozí data:] nic
+		\end{description}
+\end{description}
+
+\subsection*{Synchronní a asynchronní příkazy}
+.. dva diagramy
 
 \clearpage
 \subsection{REST API server}\label{atlas:cont:api}
