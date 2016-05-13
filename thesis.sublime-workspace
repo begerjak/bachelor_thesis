@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"hw_",
+				"fig:tpx_hw_diagram"
+			],
+			[
+				"mp",
+				"mp atlasmpx: Estimate of the neutron fields in ATLAS based on ATLAS-MPX detectors data"
+			],
+			[
+				"sec",
+				"section	Section"
+			],
+			[
+				"al",
+				"always"
+			],
+			[
+				"la",
+				"label"
+			],
+			[
+				"ite",
+				"itemize"
+			],
+			[
 				"it",
 				"item	Itemize"
 			],
@@ -16,30 +40,35 @@
 	"buffers":
 	[
 		{
+			"file": "reference.bib",
+			"settings":
+			{
+				"buffer_size": 19133,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "thesis-begerjak-2016.tex",
 			"settings":
 			{
-				"buffer_size": 7459,
+				"buffer_size": 7894,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "\\addbibresource{reference.bib}\n\n\\chapter{Úvod}\nahoj\nhjhhjhjhj\nahojasdasd\nmodule provides you with a polymorphic configuration mechanism module provides you with a polymorphic configuration mechanism module provides you with a polymorphic configuration mechanism module provides you with a polymorphic configuration mechanism module provides you with a polymorphic configuration mechanism module provides you with a polymorphic configuration mechanism module provides you with a polymorphic configuration mechanism module provides you with a polymorphic configuration mechanism module provides you with a polymorphic configuration mechanism module provides you with a polymorphic configuration mechanism module provides you with a polymorphic configuration mechanism module provides you with a polymorphic configuration mechanism module provides you with a polymorphic  mechanism \n\n\n\n\n\\cite{Turecek2011S45}",
-			"file": "chapters/chap01.tex",
-			"file_size": 905,
-			"file_write_time": 131061520870000000,
+			"file": "chapters/chap04.tex",
 			"settings":
 			{
-				"buffer_size": 905,
+				"buffer_size": 20937,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/LaTeXTools/README.markdown",
+			"file": "pokyny.tex",
 			"settings":
 			{
-				"buffer_size": 68082,
-				"line_ending": "Windows"
+				"buffer_size": 11243,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -112,14 +141,28 @@
 	],
 	"file_history":
 	[
+		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/chapters/chap03.tex",
+		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/chapters/chap02.tex",
+		"/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/LaTeXTools/Default (OSX).sublime-keymap",
+		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/thesis-begerjak-2016.tex",
+		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/chapters/chap01.tex",
+		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/k336_thesis_macros.sty",
+		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/reference.bib",
+		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/pokyny.tex",
+		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/obrazky.tex",
+		"/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/LaTeXTools/README.markdown",
+		"/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/LaTeXTools/LaTeXTools.sublime-settings",
+		"/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
+		"/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/chapters/chap05.tex",
+		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/chapters/chap04.tex",
+		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/thesis-begerjak-2016.pdf",
 		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/thesis-begerjak-2016.blg",
 		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/Makefile",
-		"/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
 		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/Makefile.",
 		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/README.md",
-		"/Users/Jakub/Dropbox/CVUT/6. semestr/thesis/thesis-begerjak-2016.pdf",
-		"/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
-		"/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/User/Distraction Free.sublime-settings"
 	],
 	"find":
@@ -138,6 +181,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"viz.",
+			"fotofragie fo",
+			"fotofragie go",
+			"tpx_detector",
+			"na ob",
+			"3",
+			"save",
 			"bib"
 		],
 		"highlight": true,
@@ -161,89 +211,120 @@
 			[
 				{
 					"buffer": 0,
-					"file": "thesis-begerjak-2016.tex",
+					"file": "reference.bib",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7459,
+						"buffer_size": 19133,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2699,
-								2699
+								10820,
+								10820
 							]
 						],
 						"settings":
 						{
-							"spell_check": false,
-							"syntax": "Packages/LaTeX/LaTeX.tmLanguage",
+							"syntax": "Packages/LaTeX/Bibtex.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1917.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "thesis-begerjak-2016.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7894,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2269,
+								2269
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 437.0,
+						"translation.y": 409.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "chapters/chap01.tex",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 905,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								881,
-								881
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
 					"buffer": 2,
-					"file": "/Users/Jakub/Library/Application Support/Sublime Text 3/Packages/LaTeXTools/README.markdown",
+					"file": "chapters/chap04.tex",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 68082,
+						"buffer_size": 20937,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4197,
-								4397
+								16648,
+								16648
 							]
 						],
 						"settings":
 						{
-							"spell_check": false,
-							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+							"spell_check": true,
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 3573.0,
+						"translation.y": 3542.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "pokyny.tex",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 11243,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2005,
+								1467
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 231.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -251,11 +332,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 22.0
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{
@@ -282,7 +363,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 100.0
+		"height": 81.0
 	},
 	"output.find_results":
 	{
@@ -292,7 +373,7 @@
 	"project": "thesis.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 40.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -329,8 +410,8 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
-	"side_bar_width": 218.0,
+	"side_bar_visible": false,
+	"side_bar_width": 197.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
