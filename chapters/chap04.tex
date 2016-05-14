@@ -454,8 +454,51 @@ Následuje struční popis příkazů komunikačního protokolu z pohledu obsahu
 		\end{description}
 \end{description}
 
-\subsection*{Synchronní a asynchronní příkazy}
-.. dva diagramy
+\subsubsection{Synchronní a asynchronní příkazy komunikačního protokolu}
+Téměř všechny příkazy komunikačního protokolu jsou synchronní, tzn. server vyšle odchozí paket (s typem příkazu a jeho daty), který detektor zpracuje a bezprostředně vygeneruje a pošle odchozí paket (s příslušnými daty, typem příkazu a informací, zda-li při jeho zpracování došlo k chybě). Příkladem této synchronní komunikace je příkaz ping na obrázku \ref{fig:uml:com_priklad} nahoře.
+
+Vedle synchronních příkazů existuje i jeden asynchronní - \texttt{0xFD - Asynchronous Event From Device}. V současné verzi komunikačního protokolu je tento příkaz využit jen pro oznámení serveru, že detektor dokončil akvizici a má data připravena k vyčtení.
+
+Na obrázku \ref{fig:uml:com_priklad} je znázorněn příklad kombinace synchronní a asynchronní komunikace pro pořízení snímku. Nejprve server vyšle synchronní příkaz s žádostí o provedení akvizice (s parametry: doba akvizice, počet snímků a mód triggeru) na který hned dostane odpověď. Následuje vyčítací smyčka - detektor udělá akvizici snímku (pokud již všechny neudělal) a vyšle serveru asynchronní příkaz s kódem právě dokončené akvizice a s ID\footnote{unikátní číslo snímku od spuštění detektoru} snímku. Tuto asynchronní zprávu server zachytí a provede vyčítací sekvenci (pomocí příkazu \texttt{0x0C - Read Measured Data}), jejíž kroky se mohou lišit dle konfigurace. Ve výchozím nastavení tato sekvence vypadá následovně:
+\begin{enumerate}
+	\item Vyčtení vlastního snímku (hodnot jednotlivých pixelů).
+	\item Vyčtení metadat (tzv. \texttt{DSC}). Tato data obsahují dodatečné informace ke snímku, jako na příklad přesnou dobu akvizice, čas začátku akvizice a měřící napětí a frekvenci Timepix čipů.
+\end{enumerate}
+
+\begin{figure}[t]
+	\begin{center}
+		\begin{sequencediagram}
+			\newinst{s}{:AtlasTPX server}
+			\newinst[7]{d}{:Detektor}
+			\begin{sdblock}{Ping}{}
+				\begin{call}{s}{ping()}{d}{}
+				\end{call}
+			\end{sdblock}
+			\begin{sdblock}{Pořízení snímku}{}
+				\begin{call}{s}{performAcq(framesCount, acqTime, trigMod)}{d}{return(success)}	
+				\end{call}
+				%\postlevel
+				\begin{sdblock}{Měřící smyčka}{while(currentFrame <= framesCount)}
+					\begin{callself}{d}{performAcq}{acqFinished}
+					%\postlevel	
+					\end{callself}
+					\mess{d}{asynchronousEvent - acq finished}{s}
+					%\postlevel
+					\begin{call}{s}{readOutMeasuredData(det, frameID, type = FRAME)}{d}{return(data)}
+					\end{call}
+					%\postlevel
+					\begin{call}{s}{readOutMeasuredData(det, frameID, type = DSC)}{d}{return(data)}
+					\end{call}
+				\end{sdblock}
+			\end{sdblock}
+		\end{sequencediagram}
+		\caption{Příklad použití komunikačního protokolu}
+		\label{fig:uml:com_priklad}
+	\end{center}
+\end{figure}
+
+\subsubsection{Implementace komunikačního protokolu na straně serveru}
+
 
 \clearpage
 \subsection{REST API server}\label{atlas:cont:api}
