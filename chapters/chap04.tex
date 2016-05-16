@@ -497,12 +497,45 @@ Na obrázku \ref{fig:uml:com_priklad} je znázorněn příklad kombinace synchro
 	\end{center}
 \end{figure}
 
-\subsubsection{Implementace komunikačního protokolu na straně serveru}
+\subsubsection{Implementace modulu pro řízení detektorů na straně serveru}
+V této podkapitole bude popsána implementace řízení detektorů v řídícím softwaru sítě Atlas TPX. Celý software byl implementován v jazyce \texttt{JAVA} za pomoci build nástroje \texttt{Maven}\footnote{\url{https://maven.apache.org/}} a knihoven \texttt{Dropwizard}\footnote{\url{http://www.dropwizard.io}}, \texttt{Retrofit}\footnote{\url{http://square.github.io/retrofit/}} a \texttt{RxJava}\footnote{\url{https://github.com/ReactiveX/RxJava}}.
+
+Jak již bylo zmíněno výše, detektory jsou připojeny k Atlas TPX serveru přes ethernetové rozhraní a pomocí TPC/IP protokolu je vlastní komunikace realizována pomocí výše popsaného komunikačního protokolu. Z pohledu navazování spojení byla použita architektura klient-server tak, že detektor plní roli serveru a Atlas TPX server zase klienta. Tato architektura bylo použita s ohledem na robustnost a stabilitu této sítě a aby úloha navazování spojení zůstala v kompetenci Atlas TPX serveru. Když by na příklad došlo k přerušení napájení nebo jiné chybě jednoho z detektorů, Atlas TPX server by nebyl schopen se pokusit o znovu navázání spojení.
+
+\begin{figure}[th]
+	\begin{center}
+		\includegraphics[width=11cm]{figures/atlas_tpx_detectors_class.pdf}
+		\caption{Diagram tříd modulu pro ovládání detektorů}
+		\label{fig:class:detectors}
+	\end{center}
+\end{figure}
+
+Na obrázku \ref{fig:class:detectors} můžete vidět diagram tříd modulu pro práci s detektory řídícího softwaru. Tento diagram není úplný a obsahuje jen několik nejdůležitějších tříd, zbytek je k nalezení na přiloženém CD.
+
+Při návrhu tohoto modulu bylo vycházeno z návrhového vzoru Model-View-Controller \cite{DesignPatterns-Gamma:1995:DPE:186897}, resp. z jeho modifikace Model-Controller, protože tento modul žádnou prezentační vrstvu nemá. 
+
+Začněme popisem balíčku \texttt{model}. Jeho nejdůležitější třídou je třída \texttt{DetectorUnit}, která uchovává všechny informace o jednom detektoru, jako na příklad název, tpxID, unitID, ip adresu, port, \texttt{SettingsStorage} (úložiště nastavení detektoru, jako na příklad bias, clock, parametry akvizice, DAC hodnoty atd.) a \texttt{HwStatus} (tento objekt nese informace o posledních naměřeních údajích získaných z detektoru, jako třeba aktuální hodnoty bias, ping, obecný a měřící status apod.).
+
+Pro uchovávání všech instancí třídy \texttt{DetectorUnit} slouží singleton \cite{DesignPatterns-Gamma:1995:DPE:186897} třída \texttt{DetectorUnit\\Storage}, která tyto instance uchovává v kolekci HashMap, jejímž klíčem je TpxID (Integer). Instanci tohoto singletonu je možné získat pomocí třídy \texttt{DetectorUnitStorageFactory}, resp. pomocí její statické metody \texttt{getStorage()}. Před prvním použití je třeba nejprve toto úložiště inicializovat pomocí statické metody \texttt{DetectorUnitStorageFactory.initStorage(String\\initFilePath)}, které se coby parametr předá cesta v souborovém systému k "*.csv" souboru s tabulkou s detektory. Každý řádek tohoto souboru reprezentuje jeden detektor a je v následujícím formátu:
+\begin{center}
+	název\_detektoru\textbf{\Large{;}}ip\_adresa\textbf{\Large{;}}unit\_id\textbf{\Large{;}}tpx\_id\textbf{\Large{;}}port
+\end{center}
+
+V balíčku \texttt{controller.services} se nachází vlastní logika tohoto modulu. 
+Třída \texttt{Detector\\CommunicationService} se stará o vlastní komunikaci s detektorem (jedna instance = jeden detektor). Tato třída obsahuje instanci třídy \texttt{DetectorUnit} (předané v konstruktoru), která mimo jiné obsahuje IP adresu a port příslušného detektoru. Tyto parametry se používají v metodě \texttt{connect()}, ve které se vytvoří spojení s detektorem (socket, BufferedOutputStream, BufferedInputStream apod.). Pro odpojení detektoru zase slouží metoda \texttt{dicconnect()}. Krom metod pro síťovou komunikaci obsahuje i všechny metody implementované z interface \texttt{CommunicationProtocolIntf} - všechny synchronní metody komunikačního protokolu. 
+
+Pro příjem příchozích paketů z detektoru vznikl \texttt{PacketsReceiverController}. Ten ve vlastním vlákně vyčítá proud bytů, přicházejících z detektoru a následně provádí jejich parsování, jehož výsledkem je instance objektu \texttt{IncomingPacket}, které obsahuje typ příkazu, příznak chyby a vlastní data. Takto vzniklý paket je zařazen do fronty příchozích paketů detektoru (implementované jako \texttt{ConcurrentLinkedQueue<IncomingPacket>}). Nad touto frontou pracují jednak všechny metody se synchronními příkazy komunikačního protokolu (které sledují, zda-li se v ní v daném časovém intervalu objeví odpověď), ale také instance objetu \texttt{AsynchronousEventHandlerController}. Ten ve vlastním vlákně tuto frontu sleduje a objeví-li se paket s typem příkazu \texttt{0xFD (Asynchronous Event From Device)}, tak ho z fronty odebere, jeho vlastní data rozparsuje a dále zpracuje. Pokud se na příklad jedná o událost dokončené akvizice, tak \texttt{ReadOutService} snímek z detektoru vyčte a pomocí \texttt{RxJava event bus} vyšle asynchronní zprávu napříč celou aplikací s vyčteným snímkem. Zde byl použit návrhový vzor Producer - Consumer, kde \texttt{AsynchronousEventHandlerController} představuje Producer a na kterémkoliv jiném místě aplikace se Consumer (možno i více Consumerů) muže zaregistrovat ke sledování událostí v event bus. Příkladem takového Comsumera může být \texttt{FrameSaverController}, který se postará o uložení získaného snímku (viz kapitola \ref{atlas:cont:dataSaver}).
+
+Aby bylo možné pohodlně ovládat více detektorů současně, vznikl\\\texttt{DetectorUnitsController}. Ten implementuje interface \texttt{DetectorUnitsControllerIntf}, jehož metody pokrývají veškerou funkcionalitu detektoru, jako třeba metody k navázání a ukončení spojení, ale také všechny metody komunikačního protokolu. Všechny tyto metody mají jeden společní parametr - \texttt{int[] tpxIDs} (pole TpxID detektorů). Tento parametr určuje, nad kterými detektory se má daná metoda hromadně vykonat. Jejich výstupem je zase pole, jehož typ se liší dle příkazu (na příklad pro metodu connect je to pole boolean proměnných - značící úspěch připojení, pro ping zase double čísel, udávajících odezvu spojení v $ns$). Tento objekt je zase typu singleton a jeho instanci lze získat pomocí metody \texttt{getInstance()}. Po spuštění aplikace je však třeba tento singleton nainicializovat pomocí metody \texttt{init()}, která pomocí \texttt{DetectorUnitStorageFactory} vytvoří datovou strukturu  s \texttt{DetectorCommunicationService} jednotlivých detektorů.
+
 
 
 \clearpage
+\subsubsection{Emulátor detektoru}
+
+\clearpage
 \subsection{REST API server}\label{atlas:cont:api}
-\subsection{Zpracování a ukládání dat}
+\subsection{Zpracování a ukládání dat}\label{atlas:cont:dataSaver}
 
 
 

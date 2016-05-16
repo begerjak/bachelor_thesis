@@ -1,4 +1,4 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -14,6 +14,14 @@ BOUCHAMI, J. et~al.
 \newblock \emph{Journal of Instrumentation}. 2011, 6, 01, s.~C01042.
 \newblock Dostupn{\'{e}} z:
   \url{http://stacks.iop.org/1748-0221/6/i=01/a=C01042}.
+
+\bibitem[Gamma et~al.(1995)Gamma, Helm, Johnson,,
+  Vlissides]{DesignPatterns-Gamma:1995:DPE:186897}
+GAMMA, E. et~al.
+\newblock \emph{Design Patterns: Elements of Reusable Object-oriented
+  Software}.
+\newblock Boston, MA, USA~: Addison-Wesley Longman Publishing Co., Inc., 1995.
+\newblock ISBN 0-201-63361-2.
 
 \bibitem[{S. Ballestrero, A. Bogdanchikov , F. Brasolin, A. C. Contescu, S.
   Dubrov, M. Hafeez, A. Korol , C. J.Lee, D. A. Scannicchio, M. Twomey, A.
