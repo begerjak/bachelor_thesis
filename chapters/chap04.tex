@@ -164,9 +164,16 @@ Na obrázku \ref{fig:tpx_sw_diagram} je znázorněn diagram návrhu softwarové 
 \section{Řídící software a jeho implementace}\label{atlas:cont}
 Tato kapitola je věnována návrhu a implementaci řídícího software sítě Atlas TPX, který je nasazen na Atlas TPX serveru (viz obr. \ref{fig:tpx_sw_diagram}). Úkolem  tohoto software se zajištění komunikace s detektory, zejména pak řízení akvizice, nastavování parametrů a vyčítání dat - tato komunikace bude popsána v kapitole \ref{atlas:cont:det}. Další úlohou tohoto software je poskytování rozhraní pro řízení své činnosti a pro předávání stavových informací o Atlas TPX síti. Toto rozhraní je implementováno pomocí \texttt{JSON REST API} a detailně bude popsáno v kapitole \ref{atlas:cont:api}. \todo
 
+%********************************************************************************
+% Řídící software a jeho implementace - Řízení detektorů
+%********************************************************************************
 \subsection{Řízení detektorů}\label{atlas:cont:det} % + komunikační protokol
 Jak již bylo zmíně výše, detektor se skládá ze dvou \texttt{Timepix} detekčních čipů, \texttt{FPGA} a minipočítače \texttt{Raspberry Pi}, který implementuje komunikační protokol, díky kterému umožňuje řídícímu software ovládání činnosti detektoru. V podkapitole \ref{atlas:cont:det:comunikacni_protokol} naleznete popis tohoto komunikačního protokolu.
 
+%********************************************************************************
+% Řídící software a jeho implementace - Řízení detektorů
+% > Komunikační protokol
+%********************************************************************************
 \subsubsection{Komunikační protokol}\label{atlas:cont:det:comunikacni_protokol}
 Tabulka \ref{tab:com_packet} znázorňuje strukturu komunikačního rámce (tzv. paketu) tohoto protokolu pomocí posloupnosti bytů z pohledu Atlas TPX serveru, resp. z pohledu řídícího software. V horní části se nachází struktura odchozího paketu, kde:
 \begin{description}
@@ -245,7 +252,11 @@ Struktura odchozího paketu je velice podobná, až na byte \texttt{ERR}, který
 	\label{tab:commands}
 \end{table}
 
-\subsubsection*{Popis příkazů komunikačního protokolu}
+%********************************************************************************
+% Řídící software a jeho implementace - Řízení detektorů
+% > Popis příkazů komunikačního protokolu
+%********************************************************************************
+\subsubsection{Popis příkazů komunikačního protokolu}
 Následuje struční popis příkazů komunikačního protokolu z pohledu obsahu vlastních přenesených dat odchozího a příchozího paketu (viz tabulka \ref{tab:com_packet})
 
 \begin{description}
@@ -454,7 +465,12 @@ Následuje struční popis příkazů komunikačního protokolu z pohledu obsahu
 		\end{description}
 \end{description}
 
-\subsubsection{Synchronní a asynchronní příkazy komunikačního protokolu}
+
+%********************************************************************************
+% Řídící software a jeho implementace - Řízení detektorů
+% > Synchronní a asynchronní příkazy komunikačního protokolu
+%********************************************************************************
+\subsubsection{Synchronní a asynchronní příkazy komunikačního protokolu}\label{atlas:com:synchonni_a_asynchonni_prikazy}
 Téměř všechny příkazy komunikačního protokolu jsou synchronní, tzn. server vyšle odchozí paket (s typem příkazu a jeho daty), který detektor zpracuje a bezprostředně vygeneruje a pošle odchozí paket (s příslušnými daty, typem příkazu a informací, zda-li při jeho zpracování došlo k chybě). Příkladem této synchronní komunikace je příkaz ping na obrázku \ref{fig:uml:com_priklad} nahoře.
 
 Vedle synchronních příkazů existuje i jeden asynchronní - \texttt{0xFD - Asynchronous Event From Device}. V současné verzi komunikačního protokolu je tento příkaz využit jen pro oznámení serveru, že detektor dokončil akvizici a má data připravena k vyčtení.
@@ -497,6 +513,11 @@ Na obrázku \ref{fig:uml:com_priklad} je znázorněn příklad kombinace synchro
 	\end{center}
 \end{figure}
 
+
+%********************************************************************************
+% Řídící software a jeho implementace - Řízení detektorů
+% > Implementace modulu pro řízení detektorů na straně serveru
+%********************************************************************************
 \subsubsection{Implementace modulu pro řízení detektorů na straně serveru}
 V této podkapitole bude popsána implementace řízení detektorů v řídícím softwaru sítě Atlas TPX. Celý software byl implementován v jazyce \texttt{JAVA} za pomoci build nástroje \texttt{Maven}\footnote{\url{https://maven.apache.org/}} a knihoven \texttt{Dropwizard}\footnote{\url{http://www.dropwizard.io}}, \texttt{Retrofit}\footnote{\url{http://square.github.io/retrofit/}} a \texttt{RxJava}\footnote{\url{https://github.com/ReactiveX/RxJava}}.
 
@@ -529,12 +550,68 @@ Pro příjem příchozích paketů z detektoru vznikl \texttt{PacketsReceiverCon
 Aby bylo možné pohodlně ovládat více detektorů současně, vznikl\\\texttt{DetectorUnitsController}. Ten implementuje interface \texttt{DetectorUnitsControllerIntf}, jehož metody pokrývají veškerou funkcionalitu detektoru, jako třeba metody k navázání a ukončení spojení, ale také všechny metody komunikačního protokolu. Všechny tyto metody mají jeden společní parametr - \texttt{int[] tpxIDs} (pole TpxID detektorů). Tento parametr určuje, nad kterými detektory se má daná metoda hromadně vykonat. Jejich výstupem je zase pole, jehož typ se liší dle příkazu (na příklad pro metodu connect je to pole boolean proměnných - značící úspěch připojení, pro ping zase double čísel, udávajících odezvu spojení v $ns$). Tento objekt je zase typu singleton a jeho instanci lze získat pomocí metody \texttt{getInstance()}. Po spuštění aplikace je však třeba tento singleton nainicializovat pomocí metody \texttt{init()}, která pomocí \texttt{DetectorUnitStorageFactory} vytvoří datovou strukturu  s \texttt{DetectorCommunicationService} jednotlivých detektorů.
 
 
-
-\clearpage
+%********************************************************************************
+% Řídící software a jeho implementace - Řízení detektorů
+% > Emulátor detektoru
+%********************************************************************************
 \subsubsection{Emulátor detektoru}
+Pro účely vývoje a testování řídícího software pro \texttt{Atlas TPX server} byl vyvinut emulátor detektoru, který plně emuluje jeho činnost. Emulátor byl rovněž napsán v jazyce \texttt{JAVA} a jeho zdrojové kódy a spustitelný \texttt{jar} soubor naleznete na přiloženém CD.
+
+Emulátor se spouští se dvěma povinnými parametry, kde
+\begin{enumerate}
+	\item je port, na kterém server emulátoru naslouchá (celé číslo),
+	\item je pravděpodobnost, s jakou při zpracovávání požadavku bude simulována chyba - $0$ znamená bez chyb, $1$ samé chyby (desetinné číslo).
+\end{enumerate}
+
+\begin{figure}[t]
+	\begin{center}
+		\begin{sequencediagram}
+			\newinst{ss}{:AtlasPix (ServerSocket)}
+			\newthread[blue]{ch}{:ClientHandler}
+			\newthread[gray]{pr}{:PaketReceiver}
+			\newthread[red]{ap}{:AcquisitionPerformer}
+			\begin{sdblock}{Připojení klienta}{}
+				\begin{call}{ss}{acceptClient}{ch}{success}
+					\begin{call}{ch}{startReceiving}{pr}{success}
+					\end{call}
+				\end{call}
+			\end{sdblock}
+			\begin{sdblock}{Akvizice snímku}{}
+				\begin{callself}{pr}{performAcqRequest}{success}
+					\begin{call}{pr}{onPerformAcq}{ch}{success}
+						\mess{ch}{performAcq}{ap}
+					\end{call}	
+				\end{callself}	
+				\postlevel
+				\mess{ap}{acqPerformed}{ch}
+				\begin{callself}{ch}{onAcqPerformed}{success}
+				\end{callself}	
+			\end{sdblock}			
+		\end{sequencediagram}
+		\caption{Emulátor detektoru - sekvenční diagram připojení klienta a pořízení snímku}
+		\label{fig:uml:emulator}
+	\end{center}
+\end{figure}
+
+Na obrázku \ref{fig:uml:emulator} je zobrazen sekvenční diagram dvou případů užití tohoto emulátoru. První případ užití znázorňuje připojení klienta (na př. \texttt{Atlas TPX serveru}) a druhý pak proces zpracování žádosti o snímek a jeho vygenerování.
+
+Pojďme si nyní popsat první část - připojení klienta. Ve třídě \texttt{AtlasPix}, resp. v její metodě \texttt{startServer()} se nachází nekonečná smyčka, ve které je pomocí instance třídy \texttt{ServerSocket} navázáno spojení s novými klienty. Když spojení s klientem je navázáno, je vytvořen klientský socket, pomocí kterého dojde v vytvoření instance třídy \texttt{ClientHandler}. Ta se v samostatném novém vláknu stará o obsluhu nově připojeného klienta. Zároveň \texttt{ClientHandler} vytvoří instanci třídy \texttt{PaketReceiver}, který čte proud bytů přijatých od klienta a parsuje jej do objektů typu \texttt{IncomingPacket}.
+
+Tím se dostáváme k druhému příkladu případu užití - akvizici snímku. Poté, co \texttt{PaketReceiver} přijme nový paket, tak ho vloží do fronty paketů. Tuto frontu z druhé strany čte a zpracovává \texttt{ClientHandler}. Všechny příchozí pakety od klienta mohou obsahovat jen synchronní příkazy komunikačního protokolu, takže může být okamžitě nasimulován příslušný stav emulátoru a vygenerována odpověď klientovi. 
+
+V našem případe akvizice snímku je situace trochu složitější. \texttt{PaketReceiver} odchytí nový paket, obsahující žádost o provedení akvizice, který předá do fronty příchozích paketů. Když se \texttt{ClientHandler} dostane k jeho zpracování, tak vytvoří objekt typu \texttt{AcquisitionRequest} a předá ho instanci třídy \texttt{AcquisitionPerformer}. Ten žádost o akvizici zařadí do příslušní fronty, kde čeká, až samostatné akviziční vlákno se dostane k jejímu zpracování. Při zpracovávání žádosti o akvizici je vygenerováno náhodná matice hodnot pixelů (o velikosti $256\times512$) a také příslušná metadata, jako na příklad akviziční čas, bias obou čipů (s přičtenou náhodnou veličinou, simulující fluktuaci napětí na křemíkovém povrchu detekčních čipů) apod. Po vygenerování těchto hodnot se akviziční vlákno uspí na dobu akvizice, aby se chování emulátoru co nejvíce přiblížilo skutečnému detektoru.
+
+Následně je připojenému klientovi poslána asynchronní zpráva o dokončené akvizici. Tato zpráva obsahuje příznak, že naměřená data jsou připravena k vyčtení a také ID vygenerovaného snímku. 
+
+Poté klient pošle příkaz pro vyčtení naměřených dat (resp. dva příkazy - jeden pro vlastní snímek a druhý pro metadata), což bylo popsáno v kapitole \ref{atlas:com:synchonni_a_asynchonni_prikazy} - viz obr. \ref{fig:uml:com_priklad}.
+
+%********************************************************************************
+% Řídící software a jeho implementace - REST API server
+%********************************************************************************
+\subsection{REST API server}\label{atlas:cont:api}
+
 
 \clearpage
-\subsection{REST API server}\label{atlas:cont:api}
 \subsection{Zpracování a ukládání dat}\label{atlas:cont:dataSaver}
 
 
