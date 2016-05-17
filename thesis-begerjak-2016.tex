@@ -50,6 +50,9 @@ unicode=true,
 \usepackage{tikz}		        %TeX obrázky
 \usetikzlibrary{trees,calc,positioning,shapes.geometric,matrix,arrows,decorations.pathreplacing,arrows.meta,decorations.markings,math}
 
+\usepackage{minted}				% slouží k Syntax Highlighting
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % příkazy šablony
@@ -193,6 +196,97 @@ unicode=true,
 
 \printnomenclature
 \label{apx:zkratky}
+
+\chapter{Konfigurační soubor Atlas TPX serveru}\label{app:config}
+\begin{minted}[
+    frame=single,
+    linenos
+  ]{yaml}
+##############################################################################
+# Basic configuration
+##############################################################################
+# Path to config csv file with detecotrs config
+# File structure: 1 detector struct per line
+#  - detector_name[String];detector_ip[String];unit_id[int];tpx_id[int]
+#     ;port[int]
+detectorsConfigPath: data/detectors2.csv
+
+# Controll REST API server configuration
+server:
+  applicationConnectors:
+    - type: http
+      port: 9179
+      outputBufferSize: 32KiB
+      idleTimeout: 30 seconds
+      minBufferPoolSize: 64 bytes
+      bufferPoolIncrement: 1KiB
+      maxBufferPoolSize: 64KiB
+      acceptorThreads: 1
+      selectorThreads: 2
+      acceptQueueSize: 1024
+      reuseAddress: true
+      soLingerTime: 600s
+  adminConnectors:
+    - type: http
+      port: 9180
+
+# Logging settings
+logging:
+  level: INFO
+  appenders:
+    - type: file
+      currentLogFilename: log/atlastpx_server_app.log
+      threshold: ALL
+      archive: true
+      archivedLogFilenamePattern: log/atlastpx_server_app-%d.log.gz
+      archivedFileCount: 5
+      timeZone: UTC
+logging:
+  level: INFO
+  appenders:
+    - type: console
+      threshold: ALL
+      timeZone: UTC
+      target: stdout
+
+
+##############################################################################
+# Data readout & saving configuration
+##############################################################################
+# If true asynchronous event handler will takes care abouth automatical data
+# (frame + DSC) readout from the detector.
+readOutDataAutomatically: true
+
+# Directory for saving output data
+outputDir: ../frames
+
+# Local data saving configuration
+# Alowed types:
+# - MULTIFRAME: Pixelman's multiframe format (3 files per hour).
+#               Output files:
+#                 1) Frames: Line [X, C], where X is pix. index and 
+# 			C pix value. Frames are separated by '#'
+#                 2) Description file ( DSC)
+#                 3) Index file (indexing file 1 and 2)
+# Example - outputFramesType: [MULTIFRAME]
+outputFramesType: [MULTIFRAME]
+
+
+##############################################################################
+# Data server configuration
+##############################################################################
+# If true all data (configs on change, performed frames) will be automatically
+# send to the data server
+# and also data server status will be awailable by info endpoint.
+useDataServer: true
+
+# URL of dataServer
+dataServerBaseUrl: atlastpx.utef.cvut.cz
+
+# port of dataServer
+dataServerPort: 8042
+\end{minted}
+
 
 \chapter{Obsah přiloženého CD}
 \textbf{\large Tato příloha je povinná pro každou práci. Každá práce musí totiž obsahovat přiložené CD. Viz dále.}

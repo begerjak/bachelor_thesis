@@ -518,7 +518,7 @@ Na obrázku \ref{fig:uml:com_priklad} je znázorněn příklad kombinace synchro
 % Řídící software a jeho implementace - Řízení detektorů
 % > Implementace modulu pro řízení detektorů na straně serveru
 %********************************************************************************
-\subsubsection{Implementace modulu pro řízení detektorů na straně serveru}
+\subsubsection{Implementace modulu pro řízení detektorů na straně serveru}\label{atlas:cont:impl}
 V této podkapitole bude popsána implementace řízení detektorů v řídícím softwaru sítě Atlas TPX. Celý software byl implementován v jazyce \texttt{JAVA} za pomoci build nástroje \texttt{Maven}\footnote{\url{https://maven.apache.org/}} a knihoven \texttt{Dropwizard}\footnote{\url{http://www.dropwizard.io}}, \texttt{Retrofit}\footnote{\url{http://square.github.io/retrofit/}} a \texttt{RxJava}\footnote{\url{https://github.com/ReactiveX/RxJava}}.
 
 Jak již bylo zmíněno výše, detektory jsou připojeny k Atlas TPX serveru přes ethernetové rozhraní a pomocí TPC/IP protokolu je vlastní komunikace realizována pomocí výše popsaného komunikačního protokolu. Z pohledu navazování spojení byla použita architektura klient-server tak, že detektor plní roli serveru a Atlas TPX server zase klienta. Tato architektura bylo použita s ohledem na robustnost a stabilitu této sítě a aby úloha navazování spojení zůstala v kompetenci Atlas TPX serveru. Když by na příklad došlo k přerušení napájení nebo jiné chybě jednoho z detektorů, Atlas TPX server by nebyl schopen se pokusit o znovu navázání spojení.
@@ -545,7 +545,7 @@ Pro uchovávání všech instancí třídy \texttt{DetectorUnit} slouží single
 V balíčku \texttt{controller.services} se nachází vlastní logika tohoto modulu. 
 Třída \texttt{Detector\\CommunicationService} se stará o vlastní komunikaci s detektorem (jedna instance = jeden detektor). Tato třída obsahuje instanci třídy \texttt{DetectorUnit} (předané v konstruktoru), která mimo jiné obsahuje IP adresu a port příslušného detektoru. Tyto parametry se používají v metodě \texttt{connect()}, ve které se vytvoří spojení s detektorem (socket, BufferedOutputStream, BufferedInputStream apod.). Pro odpojení detektoru zase slouží metoda \texttt{dicconnect()}. Krom metod pro síťovou komunikaci obsahuje i všechny metody implementované z interface \texttt{CommunicationProtocolIntf} - všechny synchronní metody komunikačního protokolu. 
 
-Pro příjem příchozích paketů z detektoru vznikl \texttt{PacketsReceiverController}. Ten ve vlastním vlákně vyčítá proud bytů, přicházejících z detektoru a následně provádí jejich parsování, jehož výsledkem je instance objektu \texttt{IncomingPacket}, které obsahuje typ příkazu, příznak chyby a vlastní data. Takto vzniklý paket je zařazen do fronty příchozích paketů detektoru (implementované jako \texttt{ConcurrentLinkedQueue<IncomingPacket>}). Nad touto frontou pracují jednak všechny metody se synchronními příkazy komunikačního protokolu (které sledují, zda-li se v ní v daném časovém intervalu objeví odpověď), ale také instance objetu \texttt{AsynchronousEventHandlerController}. Ten ve vlastním vlákně tuto frontu sleduje a objeví-li se paket s typem příkazu \texttt{0xFD (Asynchronous Event From Device)}, tak ho z fronty odebere, jeho vlastní data rozparsuje a dále zpracuje. Pokud se na příklad jedná o událost dokončené akvizice, tak \texttt{ReadOutService} snímek z detektoru vyčte a pomocí \texttt{RxJava event bus} vyšle asynchronní zprávu napříč celou aplikací s vyčteným snímkem. Zde byl použit návrhový vzor Producer - Consumer, kde \texttt{AsynchronousEventHandlerController} představuje Producer a na kterémkoliv jiném místě aplikace se Consumer (možno i více Consumerů) muže zaregistrovat ke sledování událostí v event bus. Příkladem takového Comsumera může být \texttt{FrameSaverController}, který se postará o uložení získaného snímku (viz kapitola \ref{atlas:cont:dataSaver}).
+Pro příjem příchozích paketů z detektoru vznikl \texttt{PacketsReceiverController}. Ten ve vlastním vlákně vyčítá proud bytů, přicházejících z detektoru a následně provádí jejich parsování, jehož výsledkem je instance objektu \texttt{IncomingPacket}, které obsahuje typ příkazu, příznak chyby a vlastní data. Takto vzniklý paket je zařazen do fronty příchozích paketů detektoru (implementované jako \texttt{ConcurrentLinkedQueue<IncomingPacket>}). Nad touto frontou pracují jednak všechny metody se synchronními příkazy komunikačního protokolu (které sledují, zda-li se v ní v daném časovém intervalu objeví odpověď), ale také instance objetu \texttt{AsynchronousEventHandlerController}. Ten ve vlastním vlákně tuto frontu sleduje a objeví-li se paket s typem příkazu \texttt{0xFD (Asynchronous Event From Device)}, tak ho z fronty odebere, jeho vlastní data rozparsuje a dále zpracuje. Pokud se na příklad jedná o událost dokončené akvizice, tak \texttt{ReadOutService} snímek z detektoru vyčte a pomocí \texttt{RxJava event bus} vyšle asynchronní zprávu napříč celou aplikací s vyčteným snímkem. Zde byl použit návrhový vzor Producer - Consumer, kde \texttt{AsynchronousEventHandlerController} představuje Producer a na kterémkoliv jiném místě aplikace se Consumer (možno i více Consumerů) muže zaregistrovat ke sledování událostí v event bus. Příkladem takového Comsumera může být \texttt{FrameSaverController}, který se postará o uložení získaného snímku (viz kapitola \ref{atlas:cont:output}).
 
 Aby bylo možné pohodlně ovládat více detektorů současně, vznikl\\\texttt{DetectorUnitsController}. Ten implementuje interface \texttt{DetectorUnitsControllerIntf}, jehož metody pokrývají veškerou funkcionalitu detektoru, jako třeba metody k navázání a ukončení spojení, ale také všechny metody komunikačního protokolu. Všechny tyto metody mají jeden společní parametr - \texttt{int[] tpxIDs} (pole TpxID detektorů). Tento parametr určuje, nad kterými detektory se má daná metoda hromadně vykonat. Jejich výstupem je zase pole, jehož typ se liší dle příkazu (na příklad pro metodu connect je to pole boolean proměnných - značící úspěch připojení, pro ping zase double čísel, udávajících odezvu spojení v $ns$). Tento objekt je zase typu singleton a jeho instanci lze získat pomocí metody \texttt{getInstance()}. Po spuštění aplikace je však třeba tento singleton nainicializovat pomocí metody \texttt{init()}, která pomocí \texttt{DetectorUnitStorageFactory} vytvoří datovou strukturu  s \texttt{DetectorCommunicationService} jednotlivých detektorů.
 
@@ -578,12 +578,12 @@ Emulátor se spouští se dvěma povinnými parametry, kde
 			\end{sdblock}
 			\begin{sdblock}{Akvizice snímku}{}
 				\begin{callself}{pr}{performAcqRequest}{success}
-					\begin{call}{pr}{onPerformAcq}{ch}{success}
+					\begin{call}{pr}{acqRequest}{ch}{success}
 						\mess{ch}{performAcq}{ap}
 					\end{call}	
 				\end{callself}	
 				\postlevel
-				\mess{ap}{acqPerformed}{ch}
+				\mess{ap}{onAcqPerformed}{ch}
 				\begin{callself}{ch}{onAcqPerformed}{success}
 				\end{callself}	
 			\end{sdblock}			
@@ -609,10 +609,58 @@ Poté klient pošle příkaz pro vyčtení naměřených dat (resp. dva příkaz
 % Řídící software a jeho implementace - REST API server
 %********************************************************************************
 \subsection{REST API server}\label{atlas:cont:api}
+Řídící software se svému ovládání poskytuje rozhraní přes \texttt{JSON REST\footnote{z angl. Representational State Transfer} API}. Pro toto rozhraní byla použita knihovna Dropwizard\cite{dropwizard}, která vznikla složením několika dalších knihoven, zejména pak:
+\begin{description}
+	\item[Jetty] je open-source software, v současné době vyvíjen Eclipse Foundation. Tato knihovna obsahuje Java HTTP webový server, který na rozdíl od běžných webových serveru (které vetšinou přes HTTP protokol poskytují soubory koncovým uživatelům) byl navržen pro strojově orientovanou komunikaci.
+	\item[Jersey] je open-source knihovna (která dle \cite{dropwizard} vychází z \texttt{JAX-RS}\footnote{\url{http://jcp.org/en/jsr/detail?id=311}}) a byla použita pro zajištění REST API. Tato knihovna umožňuje elegantně pomocí anotací mapovat HTTP dotazy na jednoduché Java objety.
+	\item[Jackson] je výkonný nástroj pro práci s \texttt{JSON}\footnote{JSON je v dnešní době standardem pro zápis a výměnu strukturovaných, člověkem i strojem čitelných dat.} objekty v jazyce Java. Tato knihovna umožňuje ergonomicky mapovat data v JSON do Java objektů pomocí anotací.
+\end{description}
+
+V této podkapitole bude popsána implementace této knihovny do \texttt{Atlas TPX serveru} a její provázanost na modul pro řízení detektorů (\ref{atlas:cont:impl}).
+
+%********************************************************************************
+% Řídící software a jeho implementace - REST API server
+% > Konfigurace a spuštění serveru
+%********************************************************************************
+\subsubsection{Konfigurace a spuštění serveru}
+Server je možné spustit z příkazové řádky pomocí příkazu \texttt{"java -jar atlasTpxServer.jar server config.yml"}, kde \texttt{atlasTpxServer.jar} je spustitelný binární soubor serveru, \texttt{server} je povinný parametr (znamenající spuštění programu v módu server) a \texttt{config.yml}, což je také povinný parametr, udávající cestu v souborovém systému ke konfiguračnímu souboru serveru.
+
+V příloze \ref{app:config} strukturu tohoto konfiguračního souboru, ve kterém je možné nastavit následující:
+\begin{description}
+	\item[Umístění tabulky s detektory] (detectorsConfigPath - viz \ref{app:config} řádek 8)\\
+		Tento parametr udává cestu v souborovém systému ke konfiguračnímu "*.csv" souboru, obsahující tabulku všech detektoru a jejich parametrů, popsanou v \ref{atlas:cont:impl}.
+	\item[Nastavení webového serveru] (server - viz \ref{app:config} řádek 11)\\
+		V rámci tohoto objektu je možné nastavit použitý typ protokolu spojení (\texttt{HTTP}/\texttt{HTTPS}), port, počty vláken a další.
+	\item[Logování] (logging - viz \ref{app:config} řádek 30)\\
+		Pomocí tohoto parametru je možné nastavit úroveň a cíl vytvářených logů. V přiloženém konfiguračním souboru bylo použito dvojího logování a to na standardní výstup a do souboru (oba úrovně \texttt{INFO}). Při logování do souboru je možné navíc nastavit automatickou archivaci.
+	\item[Automatické vyčítání snímků] (readOutDataAutomatically - viz \ref{app:config} řádek 54)\\
+		Tento parametr typu \texttt{boolean} udává, když přijde asynchronní událost z detektoru o datech připravených k vyčtení, zda-li budou vyčtena automaticky (při hodnotě parametru \texttt{true}), nebo manuálně (při hodnotě \texttt{false}).
+	\item[Výstupní adresář] (outputDir - viz \ref{app:config} řádek 57)\\
+		Parametr udávající cestu v souborovém systému pro ukládání dat z detektorů.
+	\item[Formát výstupních dat] (outputFramesType - viz \ref{app:config} řádek 68)\\
+		Tento parametr obsahuje pole výstupních formátu dat, ve kterých získaná data z detektorů budou ukládána. V této verzi programu je podporovaný jediný formát - \texttt{MULTIFRAME}.
+	\item[Konfigurace data serveru] (v \ref{app:config} od řádku 77)\\
+		Na tomto místě je možné nastavit parametry (url a port) serveru, sloužícího pro příjem a zpracování naměřených dat a zda-li má být použit. Více o tomto serveru bude zmíněno v \ref{atlas:cont:output:dataserver}.
+\end{description}
+
+%********************************************************************************
+% Řídící software a jeho implementace - REST API server
+% > Metody poskytované serverem
+%********************************************************************************
+\subsubsection{Metody poskytované serverem}
 
 
 \clearpage
-\subsection{Zpracování a ukládání dat}\label{atlas:cont:dataSaver}
+%********************************************************************************
+% Řídící software a jeho implementace - REST API server
+% > Výkonost
+%********************************************************************************
+\subsubsection{Výkonost}
+
+
+\clearpage
+\subsection{Zpracování a ukládání dat}\label{atlas:cont:output}
+\subsubsection{Data server}\label{atlas:cont:output:dataserver}
 
 
 

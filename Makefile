@@ -1,6 +1,6 @@
 DVIPS = dvips
 LATEX = latex
-PDFLATEX = pdflatex
+PDFLATEX = pdflatex -shell-escape
 BIBTEX = bibtex
 PROJECT = thesis-begerjak-2016
 EDITOR = emacs # nebo jiny oblibeny editor

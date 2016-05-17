@@ -1,0 +1,85 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Basic configuration}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Path to config csv file with detecotrs config}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} File structure: 1 detector struct per line}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}  \PYGdefaultZhy{} detector\PYGdefaultZus{}name[String];detector\PYGdefaultZus{}ip[String];unit\PYGdefaultZus{}id[int];tpx\PYGdefaultZus{}id[int]}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}     ;port[int]}
+\PYGdefault{l+lScalar+lScalarPlain}{detectorsConfigPath}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{data/detectors2.csv}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Controll REST API server configuration}
+\PYGdefault{l+lScalar+lScalarPlain}{server}\PYGdefault{p+pIndicator}{:}
+  \PYGdefault{l+lScalar+lScalarPlain}{applicationConnectors}\PYGdefault{p+pIndicator}{:}
+    \PYGdefault{p+pIndicator}{\PYGdefaultZhy{}} \PYGdefault{l+lScalar+lScalarPlain}{type}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{http}
+      \PYGdefault{l+lScalar+lScalarPlain}{port}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{9179}
+      \PYGdefault{l+lScalar+lScalarPlain}{outputBufferSize}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{32KiB}
+      \PYGdefault{l+lScalar+lScalarPlain}{idleTimeout}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{30 seconds}
+      \PYGdefault{l+lScalar+lScalarPlain}{minBufferPoolSize}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{64 bytes}
+      \PYGdefault{l+lScalar+lScalarPlain}{bufferPoolIncrement}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{1KiB}
+      \PYGdefault{l+lScalar+lScalarPlain}{maxBufferPoolSize}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{64KiB}
+      \PYGdefault{l+lScalar+lScalarPlain}{acceptorThreads}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{1}
+      \PYGdefault{l+lScalar+lScalarPlain}{selectorThreads}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{2}
+      \PYGdefault{l+lScalar+lScalarPlain}{acceptQueueSize}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{1024}
+      \PYGdefault{l+lScalar+lScalarPlain}{reuseAddress}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{true}
+      \PYGdefault{l+lScalar+lScalarPlain}{soLingerTime}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{600s}
+  \PYGdefault{l+lScalar+lScalarPlain}{adminConnectors}\PYGdefault{p+pIndicator}{:}
+    \PYGdefault{p+pIndicator}{\PYGdefaultZhy{}} \PYGdefault{l+lScalar+lScalarPlain}{type}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{http}
+      \PYGdefault{l+lScalar+lScalarPlain}{port}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{9180}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Logging settings}
+\PYGdefault{l+lScalar+lScalarPlain}{logging}\PYGdefault{p+pIndicator}{:}
+  \PYGdefault{l+lScalar+lScalarPlain}{level}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{INFO}
+  \PYGdefault{l+lScalar+lScalarPlain}{appenders}\PYGdefault{p+pIndicator}{:}
+    \PYGdefault{p+pIndicator}{\PYGdefaultZhy{}} \PYGdefault{l+lScalar+lScalarPlain}{type}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{file}
+      \PYGdefault{l+lScalar+lScalarPlain}{currentLogFilename}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{log/atlastpx\PYGdefaultZus{}server\PYGdefaultZus{}app.log}
+      \PYGdefault{l+lScalar+lScalarPlain}{threshold}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{ALL}
+      \PYGdefault{l+lScalar+lScalarPlain}{archive}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{true}
+      \PYGdefault{l+lScalar+lScalarPlain}{archivedLogFilenamePattern}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{log/atlastpx\PYGdefaultZus{}server\PYGdefaultZus{}app\PYGdefaultZhy{}\PYGdefaultZpc{}d.log.gz}
+      \PYGdefault{l+lScalar+lScalarPlain}{archivedFileCount}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{5}
+      \PYGdefault{l+lScalar+lScalarPlain}{timeZone}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{UTC}
+\PYGdefault{l+lScalar+lScalarPlain}{logging}\PYGdefault{p+pIndicator}{:}
+  \PYGdefault{l+lScalar+lScalarPlain}{level}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{INFO}
+  \PYGdefault{l+lScalar+lScalarPlain}{appenders}\PYGdefault{p+pIndicator}{:}
+    \PYGdefault{p+pIndicator}{\PYGdefaultZhy{}} \PYGdefault{l+lScalar+lScalarPlain}{type}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{console}
+      \PYGdefault{l+lScalar+lScalarPlain}{threshold}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{ALL}
+      \PYGdefault{l+lScalar+lScalarPlain}{timeZone}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{UTC}
+      \PYGdefault{l+lScalar+lScalarPlain}{target}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{stdout}
+
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Data readout \PYGdefaultZam{} saving configuration}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} If true asynchronous event handler will takes care abouth automatical data}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} (frame + DSC) readout from the detector.}
+\PYGdefault{l+lScalar+lScalarPlain}{readOutDataAutomatically}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{true}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Directory for saving output data}
+\PYGdefault{l+lScalar+lScalarPlain}{outputDir}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{../frames}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Local data saving configuration}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Alowed types:}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} \PYGdefaultZhy{} MULTIFRAME: Pixelman\PYGdefaultZsq{}s multiframe format (3 files per hour).}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}               Output files:}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}                 1) Frames: Line [X, C], where X is pix. index and}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} 			C pix value. Frames are separated by \PYGdefaultZsq{}\PYGdefaultZsh{}\PYGdefaultZsq{}}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}                 2) Description file ( DSC)}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}                 3) Index file (indexing file 1 and 2)}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Example \PYGdefaultZhy{} outputFramesType: [MULTIFRAME]}
+\PYGdefault{l+lScalar+lScalarPlain}{outputFramesType}\PYGdefault{p+pIndicator}{:} \PYGdefault{p+pIndicator}{[}\PYGdefault{n+nv}{MULTIFRAME}\PYGdefault{p+pIndicator}{]}
+
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Data server configuration}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}\PYGdefaultZsh{}}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} If true all data (configs on change, performed frames) will be automatically}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} send to the data server}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} and also data server status will be awailable by info endpoint.}
+\PYGdefault{l+lScalar+lScalarPlain}{useDataServer}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{true}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} URL of dataServer}
+\PYGdefault{l+lScalar+lScalarPlain}{dataServerBaseUrl}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{atlastpx.utef.cvut.cz}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} port of dataServer}
+\PYGdefault{l+lScalar+lScalarPlain}{dataServerPort}\PYGdefault{p+pIndicator}{:} \PYGdefault{l+lScalar+lScalarPlain}{8042}
+\end{Verbatim}
