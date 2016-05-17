@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{p}{\PYGdefaultZob{}}
+	\PYGdefault{n+nt}{\PYGdefaultZdq{}data\PYGdefaultZdq{}}\PYGdefault{p}{:} \PYGdefault{p}{\PYGdefaultZob{}}\PYGdefault{err}{...}\PYGdefault{p}{\PYGdefaultZcb{},}
+	\PYGdefault{n+nt}{\PYGdefaultZdq{}error\PYGdefaultZdq{}}\PYGdefault{p}{:} \PYGdefault{p}{\PYGdefaultZob{}}
+		\PYGdefault{n+nt}{\PYGdefaultZdq{}errorMessage\PYGdefaultZdq{}}\PYGdefault{p}{:} \PYGdefault{l+s+s2}{\PYGdefaultZdq{}ok\PYGdefaultZdq{}}\PYGdefault{p}{,}
+		\PYGdefault{n+nt}{\PYGdefaultZdq{}errorCode\PYGdefaultZdq{}}\PYGdefault{p}{:} \PYGdefault{l+m+mi}{0}
+	\PYGdefault{p}{\PYGdefaultZcb{},}
+	\PYGdefault{n+nt}{\PYGdefaultZdq{}success\PYGdefaultZdq{}}\PYGdefault{p}{:} \PYGdefault{k+kc}{true}
+\PYGdefault{p}{\PYGdefaultZcb{}}
+\end{Verbatim}

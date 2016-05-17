@@ -60,7 +60,10 @@ unicode=true,
 
 \let\oldUrl\url									% url adresy budou zobrazeny: <url> 
 \renewcommand\url[1]{<\texttt{\oldUrl{#1}}>}
-
+%\renewcommand\lstlistingname{Výpis kódu} % předefinování nadpisu
+%\renewcommand\lstlistlistingname{Výpisy kódu} % předefinování nadpisu v obsahu
+%\renewcommand{\lstlistingname}{Algorithm}% Listing -> Algorithm
+%\renewcommand{\lstlistlistingname}{Listdassad of \lstlistingname s}% List of Listings -> List
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % vaše vlastní příkazy
 \newcommand*{\nomExpl}[2]{#2 (#1)\nomenclature{#1}{#2}} % usnadňuje zápis zkratek : Slova ke Zkrácení (SZ)
@@ -68,7 +71,8 @@ unicode=true,
 \newcommand*{\todo}{\hl{\textbf{TODO}}} % pro poznámky
 \newcommand{\addbibresource}[1]{}
 
-
+\usepackage{caption}
+\DeclareCaptionType{code}[Zdrojový kód][Seznam zdrojových kódů] 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % vlastní dokument
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -146,6 +150,11 @@ unicode=true,
 	% pokud v práci nejsou obrázky nebo tabulky - odstraňte jejich seznam
 	\listoffigures			% Obsah / Table of Contents 
 	\listoftables			% Seznam tabulek / List of Tables
+	%\renewcommand{\listoflistingname}{fafas}
+	%\renewcommand{\listoflistingsname}{fafas}
+	%\listoflistings 		% Seznam úryvků kódu
+	%\lstlistoflistings
+	\listofcodes
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%% 
 	% začátek textu  
@@ -286,7 +295,12 @@ dataServerBaseUrl: atlastpx.utef.cvut.cz
 # port of dataServer
 dataServerPort: 8042
 \end{minted}
+\begin{code}[th!]
+\caption{Konfigurační soubor Atlas TPX serveru}
+\end{code}
 
+
+\include{chapters/app_api}
 
 \chapter{Obsah přiloženého CD}
 \textbf{\large Tato příloha je povinná pro každou práci. Každá práce musí totiž obsahovat přiložené CD. Viz dále.}
