@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{o}{\PYGdefaultZob{}}
+	\PYGdefault{l+s}{\PYGdefaultZdq{}detectors\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{o}{[}
+		\PYGdefault{o}{\PYGdefaultZob{}}
+	      \PYGdefault{l+s}{\PYGdefaultZdq{}name\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{l+s}{\PYGdefaultZdq{}AtlasPix1\PYGdefaultZdq{}}\PYGdefault{o}{,}
+	      \PYGdefault{l+s}{\PYGdefaultZdq{}ip\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{l+s}{\PYGdefaultZdq{}127.0.0.1\PYGdefaultZdq{}}\PYGdefault{o}{,}
+	      \PYGdefault{l+s}{\PYGdefaultZdq{}unitID\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{l+m+mi}{1}\PYGdefault{o}{,}
+	      \PYGdefault{l+s}{\PYGdefaultZdq{}tpxID\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{l+m+mi}{1}\PYGdefault{o}{,}
+	      \PYGdefault{l+s}{\PYGdefaultZdq{}port\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{l+m+mi}{50100}
+      \PYGdefault{o}{\PYGdefaultZcb{},}
+      \PYGdefault{o}{...}
+	\PYGdefault{o}{],} \PYGdefault{l+s}{\PYGdefaultZdq{}settings\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{o}{\PYGdefaultZob{}}
+      \PYGdefault{l+s}{\PYGdefaultZdq{}1\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{o}{\PYGdefaultZob{}}
+        \PYGdefault{l+s}{\PYGdefaultZdq{}bias1\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mi}{1}\PYGdefault{o}{,}
+        \PYGdefault{l+s}{\PYGdefaultZdq{}bias2\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mi}{1}\PYGdefault{o}{,}
+        \PYGdefault{l+s}{\PYGdefaultZdq{}tpxClock\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mi}{1}\PYGdefault{o}{,}
+        \PYGdefault{l+s}{\PYGdefaultZdq{}acqTime\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{l+m+mi}{0}\PYGdefault{o}{,}
+        \PYGdefault{l+s}{\PYGdefaultZdq{}acqCount\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{l+m+mi}{0}\PYGdefault{o}{,}
+        \PYGdefault{l+s}{\PYGdefaultZdq{}trigger\PYGdefaultZdq{}}\PYGdefault{o}{:} \PYGdefault{l+s}{\PYGdefaultZdq{}Unknown\PYGdefaultZdq{}}\PYGdefault{o}{,}
+        \PYGdefault{l+s}{\PYGdefaultZdq{}dacs\PYGdefaultZdq{}}\PYGdefault{o}{:}
+      \PYGdefault{o}{\PYGdefaultZcb{},}
+
+\PYGdefault{o}{\PYGdefaultZcb{}}
+\end{Verbatim}

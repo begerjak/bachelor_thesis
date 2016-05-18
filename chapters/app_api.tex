@@ -1,13 +1,10 @@
 \addbibresource{reference.bib}
 
 \chapter{Metody REST API serveru}\label{app:api}
-V této příloze naleznete popis všech REST API metod, poskytovaných \texttt{Atlas TPX serverem}. Všechny zde popsané metody jsou založeny na HTTP metodě POST a předávaná data jsem ve formátu JSON. 
+V této příloze naleznete popis všech REST API metod, poskytovaných \texttt{Atlas TPX serverem} a také použitých standardů.
 
-Vstupní data se liší dle metody, avšak základní struktura výstupních dat je pro všechny metody stejná - viz obr. \ref{app:api:struktura_vystupnich_dat}. Objet \texttt{data} obsahuje výstupní data danné medoty (při popisování vystupu jednotlivých metod, bude popisován jen obsah tohoto objektu), objekt \texttt{error} obsahuje kód chyby a její zprávu a boolean proměnná \texttt{success} udává, zda-li se zpracování příkazu zdařilo.
-
-
-	
-\begin{minted}[tabsize=4, frame=single, linenos]{json}
+% použito Java formátování, protože JSON nepodporuje komentáře
+\begin{minted}[tabsize=4, frame=single, linenos]{java} 
 {
 	"data": {...},
 	"error": {
@@ -17,9 +14,53 @@ Vstupní data se liší dle metody, avšak základní struktura výstupních dat
 	"success": true
 }
 \end{minted}
-\begin{code}[th!]
+\sloppy
+\begin{code}[h!]
 	\caption{Základní struktura výstupních dat}
 	\label{app:api:struktura_vystupnich_dat}
 \end{code}
 
-\section{}
+Vstupní data se liší dle metody, avšak základní struktura výstupních dat je pro všechny metody stejná - viz obr. \ref{app:api:struktura_vystupnich_dat}, kde objet \texttt{data} obsahuje výstupní data danné medoty (při dalším popisování vystupu jednotlivých metod, bude popisován jen obsah tohoto objektu), objekt \texttt{error} obsahuje kód chyby a její zprávu a boolean proměnná \texttt{success} udává, zda-li se zpracování příkazu zdařilo.
+
+Url schéma jednotlivých metod je následující - \texttt{protokol://host:port/vx/skupina/metoda}, kde
+\begin{description}
+	\item[protokol] je použitý protokol (\texttt{HTTP/HTTPS}),
+	\item[host] je doména, či IP adresa serveru,
+	\item[port] - port serveru,
+	\item[vx] je verze API, na které komunikace bude probíhat (současná verze je "v1"),
+	\item[skupina a metoda] udávají cestu a název metody (u některých metod stačí zadat pouze skupinu).
+\end{description}
+
+\section{Použité obecné standardy}
+\begin{itemize}
+	\item Všechny zde popsané metody jsou založeny na HTTP metodě POST.
+	\item Všechna předávaná data jsou ve formátu \texttt{JSON}. 
+	\item Všechny časy a data jsou reprezentovány v milisekundách od 1.1.1970 (tzv. UNIX Time) a časové intervaly v sekundách, není-li specifikováno jinak.
+	\item Server může vracet zprávy s následujícími HTTP kódy: 200 (OK), 400 (Bad Request), 404 (Not Found) a 500 (Internal Server Error).
+\end{itemize}
+
+\section{Získání stavových informací}
+Pro získání stavových informací serveru a detektorů slouží metoda \texttt{/v1/info}. Pomocí jejích vstupních dat je možné nastavit vyloučení jednotlivých kategorií odpovědi. Jejich struktura vypadá následovně:
+
+\begin{minted}[tabsize=4, frame=single, linenos]{java}
+{
+    "excludeDetectors" : false, // vyloučení přehledu detektorů
+    "excludeDetectorSettings" : false, // vyloučení nastavení detektorů
+    "excludeHwStatus" : false, // vyloučení hardwarového stavu detektorů
+    "excludeDataServerStatus" : false // vyloučení stavu datového serveru
+}
+\end{minted}
+\sloppy
+\begin{code}[h!]
+	\caption{Metoda \texttt{/v1/info} - vstupní JSON}
+	\label{app:api:info-in}
+\end{code}
+
+
+
+
+
+
+
+
+

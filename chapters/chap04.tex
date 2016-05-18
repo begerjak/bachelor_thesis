@@ -622,10 +622,10 @@ V této podkapitole bude popsána implementace této knihovny do \texttt{Atlas T
 % Řídící software a jeho implementace - REST API server
 % > Konfigurace a spuštění serveru
 %********************************************************************************
-\subsubsection{Konfigurace a spuštění serveru}
+\subsubsection{Konfigurace a spuštění serveru}\label{atlas:cont:api:conf}
 Server je možné spustit z příkazové řádky pomocí příkazu \texttt{"java -jar atlasTpxServer.jar server config.yml"}, kde \texttt{atlasTpxServer.jar} je spustitelný binární soubor serveru, \texttt{server} je povinný parametr (znamenající spuštění programu v módu server) a \texttt{config.yml}, což je také povinný parametr, udávající cestu v souborovém systému ke konfiguračnímu souboru serveru.
 
-V příloze \ref{app:config} strukturu tohoto konfiguračního souboru, ve kterém je možné nastavit následující:
+V příloze \ref{app:config} naleznete strukturu tohoto konfiguračního souboru, ve kterém je možné nastavit následující:
 \begin{description}
 	\item[Umístění tabulky s detektory] (detectorsConfigPath - viz \ref{app:config} řádek 8)\\
 		Tento parametr udává cestu v souborovém systému ke konfiguračnímu "*.csv" souboru, obsahující tabulku všech detektoru a jejich parametrů, popsanou v \ref{atlas:cont:impl}.
@@ -648,16 +648,40 @@ V příloze \ref{app:config} strukturu tohoto konfiguračního souboru, ve kter�
 % > Metody poskytované serverem
 %********************************************************************************
 \subsubsection{Metody poskytované serverem}
+Tento JSON REST API server poskytuje metody pro získání stavových \texttt{ATALS TPX serveru}, ale také pro jeho řízení, zejména pak pro ovládání detektorů. Seznam všech těchto metod s jejich popisem je k nalezení v dokumentaci na přiloženém CD.
+
+URL schéma jednotlivých metod je následující - \texttt{protokol://host:port/vx/skupina/metoda}, kde
+\begin{description}
+	\item[protokol] je použitý protokol (\texttt{HTTP/HTTPS}),
+	\item[host] je doména, či IP adresa serveru,
+	\item[port] - port serveru,
+	\item[vx] je verze API, na které komunikace bude probíhat (současná verze je "v1"),
+	\item[skupina a metoda] udávají cestu a název metody (u některých metod stačí zadat pouze skupinu).
+\end{description}
+
+Server byl implementován za použití následujících standardů:
+\begin{itemize}
+	\item Všechny zde popsané metody jsou založeny na HTTP metodě POST.
+	\item Všechna předávaná data jsou ve formátu \texttt{JSON}. 
+	\item Všechny časy a data jsou reprezentovány v milisekundách od 1.1.1970 (tzv. UNIX Time) a časové intervaly v sekundách, není-li specifikováno jinak.
+	\item Server může vracet zprávy s následujícími HTTP kódy: 200 (OK), 400 (Bad Request), 404 (Not Found) a 500 (Internal Server Error).
+\end{itemize}
 
 
+\subsubsection{Implementace serveru}
+Jak již bylo zmíněno výše, server byl implementován za použití knihovny \texttt{Dropwizard} a veškeré s ním související třídy jsou v balíčku \texttt{rest\_server}.
 
-\clearpage
-%********************************************************************************
-% Řídící software a jeho implementace - REST API server
-% > Výkonost
-%********************************************************************************
-\subsubsection{Výkonost}
+V tomto balíčku se nachází třída \texttt{RestServerApplication}, která obsahuje statickou metodu \texttt{main()}, která slouží ke spuštění celé aplikace. Zároveň tato třída dědí od \\\texttt{io.dropwizard.Application} a přepisuje její metodu \texttt{run()}, ve které dochází ke konfiguraci serveru, spuštění jeho podpůrných služeb a k registraci komponent REST API serveru (v URL výše uvedených jako skupina).
 
+\begin{figure}[th]
+	\begin{center}
+		\includegraphics[width=15cm]{figures/atlas_tpx_api_server_init.pdf}
+		\caption{BPMN inicializace REST API serveru}
+		\label{fig:atlas:apiserver-init}
+	\end{center}
+\end{figure}
+
+Na obrázku \ref{fig:atlas:apiserver-init} je znázorněn BPMN\footnote{z angl. Business Process Model and Notation} diagram procesu inicializace REST API serveru (tělo metody \texttt{run()} zmíněné výše). Nejprve dojde k validaci existence konfiguračního "*.csv" souboru, obsahujícím tabulku s detektory a jeho parametry (viz \ref{atlas:cont:api:conf}), pokud tato validace selže, program vypíše chybovou hlášku a ukončí se.  Následuje ověření platnosti výstupního adresáře (pokud selže, program terminuje). Poté dojde k inicializaci \texttt{FrameSaverController}(viz kapitola o zpracování a ukládání dat \ref{atlas:cont:output}) a \texttt{DetectorUnitStorage} (úložiště všech \texttt{DetectorUnit}, již zmíněné v \ref{atlas:cont:impl}). Pokud se toto úložiště nepodaří vytvořit (z důvodu chyby parsování tabulky detektorů) aplikace opět terminuje. Dalším krokem je inicializace nástroje pro řízení detektorů (\texttt{DetectorUnitsController}) a registrace jednotlivých komponent REST API serveru. Na závěr procesu inicializace dojde k vytvoření spojení s datových serverem (viz \ref{atlas:cont:output:dataserver}) pro odesílání naměřených dat, je-li v konfiguračním souboru serveru povolen. 
 
 \clearpage
 \subsection{Zpracování a ukládání dat}\label{atlas:cont:output}

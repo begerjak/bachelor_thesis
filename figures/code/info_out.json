@@ -1,0 +1,64 @@
+{
+"detectors": [
+  {
+    "name": "AtlasPix1",
+    "ip": "127.0.0.1",
+    "unitID": 1,
+    "tpxID": 1,
+    "port": 50100
+  },
+  ...
+],
+"settings": {
+  "1": {
+    "bias1": -1,
+    "bias2": -1,
+    "tpxClock": -1,
+    "acqTime": 0,
+    "acqCount": 0,
+    "trigger": "Unknown",
+    "dacs": {
+      "disc": -2,
+      "preamp": -2,
+      "buffAnalogA": -2,
+      "buffAnalogB": -2,
+      "delayN": -2,
+      "thl": -2,
+      "thlcoarse": -2,
+      "thh": -2,
+      "thhcoarse": -2,
+      "fbk": -2,
+      "gnd": -2,
+      "ths": -2,
+      "biasLVDS": -2,
+      "refLVDS": -2,
+      "extDAC": -2,
+      "ikrum": -2
+    },
+    "pixelConfigurationLoaded": false
+  },
+  ...
+},
+"hwStatus": {
+  "1": {
+    "bias1": 0,
+    "bias2": 0,
+    "tpxClock": 0,
+    "acqStatus": "unknown",
+    "generalStatus": "OK",
+    "measurementStatus": "IDLE",
+    "performingAcq": false,
+    "connected": false
+  },
+  ...
+},
+"dataServerStatus": {
+  "freeSpace": 0,
+  "totalFrames": 0,
+  "processedFrames": 0,
+  "unarchivedFrames": 0,
+  "unclusteredFrames": 0,
+  "lastRefrestTimestamp": 0,
+  "running": false
+  }
+}
