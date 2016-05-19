@@ -164,7 +164,7 @@ Na obrázku \ref{fig:tpx_sw_diagram} je znázorněn diagram návrhu softwarové 
 % Řídící software a jeho implementace
 %********************************************************************************
 \section{Řídící software a jeho implementace}\label{atlas:cont}
-Tato kapitola je věnována návrhu a implementaci řídícího software sítě ATLAS TPX, který je nasazen na ATLAS TPX serveru (viz obr. \ref{fig:tpx_sw_diagram}). Úkolem  tohoto software se zajištění komunikace s detektory, zejména pak řízení akvizice, nastavování parametrů a vyčítání dat - tato komunikace bude popsána v kapitole \ref{atlas:cont:det}. Další úlohou tohoto software je poskytování rozhraní pro řízení své činnosti a pro předávání stavových informací o ATLAS TPX síti. Toto rozhraní je implementováno pomocí \texttt{JSON REST API} a detailně bude popsáno v kapitole \ref{atlas:cont:api}. \todo
+Tato kapitola je věnována návrhu a implementaci řídícího software sítě ATLAS TPX, který je nasazen na ATLAS TPX serveru (viz obr. \ref{fig:tpx_sw_diagram}). Úkolem  tohoto software se zajištění komunikace s detektory, zejména pak řízení akvizice, nastavování parametrů a vyčítání dat - tato komunikace bude popsána v kapitole \ref{atlas:cont:det}. Další úlohou tohoto software je poskytování rozhraní pro řízení své činnosti a pro předávání stavových informací o ATLAS TPX síti. Toto rozhraní je implementováno pomocí \texttt{JSON REST API serveru } a detailně bude popsáno v kapitole \ref{atlas:cont:api}.
 
 %********************************************************************************
 % Řídící software a jeho implementace - Řízení detektorů
@@ -330,7 +330,7 @@ Následuje struční popis příkazů komunikačního protokolu z pohledu obsahu
 					\item PIXCFG - Pole konfiguračních bytů (každý byte je pro jeden pixel) pro jednotlivé pixely. Délka tohoto pole je závyslá na parametru TYPE. Struktura bytu pro konfiguraci pixelu je následovná: \\ MASK\_BITE($1~b$) TEST\_BITE($1~b$) THL($4~b$) MODE($2~b$)
 						\begin{itemize}
 							\item MASK\_BITE - Pixel je aktivní při hodnotě $1$, zamaskovaný při $0$.
-							\item TEXT\_BITE - \todo
+							\item TEXT\_BITE - Slouží pro zapnutí testovacího módu pixelu, pomocí externího generátoru pulzů.
 							\item THL - Tyto čtyři bity udávají číslo od 0 do 15, které je použito pro posun globální hodnoty THL
 							\item MODE - Mód pixelu (0 - Medipix, 1 - Time-Over-Treshold, 2 One-Hit, 3 - Time-of-Arrival)
 						\end{itemize}
@@ -719,12 +719,26 @@ Jelikož každý z 16 detektorů může generovat několik snímků za sekundu, 
 Nyní se vraťme ke příchodu asynchronní události s vyčteným snímkem. Když je tato událost zachycena, dojde vytvoření instance třídy \texttt{FrameSaverWorker} pro každou ukládací službu (dědící od \texttt{AbstractFrameSaverService}, na př. \texttt{MultiframeSaverService}) a následném zařazení této instance do fronty, kterou obsluhuje již výše zmíněný \texttt{ThreadPoolExecutor}.
 
 
-\clearpage
 %********************************************************************************
 % Řídící software a jeho implementace - Zpracování a ukládání dat
 % > Data server
 %********************************************************************************
-\subsubsection{Data server}\label{atlas:cont:output:dataserver}
+\subsubsection{Datový server}\label{atlas:cont:output:dataserver}
+Současně s možností ukládání dat \texttt{ATLAS TPX serverem} na lokální, či síťové úložiště (jak bylo popsáno výše) existuje i druhý způsob nakládání s pořízenými daty - jejich přímé odesílání datovému serveru (viz \ref{atlas:sw_arch}), pomocí jeho API, což bude předmětem této podkapitoly.
+
+Přehled všech metod s jejich technickými specifikacemi je k nalezení v dokumentaci na přiloženém CD, zde bude uveden jen jejich stručný popis.
+
+Kvůli optimalizaci přenášenému obejmu dat byl navržen úsporný komunikační protokol, který odstraňuje redundanci přenášených dat (oproti \texttt{Multiframe} formátu, popsaném výše). Toho je dosaženo především tím, že s každým snímkem jsou přenášena jen data, přímo související a unikátní k dané akvizici. To jsou zejména vlastní hodnoty jednotlivých pixelů, časové razítko začátku akvizice, napětí v době akvizice na polovodičovém povrchu detekčních čipů apod. Mezi údaje, které se v průběhu akvizice nemění (a tudíž je zbytečné je s každým snímkem přenášet) patří konfigurace pixelů, měřící frekvence, hodnoty DAC apod.
+
+\begin{description}
+	\item[Metoda Status] Metoda status slouží pro získání základních informací datového serveru, jako třeba volné místo v jeho úložišti, ale také informaci o přenesených snímcích (celkový počet, zpracováno, atd.).
+	\item[Metoda pro odeslání snímků] V rámci této metody je přenesen vlastní snímek a příslušná metadata s ním související, uvedená výše. Zde je dobré zmínit, že oproti formátu \texttt{Multiframe} jsou vyloučeny pixely ne s nulovou, nýbrž s nejčetnější hodnotou. Tím je docíleno minimalizace počtu přenesených pixelů. Tento mechanismus je účinný především na přeexponované snímky. Jako jeden z parametrů se rovněž odesílá i ID konfigurace, získané z datového serveru - viz další bod.
+	\item[Metoda pro odeslání konfigurace] Touto metodou je přenášena statická konfigurace jednotlivých detektorů. Tuto metodu je třeba provést nad všemi detektory před zahájením odesílání snímků a potom až při změně některého z parametrů konfigurace. Výstupem této metody je totiž seznam ID, které byly jednotlivým konfiguracím přiděleny datovým serverem, které je třeba datovému serveru posílat společně se snímkami.
+\end{description}
+
+Spojení s tímto serverem zajišťuje modul \texttt{data\_sender}, resp. jeho třída \texttt{DataSenderController}. Jedná se opět o singleton, který při své inicializaci vytvoří dvě fronty - frontu snímků a frontu konfigurací (obě implementované, jako \texttt{ConcurrentLinkedQueue}) a také vytvoří mapu (mapující ID interních konfigurací detektorů na ID, získané z datového serveru). Zároveň dojde ke spuštění samostatného vlákna, které tyto fronty sleduje a jejich položky odebírá a posílá datovému serveru.
+
+Odesílání dat datovému serveru je realizováno pomocí knihovny \texttt{Retrofit}\footnote{\url{http://square.github.io/retrofit/}}, který poskytuje nástroje pro implementaci jednoduchého \texttt{HTTP} klienta.
 
 
 
