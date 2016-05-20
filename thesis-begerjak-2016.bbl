@@ -1,4 +1,4 @@
-\begin{thebibliography}{14}
+\begin{thebibliography}{15}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -96,12 +96,23 @@ POIKELA, T. et~al.
 \newblock Dostupn{\'{e}} z:
   \url{https://cds.cern.ch/record/1664275/files/ATL-DAQ-SLIDE-2014-054.pdf}.
 
-\bibitem[Turecek et~al.(2011)Turecek, Holy, Pospisil,, Vykydal]{Turecek2011S45}
+\bibitem[Turecek et~al.(2011{\natexlab{a}})Turecek, Holy, Jakubek, Pospisil,,
+  Vykydal]{pixelman}
+TURECEK, D. et~al.
+\newblock Pixelman: a multi-platform data acquisition and processing software
+  package for Medipix2, Timepix and Medipix3 detectors.
+\newblock \emph{Journal of Instrumentation}. 2011{\natexlab{a}}, 6, 01,
+  s.~C01046.
+\newblock Dostupn{\'{e}} z:
+  \url{http://stacks.iop.org/1748-0221/6/i=01/a=C01046}.
+
+\bibitem[Turecek et~al.(2011{\natexlab{b}})Turecek, Holy, Pospisil,,
+  Vykydal]{Turecek2011S45}
 TURECEK, D. et~al.
 \newblock Remote control of ATLAS-MPX Network and Data Visualization.
 \newblock \emph{Nuclear Instruments and Methods in Physics Research Section A:
-  Accelerators, Spectrometers, Detectors and Associated Equipment}. 2011, 633,
-  Supplement 1, s.~S45 -- S47.
+  Accelerators, Spectrometers, Detectors and Associated Equipment}.
+  2011{\natexlab{b}}, 633, Supplement 1, s.~S45 -- S47.
 \newblock ISSN 0168-9002.
 \newblock \doi{http://dx.doi.org/10.1016/j.nima.2010.06.117}.
 \newblock Dostupn{\'{e}} z:

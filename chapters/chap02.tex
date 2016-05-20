@@ -91,14 +91,40 @@ Na obrázku \ref{fig:det:signal_proc} jsou znázorněny tři pixely detektoru s 
 % FITPix
 %********************************************************************************
 \section{FITPix}\label{det:fitpix}
-FITPix\footnote{z angl. Fast Interface for Timepix Pixel Detectors} \cite{fitpix} je vyčítací rozhraní, pracující téměř se všemi detektory rodiny Medipix, vyvíjené v ÚTEF ČVUT v Praze.
 
+\begin{figure}[th!]
+	\begin{center}
+		\includegraphics[width=11cm]{figures/fitpix.png}
+		\caption{FITPix}
+		\label{fig:det:fitpix}
+	\end{center}
+\end{figure}
 
+FITPix\footnote{z angl. Fast Interface for Timepix Pixel Detectors} \cite{fitpix} je vyčítací rozhraní, pracující téměř se všemi detektory rodiny Medipix, vyvíjené v ÚTEF ČVUT v Praze od roku 2010 - viz obr. \ref{fig:det:fitpix}. Toto rozhraní se skládá z FPGA\footnote{z angl. Feld Programmable Gate Array} obvodu, USB 2.0 rozhraní, DAC převodníků (převodník digitálního signálu na analogový), ADC převodníků (převodník analogového signálu na digitální) a z obvodů generující napětí pro polovodičový senzor (tzv. bias). Toto zařízení umožňuje plnohodnotné ovládání připojeného detekčního čipu, včetně nastavování měřící frekvence, tresholdu, řízení shutteru (sloužícího pro ovládání akvizice, viz \ref{det:mod}) apod. Také přináší možnost ovládat shutter pomocí hardwarového trigger signálu pro měření s více detektory současně, resp. pro jejich synchronizaci.
 
+Tato architektura s FPGA byla použita především z důvodu dosažení vyšších datových toků a také vyšší radiační odolnosti, které by za použití konvenčních mikroprocesorů nemohlo být dosaženo. Další výhodou je menší počet aktivních prvků, což se projeví krom spotřeby i na nižších tepelných ztrátách. Tento parametr je velice důležitý, především pro nasazení ve vakuu.
 
-
+%********************************************************************************
+% Pixelman
+%********************************************************************************
 \section{Pixelman}\label{det:pixelman}
-\section{Aplikace}
+Pixelman \cite{pixelman} je softwarový balík, vyvíjený v ÚTEF ČVUT v Praze, sloužící pro řízení detektorů z rodiny Medipix pomocí vyčítacího rozhraní FITPix \ref{det:fitpix}. Tento software umožňuje akvizici dat, jejich vizualizaci a následnou analýzu.
+
+Jedná se o vysoce modulární systém, který mimo jiné umožňuje rozšíření své funkcionality o pluginy, které mají přístup k funkcím, poskytovaným jádrem Pixelmanu. Dokonce každý plugin může zaregistrovat své funkce, takže i ostatní pluiny mohou využívat jeho funkcionalitu. Jsou podporovány pluginy, vyvinuté v jazycích Java, C/C++ a Python. Na obrázku \ref{fig:det:pixelman} je znázorněna softwarová architektura Pixelmana.
+
+\begin{figure}[th!]
+	\begin{center}
+		\includegraphics[width=10.25cm]{figures/pixelman.png}
+		\caption{Pixelman - sw architektura (převzato z \cite{pixelman})}
+		\label{fig:det:pixelman}
+	\end{center}
+\end{figure}
+
+
+%********************************************************************************
+% Aplikace
+%********************************************************************************
+%\section{Aplikace}
 
 
 
