@@ -1,4 +1,4 @@
-\begin{thebibliography}{8}
+\begin{thebibliography}{14}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -29,6 +29,61 @@ GAMMA, E. et~al.
   2016. [cit.~16.\,5.\,2016].
 \newblock Dostupn{\'{e}} z:
   \url{http://www.dropwizard.io/0.9.2/docs/getting-started.html}.
+
+\bibitem[{Kolektiv autorů Medipix kolaborace}(2016)]{medipix-www}
+{Kolektiv autorů Medipix kolaborace}.
+\newblock \emph{Web Medipix} [online]. 2016. [cit.~20.\,5.\,2016].
+\newblock Dostupn{\'{e}} z:
+  \url{https://medipix.web.cern.ch/medipix/pages/medipix1.php}.
+
+\bibitem[Kraus et~al.(2011)Kraus, Holik, Jakubek, Kroupa, Soukup,,
+  Vykydal]{fitpix}
+KRAUS, V. et~al.
+\newblock FITPix — fast interface for Timepix pixel detectors.
+\newblock \emph{Journal of Instrumentation}. 2011, 6, 01, s.~C01079.
+\newblock Dostupn{\'{e}} z:
+  \url{http://stacks.iop.org/1748-0221/6/i=01/a=C01079}.
+
+\bibitem[Llopart et~al.(2002)Llopart, Campbell, Dinapoli, Segundo,,
+  Pernigotti]{Llopart-medipix2}
+LLOPART, X. et~al.
+\newblock Medipix2: A 64-k pixel readout chip with 55- mu;m square elements
+  working in single photon counting mode.
+\newblock \emph{IEEE Transactions on Nuclear Science}. Oct 2002, 49, 5,
+  s.~2279--2283.
+\newblock ISSN 0018-9499.
+\newblock \doi{10.1109/TNS.2002.803788}.
+
+\bibitem[Llopart et~al.(2008)Llopart, Ballabriga, Campbell, Tlustos,,
+  Wong]{Llopart2008106}
+LLOPART, X. et~al.
+\newblock Erratum to “Timepix, a 65 k programmable pixel readout chip for
+  arrival time, energy and/or photon counting measurements” [Nucl. Instr. and
+  Meth. A. 581 (2007) 485–494].
+\newblock \emph{Nuclear Instruments and Methods in Physics Research Section A:
+  Accelerators, Spectrometers, Detectors and Associated Equipment}. 2008, 585,
+  1–2, s.~106 -- 108.
+\newblock ISSN 0168-9002.
+\newblock \doi{http://dx.doi.org/10.1016/j.nima.2007.11.003}.
+\newblock Dostupn{\'{e}} z:
+  \url{http://www.sciencedirect.com/science/article/pii/S0168900207022930}.
+
+\bibitem[Platkevič(2014)]{PlatkevicDisertace}
+PLATKEVIč, M.
+\newblock \emph{{Signal Processing and Data Read-Out from Position Sensitive
+  Pixel Detectors}}.
+\newblock PhD thesis, Czech Technical University in Prague, Czech Republic,
+  2014.
+
+\bibitem[Poikela et~al.(2014)Poikela, Plosila, Westerlund, Campbell, Gaspari,
+  Llopart, Gromov, Kluit, van Beuzekom, Zappon, Zivkovic, Brezina, Desch, Fu,,
+  Kruth]{timepix3}
+POIKELA, T. et~al.
+\newblock Timepix3: a 65K channel hybrid pixel readout chip with simultaneous
+  ToA/ToT and sparse readout.
+\newblock \emph{Journal of Instrumentation}. 2014, 9, 05, s.~C05013.
+\newblock Dostupn{\'{e}} z:
+  \url{http://stacks.iop.org/1748-0221/9/i=05/a=C05013}.
 
 \bibitem[{S. Ballestrero, A. Bogdanchikov , F. Brasolin, A. C. Contescu, S.
   Dubrov, M. Hafeez, A. Korol , C. J.Lee, D. A. Scannicchio, M. Twomey, A.

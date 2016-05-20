@@ -12,6 +12,35 @@ url = "http://www.sciencedirect.com/science/article/pii/S0168900207022930",
 author = "X. Llopart and R. Ballabriga and M. Campbell and L. Tlustos and W. Wong"
 }
 
+@ARTICLE{Llopart-medipix2, 
+author={X. Llopart and M. Campbell and R. Dinapoli and D. San Segundo and E. Pernigotti}, 
+journal={IEEE Transactions on Nuclear Science}, 
+title={Medipix2: A 64-k pixel readout chip with 55- mu;m square elements working in single photon counting mode}, 
+year={2002}, 
+volume={49}, 
+number={5}, 
+pages={2279-2283}, 
+keywords={CMOS digital integrated circuits;X-ray detection;biomedical electronics;diagnostic radiography;discriminators;position sensitive particle detectors;preamplifiers;pulse height analysers;readout electronics;silicon radiation detectors;single photon emission computed tomography;transistors;0.25 micron;20 micron;55 micron;CMOS technology;Medipix2;Si;X-ray detection;bump bonding;detector leakage current;digital pulses;electronic pixel noise;input charge signals;input-output register;masking;pixel readout chip;preamplifier feedback;preamplifier input;pseudorandom counter;pulse height discriminators;shift register;single photon counting mode;square elements;total surface area;transistors;unadjusted threshold variation;Bonding;CMOS technology;Counting circuits;Detectors;Feedback;Leak detection;Leakage current;Logic;Preamplifiers;Registers}, 
+doi={10.1109/TNS.2002.803788}, 
+ISSN={0018-9499}, 
+month={Oct},}
+
+
+    
+@article{timepix3,
+  author={T Poikela and J Plosila and T Westerlund and M Campbell and M De Gaspari and X Llopart and V Gromov and R Kluit and M van Beuzekom and F
+Zappon and V Zivkovic and C Brezina and K Desch and Y Fu and A Kruth},
+  title={Timepix3: a 65K channel hybrid pixel readout chip with simultaneous ToA/ToT and sparse readout},
+  journal={Journal of Instrumentation},
+  volume={9},
+  number={05},
+  pages={C05013},
+  url={http://stacks.iop.org/1748-0221/9/i=05/a=C05013},
+  year={2014},
+  abstract={The Timepix3, hybrid pixel detector (HPD) readout chip, a successor to the Timepix \cite{timepix2007} chip, can record time-of-arrival (ToA) and time-over-threshold (ToT) simultaneously in each pixel. ToA information is recorded in a 14-bit register at 40 MHz and can be refined by a further 4 bits with a nominal resolution of 1.5625 ns (640 MHz). ToT is recorded in a 10-bit overflow controlled counter at 40 MHz. Pixels can be programmed to record 14 bits of integral ToT and 10 bits of event counting, both at 40 MHz. The chip is designed in 130 nm CMOS and contains 256 × 256 pixel channels (55 × 55 μm 2 ). The chip, which has more than 170 M transistors, has been conceived as a general-purpose readout chip for HPDs used in a wide range of applications. Common requirements of these applications are operation without a trigger signal, and sparse readout where only pixels containing event information are read out. A new architecture has been designed for sparse readout and can achieve a throughput of up to 40 Mhits/s/cm 2 . The flexible architecture offers readout schemes ranging from serial (one link) readout (40 Mbps) to faster parallel (up to 8 links) readout of 5.12 Gbps. In the ToA/ToT operation mode, readout is simultaneous with data acquisition thus keeping pixels sensitive at all times. The pixel matrix is formed by super pixel (SP) structures of 2 × 4 pixels. This optimizes resources by sharing the pixel readout logic which transports data from SPs to End-of-Column (EoC) using a 2-phase handshake protocol. To reduce power consumption in applications with a low duty cycle, an on-chip power pulsing scheme has been implemented. The logic switches bias currents of the analog front-ends in a sequential manner, and all front-ends can be switched in 800 ns. The digital design uses a mixture of commercial and custom standard cell libraries and was verified using Open Verification Methodology (OVM) and commercial timing analysis tools. The analog front-end and a voltage-controlled oscillator for 1.5625 ns timing resolution have been designed using full custom techniques.}
+}
+
+
 @article{Jakubek2011S262,
 title = "Precise energy calibration of pixel detector working in time-over-threshold mode ",
 journal = "Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment ",
@@ -91,6 +120,13 @@ abstract = "The ATLAS-MPX Network is a network of 15 Medipix2-based detector dev
   year = {2011},
 }
 
+@phdthesis{PlatkevicDisertace,
+  author = {Michal Platkevič},
+  title = {{Signal Processing and Data Read-Out from Position Sensitive Pixel Detectors}},
+  school = {Czech Technical University in Prague},
+  address = {Czech Republic},
+  year = {2014},
+}
 
     
 @article{atlasmpx,
@@ -157,6 +193,28 @@ abstract = "The semiconductor pixel detector Timepix (256×256 pixels with pitch
   url = "http://www.dropwizard.io/0.9.2/docs/getting-started.html"
   }
 
+@ONLINE{medipix-www,
+  author = "{Kolektiv autorů Medipix kolaborace}",
+  title = "Web Medipix",
+  cited = "20.\,5.\,2016",
+  year =         2016,
+  url = "https://medipix.web.cern.ch/medipix/pages/medipix1.php"
+  }
+
+
+    
+@article{fitpix,
+  author={V Kraus and M Holik and J Jakubek and M Kroupa and P Soukup and Z Vykydal},
+  title={FITPix — fast interface for Timepix pixel detectors},
+  journal={Journal of Instrumentation},
+  volume={6},
+  number={01},
+  pages={C01079},
+  url={http://stacks.iop.org/1748-0221/6/i=01/a=C01079},
+  year={2011},
+  abstract={The semiconductor pixel detector Timepix contains an array of 256 × 256 square pixels with pitch 55 μm. In addition to high spatial granularity the single quantum counting detector Timepix can provide also energy or time information in each pixel. This device is a powerful tool for radiation and particle detection, imaging and tracking. A new readout interface for silicon pixel detectors of the Medipix family has been developed in our group in order to provide a higher frame rate and enhanced flexibility of operation. The interface consists of a field programmable gate array, a USB 2.0 interface chip, DAC, ADC and a circuit which generates bias voltage for the sensor. The main control system is placed in the FPGA circuit which fully controls the Timepix device. This approach offers an easy way how to include new functionality and extended operation. The interface for Timepix supports all operation modes of the detector (counting, TOT, timing). The FITPix is a successor of the USB 1.22 Interface and the electronic readout is built with the latest available components, which allows achieving up to 90 frames per second with a single detector. The frame rate is about 20 times faster compared to the previous system while it maintains all same capabilities supported. In addition FITPix newly enables an adjustable clock frequency and hardware triggering which is a useful tool when there is the need for synchronized operation of multiple devices. Three modes of hardware trigger have been implemented: hardware trigger which starts the measurement, hardware trigger which terminates the measurement and hardware trigger which controls measurement fully. The entire system is fully powered through the USB bus. FITPix supports also readout from several detectors in chain in which case just an external power source is required. FITPix is a fully flexible device and the user needs no other equipment. FITPix combines high performance and mobility and it opens new fields of applications. The current version of the FITPix interface has dimension 45 mm × 60 mm.}
+}
+  
 
 
 % puvodni
