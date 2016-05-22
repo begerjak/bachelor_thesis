@@ -14,7 +14,11 @@ Hybridní částicové pixelové detektory typu Timepix (viz \ref{det:tim}), dis
 %********************************************************************************
 \section{Přehled kalibračních metod}
 
-\subsection{Kalibrace detektorů za použití rentgenového záření}
+%********************************************************************************
+% Přehled kalibračních metod
+% > X-ray
+%********************************************************************************
+\subsection{Kalibrace detektorů za použití rentgenového záření}\label{calib:xray}
 Metoda kalibrace pixelových detektorů pracujících v TOT módu \cite{Jakubek2011S262} spočívá v měření rentgenové fluorescence (viz \cite{Jakubek-radiography_and_charge_sharing}),
 což je děj ke kterému dochází, když je nějaký materiál 
 \footnote{Pro kalibraci se používají kovy, na příklad Am, In, Cu, Fe apod.}
@@ -60,4 +64,72 @@ Z těchto kalibračních bodů je možné sestavit kalibrační funkci (viz vzor
 	f_{calib}(x) = ax + b - \frac{c}{x-t}
 \end{equation}
 
+
+%********************************************************************************
+% Přehled kalibračních metod
+% > LED
+%********************************************************************************
+\subsection{Kalibrace detektorů pomocí LED diod}
+Princip kalibrace pixelových detektorů (pracujících v TOT módu) pomocí LED diod spočívá v působení přesného množství světelného záření na polovodičový senzor detektoru. V současné době je tato metoda ve fázi vývoje a doposud nebyla publikována. Metoda je použitelná pouze pro detektory, na jejímž senzoru není napařena tenká vrstva hliníku, která světelné záření nepropouští. 
+
+Jako zdroj světla byl v ÚTEF ČVUT v Praze vyvinut modul s maticí $8\times8$ LED diod, který je možné ovládat pomocí \texttt{RS232} sériové linky. K tomuto modulu byl rovněž vyvinut plugin do softwarového balíku Pixelman \ref{det:pixelman}, který automatizuje proces nabírání dat této metody. Přes sériovou linku je schopen řídit modul s LED diodami a zároveň pomocí jádra Pixelmanu ovládá akvizici dat detektoru.
+
+Kroky algoritmu této kalibrace jsou následující:
+\begin{enumerate}
+	\item Inicializace - nastavení spouštění akvizice detektoru na externí hardwarový trigger (který bude ovládán modulem s LED diodami), nastavení energie světelného záření (počet zabliknutí diody, délka periody jednoho bliknutí a doba aktivace diody v jedné periodě) a také délku akvizice snímku (vypočtené dle periody blikání a počet opakování).
+	\item Měřící smyčka (opakuje se pro všechny LED diody). V rámci jednoho průchodu se provede následující:
+		\begin{itemize}
+			\item Zamaskování všech pixelů detektoru, krom těch pixelů, které jsou pod aktivní diodou.
+			\item Spuštění akvizice.
+			\item Vyčtení a uložení snímku z detektoru.
+		\end{itemize}
+	\item Následně se hodnoty všech snímků sečtou do jednoho snímku - viz obr. \ref{fig:calib:led_frame}.
+\end{enumerate}
+
+\begin{figure}[th]
+	\begin{center}
+		\includegraphics[width=10cm]{figures/led_calib_frame.png}
+		\caption{Snímek z detektoru, ozařovaném modulem s LED diodami}
+		\label{fig:calib:led_frame}
+	\end{center}
+\end{figure}
+
+Z obrázku \ref{fig:calib:led_frame} jsou patrné hrany jednotlivých dílčích měření, které vznikly nehomogenitou elektronických vlastností jednotlivých diod. Tento jev může být odstraněn normalizací jejich světelné intenzity jejich kalibrací, jejíž výstupem bude kalibrační matice, kterou se vynásobí čas aktivace každé diody, což bude předmětem dalšího výzkumu této metody.
+
+Tímto způsobem se pro každý pixel detektoru získají jednotlivé kalibrační body, které se následně proloží kalibrační funkcí (viz vzorec \ref{eq:calib:calib_function}), jak již bylo popsáno v kapitole \ref{calib:xray}.
+
+
 %\section{Implementace kalibrační metody pomocí ren}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
