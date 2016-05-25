@@ -87,7 +87,7 @@ striktním nárokům ze strany CERNu na síťovou bezpečnost bylo možné ovlá
 % Hardwarová architektura sítě ATLAS TPX
 %********************************************************************************
 \section{Hardwarová architektura sítě ATLAS TPX}\label{atlas:hw_arch}
-Při návrhu hardwarové architekty sítě ATLAS TPX musela být zohledněna zvýšená intenzita radiačního a~elektromagnetického pole v~prostorách ATLAS detektoru. Snahou proto bylo, co nejvíce hardwarových komponent umístit z~dosahu tohoto pole. z~pohledu hardwarové instalace této detektorové sítě se prostory ATLAS experimentu dělí na dvě části - \texttt{UX15} a~\texttt{USA15} (viz obr. \ref{fig:tpx_hw_diagram}). v~\texttt{UX15} se nachází vlastní experiment. v~tomto prostoru byly umístěny jen detektory (na obr. \ref{fig:tpx_hw_diagram} \texttt{TPX01} až \texttt{TPX15}) a~zbytek sítě byl instalován v~\texttt{USA15}, kterou od zbytku experimentu dělí cca $60~m$ tlustá železobetonová stěna. Tady se nachází vyčítací elektronika a~další nezbytný hardware.
+Při návrhu hardwarové architekty sítě ATLAS TPX musela být zohledněna zvýšená intenzita radiačního a~elektromagnetického pole v~prostorách ATLAS detektoru. Snahou proto bylo, co nejvíce hardwarových komponent umístit z~dosahu tohoto pole. Z~pohledu hardwarové instalace této detektorové sítě se prostory ATLAS experimentu dělí na dvě části - \texttt{UX15} a~\texttt{USA15} (viz obr. \ref{fig:tpx_hw_diagram}). v~\texttt{UX15} se nachází vlastní experiment. v~tomto prostoru byly umístěny jen detektory (na obr. \ref{fig:tpx_hw_diagram} \texttt{TPX01} až \texttt{TPX15}) a~zbytek sítě byl instalován v~\texttt{USA15}, kterou od zbytku experimentu dělí cca $60~m$ tlustá železobetonová stěna. Tady se nachází vyčítací elektronika a~další nezbytný hardware.
 
 \begin{figure}[t]
 	\begin{center}
@@ -137,7 +137,7 @@ Na obrázku \ref{fig:tpx_sw_diagram} je znázorněn diagram návrhu softwarové 
 			\item \texttt{ATLAS TPX server} uloží získaná data v~textové podobě do lokálního (či síťového) datového úložiště, odkud jsou přenesena do \texttt{Data analysis serveru} pomocí automatického kopírovacího skriptu.
 			\item Druhou možností je přenesení dat pomocí JSON REST API protokolu, který je \texttt{Data analysis serverem} implementován. Tento druhý způsob je výhodnější, neb minimalizuje prodlevu mezi dobou pořízení snímku a~následném zpracováním \texttt{Data analysis serverem} a~dostupnosti jeho vizualizace pomocí web serveru a~zároveň přináší úsporu objemu přenesených dat.
 		\end{enumerate}
-		Hlavní úlohou \texttt{Data analysis serveru} je provedení tzv. Cluter analýzy. Jde o proces, při kterém jsou z~každého snímku získány shluky sousedních pixelů (tzv. clusterů), které mají nenulovou hodnotu. z~těchto clusterů, resp. z~jejich tvaru a~celkové deponované energie částice (pokud zasažení pixely operovaly v~TOT módu) je možné zjistit typ částice, která danou událost způsobila. Na obrázku \ref{fig:tpx_ca} můžete vidět 6 základních dělení clusterů, kde
+		Hlavní úlohou \texttt{Data analysis serveru} je provedení tzv. Cluter analýzy. Jde o proces, při kterém jsou z~každého snímku získány shluky sousedních pixelů (tzv. clusterů), které mají nenulovou hodnotu. Z~těchto clusterů, resp. z~jejich tvaru a~celkové deponované energie částice (pokud zasažení pixely operovaly v~TOT módu) je možné zjistit typ částice, která danou událost způsobila. Na obrázku \ref{fig:tpx_ca} můžete vidět 6 základních dělení clusterů, kde
 		 \begin{enumerate}[label=(\alph*)]
 			\item je tzv. \texttt{DOT}, způsobený fotony, či elektrony o energii do $10~keV$
 			\item je tzv. \texttt{SMALL BLOB}, způsobený fotony, či elektrony s~energií vetšinou nad $10~keV$
@@ -147,7 +147,7 @@ Na obrázku \ref{fig:tpx_sw_diagram} je znázorněn diagram návrhu softwarové 
 			\item je tzv. \texttt{STAIGHT TRACK}, způsobený těžce nabitými částicemi (muony apod.)
 		\end{enumerate}
 		Po dokončení analýzy dat, jsou data uložena do \texttt{ROOT}\footnote{\url{https://root.cern.ch/}} souborů (do souborové struktury po detektorech a~hodinách). \texttt{ROOT} je framework, který je vyvíjen v~CERN a~je určený pro ukládání dat a~jejich analýzu. Vygenerované soubory jsou ukládány do \texttt{EOS úložiště}, což je služba pro perzistentní ukládání \texttt{ROOT} souborů provozovaná CERN.\\
-		Jelikož každý \texttt{ROOT} soubor má velikost řádově v~jednotkách $GB$, jakékoliv operace nad nimi (například vyhledávání) jsou velice časově náročné. z~tohoto důvodu vznikla \texttt{PostgreSQL} databáze s~indexem na jednotlivé clustery, obsažené v~\texttt{ROOT} souborech. 
+		Jelikož každý \texttt{ROOT} soubor má velikost řádově v~jednotkách $GB$, jakékoliv operace nad nimi (například vyhledávání) jsou velice časově náročné. Z~tohoto důvodu vznikla \texttt{PostgreSQL} databáze s~indexem na jednotlivé clustery, obsažené v~\texttt{ROOT} souborech. 
 		Pro vizualizaci dat slouží web server, který pomocí databáze s~indexem a~\texttt{ROOT} souborů poskytuje online výsledky cluster analýzy a~další informace.
 \end{description}
 
@@ -523,7 +523,7 @@ Na obrázku \ref{fig:uml:com_priklad} je znázorněn příklad kombinace synchro
 \subsubsection{Implementace modulu pro řízení detektorů na straně serveru}\label{atlas:cont:impl}
 V této podkapitole bude popsána implementace řízení detektorů v~řídícím softwaru sítě ATLAS TPX. Celý software byl implementován v~jazyce \texttt{JAVA} za pomoci build nástroje \texttt{Maven}\footnote{\url{https://maven.apache.org/}} a~knihoven \texttt{Dropwizard}\footnote{\url{http://www.dropwizard.io}}, \texttt{Retrofit}\footnote{\url{http://square.github.io/retrofit/}} a~\texttt{RxJava}\footnote{\url{https://github.com/ReactiveX/RxJava}}.
 
-Jak již bylo zmíněno výše, detektory jsou připojeny k~ATLAS TPX serveru přes ethernetové rozhraní a~pomocí TPC/IP protokolu je vlastní komunikace realizována pomocí výše popsaného komunikačního protokolu. z~pohledu navazování spojení byla použita architektura klient-server tak, že detektor plní roli serveru a~ATLAS TPX server zase klienta. Tato architektura bylo použita s~ohledem na robustnost a~stabilitu této sítě a~aby úloha navazování spojení zůstala v~kompetenci ATLAS TPX serveru. Když by například došlo k~přerušení napájení nebo jiné chybě jednoho z~detektorů, ATLAS TPX server by nebyl schopen se pokusit o znovu navázání spojení.
+Jak již bylo zmíněno výše, detektory jsou připojeny k~ATLAS TPX serveru přes ethernetové rozhraní a~pomocí TPC/IP protokolu je vlastní komunikace realizována pomocí výše popsaného komunikačního protokolu. Z~pohledu navazování spojení byla použita architektura klient-server tak, že detektor plní roli serveru a~ATLAS TPX server zase klienta. Tato architektura bylo použita s~ohledem na robustnost a~stabilitu této sítě a~aby úloha navazování spojení zůstala v~kompetenci ATLAS TPX serveru. Když by například došlo k~přerušení napájení nebo jiné chybě jednoho z~detektorů, ATLAS TPX server by nebyl schopen se pokusit o znovu navázání spojení.
 
 \begin{figure}[th]
 	\begin{center}
@@ -699,7 +699,7 @@ Zpracovávání a~ukládání dat, resp. získaných snímků z~detektoru, bylo 
 			\item řádek obsahuje hodnotu parametru.
 		\end{enumerate}
 	Přípona tohoto souboru je "*.txt.dsc".
-	\item[Index File] Třetím souborem je tzv. \texttt{Index File}. Tento soubor nese binární informace, které spojují \texttt{Data File} a~\texttt{Description File}. Pro každý snímek je to tohoto souboru zapsána bytová adresa začátku snímku v~obou výše zmíněných souborech (pro každý $8~B$). z~důvodu možného rozšíření do budoucna a~zachování zpětné kompatibility, těchto $16~B$ je následováno dalšími $8~B$ (s nulovou hodnotou). Přípona tohoto souboru je "*.txt.idx".
+	\item[Index File] Třetím souborem je tzv. \texttt{Index File}. Tento soubor nese binární informace, které spojují \texttt{Data File} a~\texttt{Description File}. Pro každý snímek je to tohoto souboru zapsána bytová adresa začátku snímku v~obou výše zmíněných souborech (pro každý $8~B$). Z~důvodu možného rozšíření do budoucna a~zachování zpětné kompatibility, těchto $16~B$ je následováno dalšími $8~B$ (s nulovou hodnotou). Přípona tohoto souboru je "*.txt.idx".
 \end{description}
 
 Když ATLAS TPX server odchytí asynchronní událost od nějakého z~detektorů o tom, že daný detektor dokončil akvizici a~že má data připravena k~vyčtení, postará se o jejich vyčtení a~vygeneruje objet typu \texttt{Frame}. Tento objekt obsahuje všechna data, vázající se k~dané akvizici, jako například hodnoty jednotlivých pixelů, ale i různá metadata (akviziční čas, bias apod.). Po vygenerování objektu \texttt{Frame} je napříč celou aplikací vyslána asynchronní událost o této skutečnosti, obsahující právě vygenerovaný objekt typu \texttt{Frame}, pomocí \texttt{RxJava event bus}.

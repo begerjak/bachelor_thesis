@@ -1,17 +1,12 @@
 \addbibresource{reference.bib}
 
 \chapter{Polovodičové pixelové detektory ionizujícího záření}\label{det}
-Ionizující záření je lidskými smysly nedetekovatelné. Jeho schopnost ionizovat svoji energií látku, dala vzniku detekční technice a~metod toto záření měřit. Tato kapitola bude věnována zatím nejpokročilejší instrumentaci pro detekci ionizujícího záření a~jeho charakteristických vlastností - hybridním polovodičovým pixelovým detektorům.
+Ionizující záření je lidskými smysly nedetekovatelné. Tento fakt, dal vzniku detekční technice a~metodám toto záření měřit. Tato kapitola bude věnována pokročilé instrumentaci pro detekci ionizujícího záření a~jeho charakteristických vlastností - hybridním polovodičovým pixelovým detektorům.
 
 Existuje celá řada částicových pixelových detektorů (CMS pixel detector, Pilatus apod.), v~této práci však budou zmíněny jen detektory z~rodiny Medipix, které jsou vyvíjeny v~rámci stejnojmenné kolaborace Medipix\footnote{\url{http://medipix.web.cern.ch/}} v~CERN. Tato kolaborace sdružuje několik desítek vědeckých institucí a~univerzit po celém světe, mezi které patří od roku 1999 i ÚTEF ČVUT v~Praze.
 
-\begin{figure}[th!]
-	\begin{center}
-		\includegraphics[width=8.5cm]{figures/det_recombination.png}
-		\caption{Princip detekce ionizujícího záření (převzato z~\cite{PlatkevicDisertace})}
-		\label{fig:det:recomb}
-	\end{center}
-\end{figure}
+
+\clearpage
 
 %********************************************************************************
 % Princip detekce
@@ -23,19 +18,27 @@ Na obrázku \ref{fig:det:recomb} je znázorněn princip této detekce. v~horní 
 
 \begin{figure}[th]
 	\begin{center}
+		\includegraphics[width=8.5cm]{figures/det_recombination.png}
+		\caption{Princip detekce ionizujícího záření (převzato z~\cite{PlatkevicDisertace})}
+		\label{fig:det:recomb}
+	\end{center}
+\end{figure}
+
+Na obrázku \ref{fig:det:chip} je znázorněna struktura tohoto detektoru. Nahoře se nachází, polovodičový senzor, který je spojen s~integrovaným \texttt{ASIC}\footnote{z angl. Application Specific Integrated Circuit} vyčítacím čipem (tzv. \texttt{Readout chip}) pomocí technologie zvané \texttt{bump-bonding}. Odtud také pochází název "hybridní" - jedná se o spojení senzoru a~\texttt{ASIC} čipu. Každý pixel tedy tvoří jeden PN přechod. Vyčítací čip je dále spojen s~další nezbytnou elektronikou (na obr \ref{fig:det:chip} znázorněnou jako \texttt{Motherboard}) pomocí tzv. \texttt{wire-bonds}. Z~této elektroniky je dále vyvedeno napětí na polovodičový senzor - \texttt{bias}.
+
+\begin{figure}[th]
+	\begin{center}
 		\includegraphics[width=12cm]{figures/det_chip.png}
 		\caption{Struktura hybridního polovodičového pixelového detektoru (převzato z~\cite{PlatkevicDisertace})}
 		\label{fig:det:chip}
 	\end{center}
 \end{figure}
 
-Na obrázku \ref{fig:det:chip} je znázorněna struktura tohoto detektoru. Nahoře se nachází, polovodičový senzor, který je spojen s~integrovaným \texttt{ASIC}\footnote{z angl. Application Specific Integrated Circuit} vyčítacím čipem (tzv. \texttt{Readout chip}) pomocí technologie zvané \texttt{bump-bonding}. Odtud také pochází název "hybridní" - jedná se o spojení senzoru a~\texttt{ASIC} čipu. Každý pixel tedy tvoří jeden PN přechod. Vyčítací čip je dále spojen s~další nezbytnou elektronikou (na obr \ref{fig:det:chip} znázorněnou jako \texttt{Motherboard}) pomocí tzv. \texttt{wire-bonds}. z~této elektroniky je dále vyvedeno napětí na polovodičový senzor - \texttt{bias}.
-
 %********************************************************************************
 % Medipix detektory
 %********************************************************************************
 \section{Detektory rodiny Medipix}\label{det:med}
-Mezi mezi detektory rodiny Medipix patří: Medipix1, Medipix2 \cite{Llopart-medipix2}, Timepix \cite{Llopart2008106}, Medipix3, nově Timepix3 \cite{timepix3} a~v průběhu příštího roku k~nim přibude i Timepix2. 
+Mezi detektory rodiny Medipix patří: Medipix1, Medipix2 \cite{Llopart-medipix2}, Timepix \cite{Llopart2008106}, Medipix3, nově Timepix3 \cite{timepix3} a~v průběhu příštího roku k~nim přibude i Timepix2. 
 
 \begin{description}
 	\item[Medipix1] Medipix1 byl prvním detektorem z~této rodiny a~byl uvedený v~roce 1997. Také je známy pod názvem PCC (z~angl. Photon Counting Chip). Jednalo se o prototyp digitálního \texttt{CMOS}\footnote{z angl. Complementary Metal–Oxide–Semiconductor} zobrazovacího čipu, který našel uplatnění ve vysokoenergetických fyzikálních experimentech \cite{medipix-www} a~byl schopný operovat jen v~\texttt{Medipix módu} (viz \ref{det:mod}). Tento detektor měl matici $64\times64$ pixelů, každý s~hranou o délce $170~\mu m$ a~celková aktivní plocha byla $1,2~cm^2$. Detektor obsahoval $15$-bitový čítač, kterým byl schopen v~rámci jedné akvizice zaregistrovat až $32767$ událostí.
@@ -68,7 +71,7 @@ Mezi mezi detektory rodiny Medipix patří: Medipix1, Medipix2 \cite{Llopart-med
 %********************************************************************************
 \section{Módy detektorů}\label{det:mod}
 V této podkapitole budou popsány všechny nejpoužívanější módy detektorů z~rodiny Medipix. 
-Na obrázku \ref{fig:det:signal_proc} jsou znázorněny tři pixely detektoru s~blokovým schématem vyčítací elektroniky. Jak již bylo zmíněno výše, interagující částice s~polovodičovým povrchem detektoru vyvolá proudový pulz. Ten je měřícím odporem převeden na napětí, které je dále zesilovačem zesíleno (na obr. \ref{fig:det:signal_proc} jako \texttt{Amplifier}). Toto napětí je dále porovnáno komparátorem s~komparačním napětím (tzv. tresholdem), jak je znázorněno na obr. \ref{fig:det:signal_proc}. s~informací z~tohoto komparátoru je dále naloženo dle módu detektoru. Pro úplnost je třeba dodat, že \texttt{Shutter} na obr. \ref{fig:det:signal_proc} slouží pro spouštění, resp. ukončování akvizice.
+Na obrázku \ref{fig:det:signal_proc} jsou znázorněny tři pixely detektoru s~blokovým schématem vyčítací elektroniky. Jak již bylo zmíněno výše, interagující částice s~polovodičovým povrchem detektoru vyvolá proudový pulz. Ten je měřícím odporem převeden na napětí, které je dále zesilovačem zesíleno (na obr. \ref{fig:det:signal_proc} jako \texttt{Amplifier}). Toto napětí je dále porovnáno komparátorem s~komparačním napětím (tzv. tresholdem), jak je znázorněno na obr. \ref{fig:det:signal_proc}. S~informací z~tohoto komparátoru je dále naloženo dle módu detektoru. Pro úplnost je třeba dodat, že \texttt{Shutter} na obr. \ref{fig:det:signal_proc} slouží pro spouštění, resp. ukončování akvizice.
 
 \begin{figure}[th!]
 	\begin{center}
@@ -80,7 +83,7 @@ Na obrázku \ref{fig:det:signal_proc} jsou znázorněny tři pixely detektoru s~
 
 \begin{description}
 	\item[Medipix mód] Tento mód počítá počet částic, které během doby akvizice dopadly na aktivní plochu detektoru. Na obrázku \ref{fig:det:signal_proc} znázorněn, jako \texttt{Medipix mode}.
-	\item[TOT (Time-Over-Treshold)] Tento mód udává, jak dlouhou dobu (v počtu hodinových cyklů měřící frekvence) bylo zesílené napětí na detektoru vyšší, než komparační (treshold). Počet těchto cyklů je ekvivalentní deponované energii částice. Tento vztach ne ale nelineární a~je pro získání energie z~TOT je třeba detektor kalibrovat - o tom pojednává kapitola \ref{calib}. Tento mód je podporovaný všemi Timepix detektory (ze zde uvedených detektorů).
+	\item[TOT (Time-Over-Treshold)] Tento mód udává, jak dlouhou dobu (v počtu hodinových cyklů měřící frekvence) bylo zesílené napětí na detektoru vyšší, než komparační (treshold). Počet těchto cyklů je ekvivalentní deponované energii částice. Tento vztach je ale nelineární a~pro získání energie z~TOT je třeba detektor kalibrovat - o tom pojednává kapitola \ref{calib}. Tento mód je podporovaný všemi Timepix detektory (ze zde uvedených detektorů).
 	\item[TOA (Time-Of-Arrival)] Pixel v~tomto módu spustí svůj čítač po překročení tresholdu, čily vůči akvizičnímu času udává čas příletu částice. Tento mód je také známý pod označením \texttt{Timepix mode} a~nalézá své uplatnění především při měření koincidencí (rekonstrukce trajektorie částice, interagující s~více detektory pomocí času dopadu a~souřadnic zasažených pixelů). Tento mód je podporovaný všemi Timepix detektory (ze zde uvedených detektorů).
 	\item[SPM (Single Pixel Mode)] v~tomto módu každý pixel operuje zcela samostatně a~to v~Medipix módu.
 	\item[CSM (Charge Summing Mode)]\label{det:mod:csm} Tento mód odstraňuje zkreslení vzniklé \texttt{Charge Sharing} efektem pomocí přičtení energie do zasaženého pixelu z~pixelů okolních. Jako zasažený pixel se určí pixel s~nejvyšší energií. Tento mód podporuje jen Medipix3 (ze zde uvedených detektorů).
