@@ -85,23 +85,6 @@ unicode=true,
 	\selectlanguage{czech}	% podle jazyka práce nastavte na [czech | english]
 	\translate				% nastaví české nebo anglické popisy (např. katedra -> department); viz k336_thesis_macros
 
-	%%%%%%%%%%%%%%%%%%%%%%%%%%    
-	% Poznamky ke kompletaci prace
-	% Nasledujici pasaz uzavrenou v {} ve sve praci samozrejme 
-	% zakomentujte nebo odstrante. 
-	% Ve vysledne svazane praci bude nahrazena skutecnym 
-	% oficialnim zadanim vasi prace.
-	%{
-	%\pagenumbering{roman} \cleardoublepage \thispagestyle{empty}
-	%\chapter*{Na tomto místě bude oficiální zadání vaší práce}
-	%\begin{itemize}
-	%	\item Toto zadání je podepsané děkanem a vedoucím katedry,
-	%	\item musíte si ho vyzvednout na studijním oddělení Katedry počítačů na Karlově náměstí,
-	%	\item v jedné odevzdané práci bude originál tohoto zadání (originál zůstává po obhajobě na katedře),
-	%	\item ve druhé bude na stejném místě neověřená kopie tohoto dokumentu (tato se vám vrátí po obhajobě).
-	%\end{itemize}
-	%\newpage
-	%}
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%    
 	% Titulni stranka / Title page 
@@ -135,15 +118,20 @@ unicode=true,
 	% Abstrakt / Abstract 
  
 	\abstractpage
-	\todo
+
+	During the year 2014, 16 Timepix based hybrid particle pixel detectors were installed at various positions within the ATLAS experiment at LHC at CERN.
+	The goal of this bachelor thesis is to develop software for controlling and energy calibration of this network. The control software provides control of these detectors independently, such as settings of measurement parameters, data acquisition control, data readout and their processing, etc. This software also provides \texttt{JSON REST API} server for remote control and for to providing status informations of this network to CERN.
+	Calibration software provides user to pass through the calibration process from calibration spectra assembly, to spectra analysis and creation of the individual calibration points, to make the calibration functions for the individual pixels of the detector. 
 
 	
 	\vglue60mm
 	\noindent{\Huge \textbf{Abstrakt}}
 	\vskip 2.75\baselineskip
 
-	\noindent
-	\todo
+	V roce 2014 byla na různé pozice ATLAS experimentu na LHC v CERN nainstalována síť 16 hybridních částicových pixelových detektorů typu Timepix. 
+	Cílem této bakalářské práce je vyvinutí software pro řízení a energetickou kalibraci této sítě. Řídící software umožňuje nezávislé ovládání těchto detektorů, zejména pak nastavování měřících parametrů, řízení akvizice dat, vyčítání a zpracování dat apod. Tento software rovněž poskytuje \texttt{JSON REST API} server pro své vzdálené řízení a poskytování informací o stavu celé sítě CERNu.
+	Kalibrační software poskytuje uživateli průchod procesem zpracování kalibračních dat od sestavení spekter z naměřených dat, přes jejich analýzu a vytvoření jednotlivých kalibračních bodů, až po sestavení kalibrační funkce pro jednotlivé pixely detektoru.
+
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%    
 	% obsahy a seznamy
