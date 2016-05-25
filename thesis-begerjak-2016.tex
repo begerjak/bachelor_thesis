@@ -4,30 +4,30 @@
 \usepackage[T1]{fontenc} 				% pouzije EC fonty 
 \usepackage[utf8]{inputenc} 			% utf8 kódování vstupu 
 \usepackage[square, numbers]{natbib}	% sazba pouzite literatury
-\usepackage{indentfirst} 				% 1. odstavec jako v cestine, pro práci v aj možno zakomentovat
-\usepackage{fancyhdr}					% tisk hlaviček a patiček stránek
-\usepackage{nomencl} 					% umožňuje snadno definovat zkratky a jejich seznam
+\usepackage{indentfirst} 				% 1. odstavec jako v~cestine, pro práci v~aj možno zakomentovat
+\usepackage{fancyhdr}					% tisk hlaviček a~patiček stránek
+\usepackage{nomencl} 					% umožňuje snadno definovat zkratky a~jejich seznam
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % informace o práci
-\newcommand\WorkTitle{Kalibrační a ovládací software sítě částicových pixelových detektorů umístěných uvnitř experimentu ATLAS na~LHC~v~CERN} % název
+\newcommand\WorkTitle{Kalibrační a~ovládací software sítě částicových pixelových detektorů umístěných uvnitř experimentu ATLAS na~LHC~v~CERN} % název
 \newcommand\FirstandFamilyName{Jakub Begera} % autor
 \newcommand\Supervisor{Ing. Štěpán Polanský} % vedoucí
 
 \newcommand\TypeOfWork{Bakalářská práce}	% typ práce [Diplomová práce | Bakalářská práce | Bachelor's Project | Master's Thesis ]	
 
-% Nastavte následují podle vašeho oboru a programu (pomoc hledejte na http://www.fel.cvut.cz/cz/education/bk/prehled.html)								
+% Nastavte následují podle vašeho oboru a~programu (pomoc hledejte na http://www.fel.cvut.cz/cz/education/bk/prehled.html)								
 \newcommand\StudProgram{Otevřená informatika, Bakalářský} % program
 \newcommand\StudBranch{Softwarové systémy} % obor
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % minimální importy
 \usepackage{graphicx}					% pro vkládání obrázků
-\usepackage{k336_thesis_macros} 		% specialni makra pro formatovani DP a BP
+\usepackage{k336_thesis_macros} 		% specialni makra pro formatovani DP a~BP
 \usepackage[
-pdftitle={\WorkTitle},				% nastaví v informacích o pdf název
-pdfauthor={\FirstandFamilyName},	% nastaví v informacích o pdf autora
-colorlinks=true,					% před tiskem doporučujeme nastavit na false, aby odkazy a url nebyly šedé při ČB tisku
+pdftitle={\WorkTitle},				% nastaví v~informacích o pdf název
+pdfauthor={\FirstandFamilyName},	% nastaví v~informacích o pdf autora
+colorlinks=true,					% před tiskem doporučujeme nastavit na false, aby odkazy a~url nebyly šedé při ČB tisku
 breaklinks=true,
 urlcolor=red,
 citecolor=blue,
@@ -50,7 +50,7 @@ unicode=true,
 \usepackage{tikz}		        %TeX obrázky
 \usetikzlibrary{trees,calc,positioning,shapes.geometric,matrix,arrows,decorations.pathreplacing,arrows.meta,decorations.markings,math}
 
-\usepackage{minted}				% slouží k Syntax Highlighting
+\usepackage{minted}				% slouží k~Syntax Highlighting
 \usepackage{amsmath}
 
 
@@ -63,7 +63,7 @@ unicode=true,
 \let\oldUrl\url									% url adresy budou zobrazeny: <url> 
 \renewcommand\url[1]{<\texttt{\oldUrl{#1}}>}
 %\renewcommand\lstlistingname{Výpis kódu} % předefinování nadpisu
-%\renewcommand\lstlistlistingname{Výpisy kódu} % předefinování nadpisu v obsahu
+%\renewcommand\lstlistlistingname{Výpisy kódu} % předefinování nadpisu v~obsahu
 %\renewcommand{\lstlistingname}{Algorithm}% Listing -> Algorithm
 %\renewcommand{\lstlistlistingname}{Listdassad of \lstlistingname s}% List of Listings -> List
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -100,7 +100,7 @@ unicode=true,
 	% Poděkovani / Acknowledgements 
 	\acknowledgements
 	\noindent
-	Na tomto místě bych rád podělovat svojí rodině a přátelům, kteří mě během studia podporovali. Také bych rád poděkoval kolegům z ÚTEF ČVUT v Praze za možnost podílet se na projektu ATLAS TPX, zejména pak vedoucímu této bakalářské práce Ing. Štěpánu Polanskému, za předání mnoha zkušenosti, rad a času, který mi věnoval. Dále bych rád poděkoval Ing. Janu Jakůbkovi, Ph.D. za uvedení do problematiky energetické kalibrace a za pomoc při implementaci kalibračního softwaru.
+	Na tomto místě bych rád podělovat svojí rodině a~přátelům, kteří mě během studia podporovali. Také bych rád poděkoval kolegům z~ÚTEF ČVUT v~Praze za možnost podílet se na projektu ATLAS TPX, zejména pak vedoucímu této bakalářské práce Ing. Štěpánu Polanskému, za předání mnoha zkušenosti, rad a~času, který mi věnoval. Dále bych rád poděkoval Ing. Janu Jakůbkovi, Ph.D. za uvedení do problematiky energetické kalibrace a~za pomoc při implementaci kalibračního softwaru.
 
 	\begin{flushright}
 		Děkuji!
@@ -128,13 +128,13 @@ unicode=true,
 	\noindent{\Huge \textbf{Abstrakt}}
 	\vskip 2.75\baselineskip
 
-	V roce 2014 byla na různé pozice ATLAS experimentu na LHC v CERN nainstalována síť 16 hybridních částicových pixelových detektorů typu Timepix. 
-	Cílem této bakalářské práce je vyvinutí software pro řízení a energetickou kalibraci této sítě. Řídící software umožňuje nezávislé ovládání těchto detektorů, zejména pak nastavování měřících parametrů, řízení akvizice dat, vyčítání a zpracování dat apod. Tento software rovněž poskytuje \texttt{JSON REST API} server pro své vzdálené řízení a poskytování informací o stavu celé sítě CERNu.
-	Kalibrační software poskytuje uživateli průchod procesem zpracování kalibračních dat od sestavení spekter z naměřených dat, přes jejich analýzu a vytvoření jednotlivých kalibračních bodů, až po sestavení kalibrační funkce pro jednotlivé pixely detektoru.
+	V roce 2014 byla na různé pozice ATLAS experimentu na LHC v~CERN nainstalována síť 16 hybridních částicových pixelových detektorů typu Timepix. 
+	Cílem této bakalářské práce je vyvinutí software pro řízení a~energetickou kalibraci této sítě. Řídící software umožňuje nezávislé ovládání těchto detektorů, zejména pak nastavování měřících parametrů, řízení akvizice dat, vyčítání a~zpracování dat apod. Tento software rovněž poskytuje \texttt{JSON REST API} server pro své vzdálené řízení a~poskytování informací o stavu celé sítě CERNu.
+	Kalibrační software poskytuje uživateli průchod procesem zpracování kalibračních dat od sestavení spekter z~naměřených dat, přes jejich analýzu a~vytvoření jednotlivých kalibračních bodů, až po sestavení kalibrační funkce pro jednotlivé pixely detektoru.
 
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%    
-	% obsahy a seznamy
+	% obsahy a~seznamy
 	\tableofcontents		% Obsah
 	\listoffigures			% Seznam obrázků
 	\listoftables			% Seznam tabulek
@@ -153,7 +153,7 @@ unicode=true,
 \bibliographystyle{csplainnat}
 
 {
-%JZ: 11.12.2008 Kdo chce mit v techto ukazkovych odkazech take odkaz na CSTeX:
+%JZ: 11.12.2008 Kdo chce mit v~techto ukazkovych odkazech take odkaz na CSTeX:
 \def\CS{$\cal C\kern-0.1667em\lower.5ex\hbox{$\cal S$}\kern-0.075em $}
 \bibliography{reference}
 }
@@ -277,9 +277,9 @@ Na GNU/Linuxu si strukturu přiloženého CD můžete snadno vyrobit příkazem:
 \verb|$ tree . >tree.txt|\\
 Ve vzniklém souboru pak stačí pouze doplnit komentáře.
 
-Z \textbf{README.TXT} (případne index.html apod.)  musí být rovněž zřejmé, jak programy instalovat, spouštět a jaké požadavky mají tyto programy na hardware.
+Z \textbf{README.TXT} (případne index.html apod.)  musí být rovněž zřejmé, jak programy instalovat, spouštět a~jaké požadavky mají tyto programy na hardware.
 
-Adresář \textbf{text}  musí obsahovat soubor s vlastním textem práce v PDF nebo PS formátu, který bude později použit pro prezentaci diplomové práce na WWW.
+Adresář \textbf{text}  musí obsahovat soubor s~vlastním textem práce v~PDF nebo PS formátu, který bude později použit pro prezentaci diplomové práce na WWW.
 
 
 
