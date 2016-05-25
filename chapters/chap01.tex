@@ -1,16 +1,27 @@
 \addbibresource{reference.bib}
 
 \chapter{Úvod}\label{chap01}
-Tato bakalářská práce se zabývá návrhem a implementací software pro ovládání a kalibraci sítě hybridních částicových pixelových detektorů umístěných uvnitř experimentu ATLAS na LHC v CERN - projekt AtlasTPX. 
-Jelikož proces kalibrace je zcela nezávislý na následném řízné činnosti těchto detektorů, je tento software členěn na dvě nezávislé části, a to na energetickou kalibraci částicových pixelových detektorů (viz kapitola \ref{calib}) a řízení sítě těchto detektorů - ATLAS TPX (viz kapitola \ref{atlas}).
+Tato bakalářská práce se zabývá návrhem a implementací software pro ovládání a energetickou kalibraci sítě hybridních částicových pixelových detektorů umístěných uvnitř experimentu ATLAS na LHC v CERN - projekt ATLAS TPX. 
 
-\todo
+Jelikož proces kalibrace je zcela nezávislý na následném řízné činnosti těchto detektorů, je tento software členěn na dvě nezávislé části, a to na energetickou kalibraci částicových pixelových detektorů (viz kapitola \ref{calib}) a řízení sítě těchto detektorů - ATLAS TPX (viz kapitola~\ref{atlas}).
+
+Kalibrační software bude uživateli umožňovat průchod procesem zpracování kalibračních dat od sestavení spekter z naměřených snímků, přes jejich analýzu a vytvoření jednotlivých kalibračních bodů, až po sestavení kalibrační funkce pro jednotlivé pixely detektoru.
+
+Řídící software sítě ATLAS TPX pak zase bude sloužit pro nezávislé ovládání funkce těchto detektorů. Bude umožňovat nastavování různých parametrů detektorů, řízení akvizice snímků, vyčítání naměřených dat a jejich ukládání, ev. jejich odesílání datovému serveru pro jejich hlubší analýzu a uložení do perzistentní centrální CERNské databáze (tzv. \texttt{EOS}). Zároveň tento řídící software bude poskytovat \texttt{JSON REST API} pro své vzdálené řízení a také pro poskytování stavových informací o teto sítí CERNu.
 
 \section{Motivace}
 Ionizující záření je spjato s naším světem už od počátku jeho existence. Jeho studium začalo koncem 19. století a pomáhá nám pochopit podstatu hmoty, její interakce s prostředím a další vlastnosti. Tyto poznatky našly své uplatnění v mnoha oborech, jako například v defektoskopii, zdravotnictví, energetice a v mnoha dalších. Spolu s rostoucími poznatky o ionizujících záření a s technických pokrokem se rozvíjela i detekční technika, která za poslední století prodělala veliký posun. Od prvních bublinových komor, až po nejmodernější polovodičové pixelové detektory, kterými se tato práce zabývá. 
 
 
 %V rámci svého působení v Ústavu technické a experimentální fyziky ČVUT v Praze (který je členem kolaborace Medipix v CERN) jsem se podílel na vývoji software pro hybridní pixelové detektory rodiny  Medipix
-%Hybridních pixelové detektory rodiny Medipix a Timepix pomocí matice $256*256$ pixelů 
-% díky vysoké míře integrace se na ploše okolo x $cm^2$ nachází $65 536$ aktivních pixelů. 
+
 	
+\section{Struktura dokumentu}
+\begin{description}
+	\item[Kapitola] \ref{det} - \nameref{det}:
+		V této kapitole budou představeny hybridní částicové pixelové detektory rodiny Medipix, jejich rozdělení, principy detekce, módy a další relevantní vlastnosti k této práci.
+	\item[Kapitola] \ref{calib} - \nameref{calib}:
+		Tato kapitola bude pojednávat o metodách energetické kalibrace částicových pixelových detektorů rodiny Medipix, pracujících v \texttt{Time-Over-Treshold} módu a také zde bude zmíněna implementace jedné z těchto metod pro účely kalibrace detektorové sítě ATLAS TPX.
+	\item[Kapitola] \ref{atlas} - \nameref{atlas}:
+		V rámci této kapitoly bude popsán návrh softwarové a hardwarové architektury detektorové sítě ATLAS~TPX a také implementace řídícího softwaru ATLAS TPX serveru.
+\end{description}
