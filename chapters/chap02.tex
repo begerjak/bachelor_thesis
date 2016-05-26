@@ -1,9 +1,9 @@
 \addbibresource{reference.bib}
 
 \chapter{Polovodičové pixelové detektory ionizujícího záření rodiny Medipix}\label{det}
-Ionizující záření je lidskými smysly nedetekovatelné. Tento fakt, dal vzniku detekční technice a~metodám toto záření měřit. Tato kapitola je věnována pokročilé instrumentaci pro detekci ionizujícího záření  - hybridním polovodičovým pixelovým detektorům.
+Ionizující záření je lidskými smysly nedetekovatelné. Tento fakt dal vzniku detekční technice a~metodám toto záření měřit. Tato kapitola je věnována pokročilé instrumentaci pro detekci ionizujícího záření  - hybridním polovodičovým pixelovým detektorům.
 
-Existuje celá řada částicových pixelových detektorů (AGH\_Fermilab, Pilatus, Philips Chromaix apod.) \cite{detectors_review}, tato práce se však zabývá pouze detektory z~rodiny Medipix, které jsou vyvíjeny v~rámci stejnojmenné kolaborace Medipix\footnote{\url{http://medipix.web.cern.ch/}} v~CERN. Tato kolaborace sdružuje několik desítek vědeckých institucí a~univerzit po celém světe, mezi které patří od roku 1999 i ÚTEF ČVUT v~Praze.
+Existuje celá řada částicových pixelových detektorů (AGH\_Fermilab, Pilatus, Philips Chromaix apod.) \cite{detectors_review}, tato práce se však zabývá pouze detektory z~rodiny Medipix, které jsou vyvíjeny v~rámci stejnojmenné kolaborace Medipix\footnote{\url{http://medipix.web.cern.ch/}} v~CERN. Tato kolaborace sdružuje několik desítek vědeckých institucí a~univerzit po celém světe, mezi které roku 1999 patří od i ÚTEF ČVUT v~Praze.
 
 
 \clearpage
@@ -19,7 +19,7 @@ Na obrázku \ref{fig:det:recomb} je znázorněn princip této detekce. V~horní 
 \begin{figure}[th]
 	\begin{center}
 		\includegraphics[width=8.5cm]{figures/det_recombination.png}
-		\caption{Princip detekce ionizujícího záření (převzato z~\cite{PlatkevicDisertace}), kde červená šipka je procházející částice, žlutě jsou znázorněny elektrony, modře díry. Elektronika každého každého pixelu zpracovává napěťový pulz.}
+		\caption{Princip detekce ionizujícího záření (převzato z~\cite{PlatkevicDisertace}), kde červená šipka je procházející částice, žlutě jsou znázorněny elektrony, modře díry. Elektronika každého pixelu zpracovává napěťový pulz.}
 		\label{fig:det:recomb}
 	\end{center}
 \end{figure}
@@ -45,9 +45,9 @@ Pro realizaci sítě ATLAS TPX byly použity pouze detektory typu Timepix. Pro s
 Do této rodiny patří především: Medipix1, Medipix2 \cite{Llopart-medipix2}, Timepix \cite{timepix}, Medipix3, nově Timepix3 \cite{timepix3} a~ další jsou ve vývoji, například Timepix2 a Dosepix. 
 
 \begin{description}
-	\item[Medipix1] Medipix1 je prvním detektorem z~této rodiny a~byl uveden v~roce 1997. Také je známy pod názvem PCC (z~angl. Photon Counting Chip). Jedná se o prototyp digitálního \texttt{CMOS}\footnote{z angl. Complementary Metal–Oxide–Semiconductor} zobrazovacího čipu, který nachází uplatnění ve vysokoenergetických fyzikálních experimentech \cite{medipix-www}. Je schopný operovat jen v~\texttt{Medipix módu} (viz \ref{det:mod}). Tento detektor má matici $64\times64$ pixelů, každý s~hranou o délce $170~\mu m$ a~celková aktivní plocha je $1,2~cm^2$. Detektor obsahuje $15$-bitový čítač, kterým umožňuje v~rámci jedné akvizice zaregistrovat až $32767$ událostí.
+	\item[Medipix1] Prvním detektorem z~této rodiny je Medipix1, který byl uveden v~roce 1997. Také je známy pod názvem PCC (z~angl. Photon Counting Chip). Jedná se o prototyp digitálního \texttt{CMOS}\footnote{z angl. Complementary Metal–Oxide–Semiconductor} zobrazovacího čipu, který nachází uplatnění ve vysokoenergetických fyzikálních experimentech \cite{medipix-www}. Je schopný operovat jen v~\texttt{Medipix módu} (viz \ref{det:mod}). Tento detektor má matici $64\times64$ pixelů, každý s~hranou o délce $170~\mu m$ a~celková aktivní plocha je $1,2~cm^2$. Detektor obsahuje $15$-bitový čítač, čímž umožňuje v~rámci jedné akvizice zaregistrovat až $32767$ událostí.
 
-	\item[Medipix2] Medipix2 je přímým následníkem detektoru Medipix1. 
+	\item[Medipix2] Jedná se o přímého následníka detektoru Medipix1. 
 	%Tento model především profite z~rychlého pokroku \texttt{CMOS} technologie, díky kterému bylo možné přidání nové funkcionality a~především zmenšení velikosti pixelů. 
 	Díky větší integraci \texttt{CMOS} technologie bylo možné přidat novou funkcionalitu a~zmenšit velikost pixelů.
 	Detektor obsahuje matici $256\times256$ pixelů, délka hrany jednoho pixelu se zmenšila na $55~\mu m$ a~celková aktivní plocha vzrostla na $2~cm^2$.
@@ -71,7 +71,7 @@ Do této rodiny patří především: Medipix1, Medipix2 \cite{Llopart-medipix2}
 	
 	%Obrázek \ref{fig:det:charge_sharing} je demonstrací tohoto jevu. Zobrazuje histogram detekovaných energií pro jeden pixel. Když každý pixel operuje zcela nezávisle (na obrázku modře), je patrné, že daný pixel registroval i události sousedních pixelů, vzniklé \texttt{Charge Sharing} efektem. Tento problém odstraňuje \texttt{CSM} \ref{det:mod:csm} mód a~především možnost vyčítat jednotlivé události (nikoliv až celé snímky), což také odstraňuje mrtvou dobu detektoru. \texttt{CSM} mód přičte k~energii zasaženého pixelu i energii sousedních pixelů - viz obr. \ref{fig:det:charge_sharing} červeně.
 
-	\item[Timepix3] Timepix3 vychází z detektoru Timepix, oproti kterému má tento detektor vylepšenou vyčítací logiku a~o jeden čítač na pixel více. To mu mimo jiné umožňuje měřit v~TOT a~TOA módu současně. Navíc ještě přináší \texttt{Data-driven} vyčítací mód (obdobně, jako Medipix3), který na rozdíl od \texttt{Frame-based} vyčítání minimalizuje mrtvou dobu detektoru.
+	\item[Timepix3] Tento detektor vychází z detektoru Timepix. Oproti kterému má tento detektor vylepšenou vyčítací logiku a~o jeden čítač na pixel více. To mu mimo jiné umožňuje měřit v~TOT a~TOA módu současně. Navíc ještě přináší \texttt{Data-driven} vyčítací mód (obdobně, jako Medipix3), který na rozdíl od \texttt{Frame-based} vyčítání minimalizuje mrtvou dobu detektoru.
 
 \end{description}
 
@@ -112,7 +112,7 @@ FITPix\footnote{z angl. Fast Interface for Timepix Pixel Detectors} \cite{fitpix
 	\end{center}
 \end{figure}
 
-Tato architektura s~FPGA byla použita především z~důvodu dosažení vyšších datových toků a~také vyšší radiační odolnosti, které by za použití konvenčních mikroprocesorů nemohlo být dosaženo. Další výhodou je menší počet aktivních prvků, což se projeví krom spotřeby i na nižších tepelných ztrátách. Tento parametr je velice důležitý, především pro nasazení ve vakuu.
+Tato architektura s~FPGA byla použita především z~důvodu dosažení vyšších datových toků a~také vyšší radiační odolnosti, které by za použití konvenčních mikroprocesorů nemohlo být dosaženo. Další výhodou je menší počet aktivních prvků, což se projeví krom spotřeby i~na nižších tepelných ztrátách. Tento parametr je velice důležitý, především pro nasazení ve vakuu.
 
 %********************************************************************************
 % Pixelman
@@ -120,7 +120,7 @@ Tato architektura s~FPGA byla použita především z~důvodu dosažení vyšš�
 \section{Pixelman}\label{det:pixelman}
 Pixelman \cite{pixelman} je softwarový balík, vyvíjený v~ÚTEF ČVUT v~Praze, sloužící pro řízení detektorů z~rodiny Medipix pomocí vyčítacího rozhraní FITPix \ref{det:fitpix}, Muros a dalších. Tento software umožňuje akvizici dat, jejich vizualizaci a~následnou analýzu.
 
-Jedná se o vysoce modulární systém, který mimo jiné umožňuje rozšíření své funkcionality o pluginy, které mají přístup k~funkcím, poskytovaným jádrem Pixelmanu. Každý plugin může zaregistrovat své funkce, takže i ostatní pluiny mohou využívat jeho funkcionalitu. Jsou podporovány pluginy, vyvinuté v~jazycích Java, C/C++ a~Python. 
+Jedná se o vysoce modulární systém, který mimo jiné umožňuje rozšíření své funkcionality o pluginy, které mají přístup k~funkcím, poskytovaným jádrem Pixelmanu. Každý plugin může zaregistrovat své funkce, takže i ostatní pluginy mohou využívat jeho funkcionalitu. Jsou podporovány pluginy, vyvinuté v~jazycích Java, C/C++ a~Python. 
 %Na obrázku \ref{fig:det:pixelman} je znázorněna softwarová architektura Pixelmana.
 
 %\begin{figure}[th!]

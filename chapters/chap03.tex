@@ -1,7 +1,7 @@
 \addbibresource{reference.bib}
 
 \chapter{Energetická kalibrace}\label{calib}
-Tato kapitola pojednává o metodách pro energetickou kalibraci hybridních částicových pixelových detektorů, pracujících v~Time-Over-Treshold módu a~o implementaci jedné z~nich pro účely kalibrace detektorů sítě ATLAS TPX.
+Tato kapitola pojednává o metodách energetické kalibraci hybridních částicových pixelových detektorů, pracujících v~Time-Over-Treshold módu a~o implementaci jedné z~nich pro účely kalibrace detektorů sítě ATLAS TPX.
 
 %********************************************************************************
 % Motivace
@@ -10,12 +10,12 @@ Tato kapitola pojednává o metodách pro energetickou kalibraci hybridních č�
 %Hybridní částicové pixelové detektory typu Timepix (viz \ref{det:tim}), disponují módem TOT (Time-Over-Treshold), který lze využít pro měření energie ionigujícího záření dopadajícího na aktivní plochu detektoru. Když s pixel pracuje v~tomto módu a~intaraguje s~ním částice, dojde k~vygenerování napěťového pulzu, jehož velikost je úměrná deponované energii interagující částice (viz kapitola \ref{det:mod}). Je-li velikost tohoto pulzu větší, než treshold zasaženého pixelu, tak dojde ke spuštění čítače, který začne počítat hodinové cykly měřící frekvence a~zastaví se tehdy, když klesne hodnota napětí na původní hodnotu, pod úroveň tresholdu. Po skončení akvizice je hodnota tohoto čítače rovna hodnotě TOT, která odpovídá deponované energii interagující částice. Vztah mezi TOT a~energií je ale nelineární a~je podmíněn různými elektronickými a~fyzikálními vlastnostmi daného pixelu. Určení tohoto vztahu je předmětem kalibrace, o které tato kapitola bude pojednávat.
 
 Každý detektor ionizujícího záření je třeba pře použitím zkalibrovat pomocí známých zrojů záření. Vzniká tak přepočet vnitřních elektrických veličin detektoru na energii. Pro účely fyzikálních měření je zvykem užívat jako jednotku energie eV, resp. keV. 
-V případě detektoru Timepix se z důvodu nelineární odezvy (obr. \ref{fig:calib:calib_function}) pixelové elektroniky jedná o netriviální úlohu. Cílem kalibrace je nalézt parametry analyticky popisující kalibrační křivku, na příklad pomocí funkce \ref{eq:calib:calib_function}.
+V případě detektoru Timepix se z důvodu nelineární odezvy (obr. \ref{fig:calib:calib_function}) pixelové elektroniky jedná o~netriviální úlohu. Cílem kalibrace je nalézt parametry analyticky popisující kalibrační křivku, na příklad pomocí funkce \ref{eq:calib:calib_function}.
 
 \begin{figure}[th!]
 	\begin{center}
 		\includegraphics[width=8cm]{figures/calib_function.png}
-		\caption{Kalibrační funkce (převzato z~\cite{Jakubek2011S262}) udává závislost mezi energií a TOT. Vzniká proložením naměřených kalibračních bodů pomocí funkce \ref{eq:calib:calib_function}. Tato funkce vznikla složením hyperboly (popisující nelineární oblast nižších energií) a přímky (pro oblast s vyšší energií).}
+		\caption{Kalibrační funkce (převzato z~\cite{Jakubek2011S262}) udává závislost mezi energií a TOT. Vzniká proložením naměřených kalibračních bodů pomocí funkce \ref{eq:calib:calib_function}. Tato funkce vznikla složením hyperboly (popisující nelineární oblast nižších energií) a~přímky (pro oblast s vyšší energií).}
 		\label{fig:calib:calib_function}
 	\end{center}
 \end{figure}
@@ -38,12 +38,12 @@ V případě detektoru Timepix se z důvodu nelineární odezvy (obr. \ref{fig:c
 %********************************************************************************
 \subsection{Kalibrace detektorů za použití rentgenového záření}\label{calib:xray}
 Tato kalibrační metoda \cite{Jakubek2011S262} spočívá v~měření rentgenové fluorescence (viz \cite{Jakubek-radiography_and_charge_sharing}),
-což je děj ke kterému dochází, když je materiál\footnote{Pro kalibraci se používají kovy, na příklad Am, In, Cu, Fe apod.} (terč)
+což je děj, ke kterému dochází, když je materiál\footnote{Pro kalibraci se používají kovy, na příklad Am, In, Cu, Fe apod.} (terč)
 ozařován rentgenovým zářením, které vyráží excitované elektrony z~jeho atomů. Je-li vyražen elektron na nižší energetické úrovní, tak elektron z~vyšší energetické úrovně deexcituje a~obsadí jeho místo. 
 Přebytečnou energii ztratí ve formě vyzářeného fotonu (tzv. charakteristické záření). Spojitou část rentgenového spektra je potřeba odstínit. Výběrem vhodných terčů lze získat několik diskrétních energií záření, tzv. kalibrační body. Z důvodů statistických vlastností záření je třeba pro každý kalibrační bod pořídit velké množství snímků, ze kterých jsou následně vyfiltrovány jen tzv. \texttt{Single-Hit} události,
 %Díky této fluorescenci je detektor pomocí různých mono-energetických zdrojů záření, jejichž energie je předem známa, postupně ozařován. V~rámci tohoto měření je třeba pro každý zdroj pořídit velké množství snímků, ze kterých jsou následně vyfiltrovány jen tzv. \texttt{Single-Hit}
- což jsou události, při kterých interagující částice zasáhla jen jeden pixel. 
-Tyto události jsou filtrovány z důvodu dosažení vyšší kvality kalibrace pomocí potlačení zkreslení, způsobeného \texttt{Charge Sharing} efektem\footnote{Když dopadne nabitá částice na polovodičový senzor, vzniknou elektron-děrové páry, které jsou staženy nejen zasaženým pixelem, ale vetšinou i několika sousedními. To je dáno jednou společnou elektrodou pro všechny pixely senzoru (viz obr. \ref{fig:det:chip}).}.
+při kterých interagující částice zasáhla jen jeden pixel. 
+Tyto události jsou filtrovány, z důvodu dosažení vyšší kvality kalibrace, pomocí potlačení zkreslení způsobeného \texttt{Charge Sharing} efektem\footnote{Když dopadne nabitá částice na polovodičový senzor, vzniknou elektron-děrové páry, které jsou staženy nejen zasaženým pixelem, ale vetšinou i několika sousedními. To je dáno jednou společnou elektrodou pro všechny pixely senzoru (viz obr. \ref{fig:det:chip}).}.
 
 \begin{figure}[th]
 	\begin{center}
@@ -54,7 +54,7 @@ Tyto události jsou filtrovány z důvodu dosažení vyšší kvality kalibrace 
 \end{figure}
 
 %Dalším krokem tohoto procesu je získání jednotlivých kalibračních bodů, udávajících závislost mezi jednotlivými energiemi a~TOT hodnotami. Toho je možné docílit vytvořením spekter pro jednotlivé pixely a~zdroje záření.
-Na obrázku \ref{fig:calib:gerf} je příklad spektra pro jeden pixel detektoru a~fluorescenčního záření z~mědi. Na vodorovné ose tohoto spektra se nachází jednotlivé TOT hodnoty a~na svislé pak jejich četnost ve všech snímcích. Z~obrázku je patrné, že nejčetnější hodnotou TOT je zhruba hodnota $53$, která odpovídá energii fluorescenčního záření mědi, což je $5,9~keV$. Požadonou hodnotu TOT proložením spektra funkcí \ref{eq:calib:gerf}. Ta vznikla z~Gaussovy funkce, ke které byla z~důvodu levé nesymetrie, způspbené \texttt{Charge Sahring} efektem, přičtena Gaussova chybová funkce. 
+Na obrázku \ref{fig:calib:gerf} je příklad spektra pro jeden pixel detektoru a~fluorescenčního záření z~mědi. Na vodorovné ose tohoto spektra se nachází jednotlivé TOT hodnoty a~na svislé pak jejich četnost ve všech snímcích. Z~obrázku je patrné, že nejčetnější hodnotou TOT je zhruba hodnota $53$, která odpovídá energii fluorescenčního záření mědi, což je $5,9~keV$. Požadovanou hodnotu TOT lze získat proložením spektra funkcí \ref{eq:calib:gerf}. Ta vznikla z~Gaussovy funkce, ke které byla z~důvodu levé nesymetrie, způsobené \texttt{Charge Sahring} efektem, přičtena Gaussova chybová funkce. 
 
 \begin{equation}\label{eq:calib:gerf}
 	f_{GERF}(x) = \underbrace{Ae^{ -\frac{(x-\mu)^2}{2\sigma^2} }}_{\text{Gaussova funkce}} +
@@ -80,7 +80,7 @@ Z těchto kalibračních bodů je možné sestavit kalibrační funkci (viz vzor
 \subsection{Kalibrace detektorů pomocí LED diod}\label{calib:led}
 Princip kalibrace pomocí SMD LED diod spočívá v~působení přesného množství světelného záření na polovodičový senzor detektoru. V~současné době je tato metoda ve fázi vývoje a~doposud nebyla publikována. Metoda je použitelná pouze pro detektory, na jejichž senzoru není napařena tenká vrstva hliníku, která světelné záření nepropouští. 
 
-Jako zdroj světla byl v~ÚTEF vyvinut modul s~maticí $8\times8$ SMD LED diod, který je možné ovládat pomocí \texttt{RS232} sériové linky. K~tomuto modulu byl rovněž vyvinut plugin do softwarového balíku Pixelman \ref{det:pixelman}, který automatizuje proces nabírání dat této metody. Přes sériovou linku je schopen řídit modul s~LED diodami a~zároveň pomocí jádra Pixelmanu ovládá akvizici dat detektoru.
+Jako zdroj světla byl v~ÚTEF vyvinut modul s~maticí $8\times8$ SMD LED diod, který je možné ovládat pomocí \texttt{RS232} sériové linky. K~tomuto modulu byl rovněž vytvořen plugin do softwarového balíku Pixelman \ref{det:pixelman}, který automatizuje proces nabírání dat této metody. Přes sériovou linku je schopen řídit modul s~LED diodami a~zároveň pomocí jádra Pixelmanu ovládá akvizici dat detektoru.
 
 Kroky algoritmu kalibrace jsou následující:
 \begin{enumerate}
@@ -159,7 +159,7 @@ K výběru vstupních dat slouží postranní panel hlavního okna kalibračníh
 
 Vstupní data jsou podporována ve třech formátech:
 \begin{description}
-	\item[Multiframe] Multiframe formát slouží pro hromadné ukládání surových snímků z~detektoru, kde jsou jednotlivé snímky zapsány jako seznam zasažených pixelů a~jejich hodnot (pro více o tomto formátu viz \ref{atlas:cont:output}). Každý snímek je třeba načíst a vyfiltrovat pouze \texttt{Single-Hit} události (viz \ref{calib:xray}), ze kterých jsou následně vytvořena spektra pro všechny pixely.
+	\item[Multiframe] Formát slouží pro hromadné ukládání surových snímků z~detektoru, kde jsou jednotlivé snímky zapsány jako seznam zasažených pixelů a~jejich hodnot (pro více o tomto formátu viz \ref{atlas:cont:output}). Každý snímek je třeba načíst a vyfiltrovat pouze \texttt{Single-Hit} události (viz \ref{calib:xray}), ze kterých jsou následně vytvořena spektra pro všechny pixely.
 	\item[Cluster log] Tento formát obsahuje snímky zapsané jako množinu clusterů, resp. shluků vzájemně sousedících pixelů s~nenulovou hodnotou. Z~těchto clusterů jsou vybrány jen clustery o velikosti jednoho pixelu (\texttt{Single-Hit} události), z~kterých jsou následně vytvořena spektra.
 	\item[Spektra] Tento formát obsahuje již zpracovaná spektra. Pro spektrum o velikosti $n$ hodnot jsou vstupní data tvořena $n$ soubory, kde každý soubor obsahuje matici výskytů $n$-té hodnoty spektra ve všech pixelech detektoru. Tento formát je nejvýhodnější, z~důvodu malého objemu dat a~zvýšení rychlosti zpracovávání dat (odpadá filtrování \texttt{Single-Hit} událostí).
 \end{description}
@@ -186,7 +186,7 @@ Algoritmus této metody je následující: Nejprve se k~danému parametru přič
 
 Počet těchto iterací je možné v~softwaru nastavit v~hlavní liště (\texttt{Edit > Set number of iterations}). Jelikož tato metoda konverguje relativně rychle, optimální (z~hlediska doby a~kvality kalibrace) počet iterací je 3-5.
 
-Z nalezených optimálních parametrů $A,~\sigma,~avg_{left}~\text{a}~avg_{right}$, resp. z~odchylky od jejich mediánu je možné pro každý pixel určit jeho kvalitu, na jejímž základě vzniká maska špatných pixelů detektoru (viz obr. \ref{fig:calib:sw_mask}). Maska může být generována na základě jednoho z~parametrů, či více parametrů a~může být uložena v~textové podobě (matice hodnot, kde $0$ znamená nezamaskovaný a~$1$ zamaskovaný pixel).
+Z nalezených optimálních parametrů $A,~\sigma,~avg_{left}~\text{a}~avg_{right}$, resp. z~odchylky od jejich mediánu, je možné pro každý pixel určit jeho kvalitu, na jejímž základě vzniká maska špatných pixelů detektoru (viz obr. \ref{fig:calib:sw_mask}). Maska může být generována na základě jednoho z~parametrů, či více parametrů a~může být uložena v~textové podobě (matice hodnot, kde $0$ znamená nezamaskovaný a~$1$ zamaskovaný pixel).
 
 \begin{figure}[th!]
 	\begin{center}
@@ -213,7 +213,7 @@ Po získání jednotlivých kalibračních bodů je možno přikročit k vytvoř
 	\end{center}
 \end{figure}
 
-Jednotlivé parametry kalibrační funkce \ref{eq:calib:calib_function} jsou vzájemně závislé, proto pro nalezení těchto parametrů nelze použít stejný algoritmus, jako při analýze spekter (\ref{calib:sw:spektra}). Tato metoda byla navržena tak, aby byla schopná kalibrační funkci vytvořit ze dvou bodů. Počet kalibračních bodů je variabilní položkou, proto pro nalezení parametrů kalibrační funkce \ref{eq:calib:calib_function} jsou použity různé algoritmy.
+Jednotlivé parametry kalibrační funkce \ref{eq:calib:calib_function} jsou vzájemně závislé, proto pro nalezení těchto parametrů nelze použít stejný algoritmus, jako při analýze spekter (\ref{calib:sw:spektra}). Tato metoda byla navržena tak, aby byla schopná kalibrační funkci vytvořit ze dvou bodů. Počet kalibračních bodů je variabilní položkou, proto jsou pro nalezení parametrů kalibrační funkce \ref{eq:calib:calib_function} použity různé algoritmy.
 
 \begin{description}
 	\item[Algoritmus pro dva body]
@@ -222,7 +222,7 @@ Jednotlivé parametry kalibrační funkce \ref{eq:calib:calib_function} jsou vz�
 		ax_{1} + b - \frac{c}{x_{1}-t} &=& y_{1} \\
 		ax_{2} + b - \frac{c}{x_{2}-t} &=& y_{2} \nonumber 
 	\end{eqnarray}
-	Při parametrizaci proměných $c$ a~$t$ vzniká velká nepřesnost, především v~nelineární oblasti nižších energiích, proto tato metoda pro dva body je nejméně přesná.
+	Při parametrizaci proměnných $c$ a~$t$ vzniká velká nepřesnost, především v~nelineární oblasti nižších energiích, proto je tato metoda pro dva body nejméně přesná.
 
 	\item[Algoritmus pro tři body]
 	Tří-bodová kalibrace je oproti dvou-bodové kalibraci značně přesnější. Protože kalibrační funkce má čtyři parametry, je třeba nějaký z~nich parametrizovat. Uživatel je na začátku kalibračního procesu vyzván k~zadání parametru $t$ a~zbylé parametry budou vypočteny ze soustavy rovnic \ref{eq:calib:3points}.
@@ -233,25 +233,25 @@ Jednotlivé parametry kalibrační funkce \ref{eq:calib:calib_function} jsou vz�
 	\end{eqnarray}
 
 	\item[Algoritmus pro čtyři body]
-	Algoritmus pro čtyři body je komplikovanější. Nejprve parametr $t$ je parametrizován (bez zásahu uživatele). Poté parametry $a,~b~\text{a}~c$ jsou vypočteny pomocí třech bodů soustavy rovnic \ref{eq:calib:3points}. Tyto tři body jsou vybrány následovně:
+	Algoritmus pro čtyři body je komplikovanější. Nejprve je parametrizován parametr $t$ (bez zásahu uživatele). Poté jsou parametry $a,~b~\text{a}~c$  vypočteny pomocí třech bodů soustavy rovnic \ref{eq:calib:3points}. Tyto tři body jsou vybrány následovně:
 	\begin{description}
 		\item[1. bod] je vybrán jako bod s~nejnižší energií.
 		\item[2. bod] je vybrán z~některého z~prostředních bodů (ve výchozím nastavení 2. bod s~nejnižší energií - možné změnit v~\texttt{Edit > Adjust middle trial point}).
 		\item[3. bod] je vybrán jako bod s~nejvyšší energií.
 	\end{description}
 
-	Poté pomocí metody bisekce a~metody nejmenších čtverců je nalezena taková hodnota parametru $t$, že jeho reziduum je minimální, v~ideálním případě nulové.
+	Poté pomocí metody bisekce a~metody nejmenších čtverců je nalezena taková hodnota parametru $t$, kdy jeho reziduum je minimální, v~ideálním případě nulové.
 
 	\item[Algoritmus pro pět a~více bodů]
 	První část algoritmu pro pět a~více bodů se od algoritmu pro čtyři body nikterak neliší - pomocí třech bodů (volba prostředního je opět na uživateli) jsou vypočteny parametry $a,~b~\text{a}~c$ a~poté pomocí metody bisekce a~čtvrtého bodu je určen parametr $t$. V~ideálním případě prochází funkce \ref{eq:calib:calib_function} všemi čtyřmi body, nebo alespoň jejich rezidua jsou minimální. 
 
-	Pátý bod (popř. další body) je zohledněn pomocí metody bisekce a~metody nejmenších čtverců, přičemž v~rámci jedné iterace tohoto algoritmu se mění všechny parametry (jelikož jsou vzájemně závislé). Postupně je ke každému parametru přičtena konstanta základního kroku a~je sledována se změna sumy residuí. Z~těchto změn je vytvořen vektor směru změny všech parametrů. Pomocí metody bisekce je přičítán násobek tohoto vektoru v~jednotlivých krocích k~parametrům funkce, přičemž je sledována změna sumy reziduí. Daná iterace končí, když se suma reziduí přestane zmenšovat.
+	Pátý bod (popř. další body) je zohledněn pomocí metody bisekce a~metody nejmenších čtverců, přičemž v~rámci jedné iterace tohoto algoritmu se mění všechny parametry (jelikož jsou vzájemně závislé). Postupně je ke každému parametru přičtena konstanta základního kroku a~je sledována se změna sumy reziduí. Z~těchto změn je vytvořen vektor směru změny všech parametrů. Pomocí metody bisekce je přičítán násobek tohoto vektoru (v~jednotlivých krocích) k~parametrům funkce, přičemž je sledována změna sumy reziduí. Daná iterace končí, když se suma reziduí přestane zmenšovat.
 
 	Počet těchto iterací uživatel může opět nastavit v hlavní liště (\texttt{Edit > Set number of iterations}).
 
 \end{description}
 
-Po dokončení procesu kalibrace software nabízí v~záložce \texttt{Calibration graphs} možnost zobrazení kalibrační funkce pro jednotlivé pixely detektoru. Zde je možné jednotlivé pixely interpolovat (více v~\ref{calib:sw:post_process}), nebo kliknutím na daný kalibrační bod je možné (dle preferencí uživatele) ho buď zamaskovat, nebo zobrazit jeho spektrum. Software rovněž umožňuje hromadné maskování kalibračních bodů ve zvoleném intervalu (\texttt{Tools > Batch calib points masking} v~hlavní liště).
+Po dokončení procesu kalibrace software nabízí v~záložce \texttt{Calibration graphs} možnost zobrazení kalibrační funkce pro jednotlivé pixely detektoru. Zde je možné jednotlivé pixely interpolovat (více v~\ref{calib:sw:post_process}), nebo kliknutím na daný kalibrační bod zamaskovat, nebo zobrazit jeho spektrum (dle preferencí uživatele). Software rovněž umožňuje hromadné maskování kalibračních bodů ve zvoleném intervalu (\texttt{Tools > Batch calib points masking} v~hlavní liště).
 
 Výstupní data tvoří $a~,b~,c~\text{a}~t$ parametry kalibrační funkce \ref{eq:calib:calib_function}, které je možné uložit (pomocí \texttt{File > Save calib files} v~hlavní liště). Tato data je možné uložit v~samostatných souborech pro každý parametr, kde hodnoty daného parametru pro jednotlivé pixely jsou zapsány v~matici, nebo je možné tato data uložit do jednoho souboru, kde jednotlivé parametry jsou zapsány ve sloupcích.
 
@@ -263,7 +263,7 @@ Výstupní data tvoří $a~,b~,c~\text{a}~t$ parametry kalibrační funkce \ref{
 \subsection{Dodatečné úpravy}\label{calib:sw:post_process}
 Tento kalibrační software rovněž nabízí nástroje pro vizualizaci kvality kalibrace. K~tomuto účelu slouží záložka \texttt{Calibration results}, kde v~rámci bočního pohledu na detektor je možné si v~grafu zobrazit všechny hodnoty vybraného parametru kalibrační funkce \ref{eq:calib:calib_function} - viz obr. \ref{fig:calib:sw_calib_results}.
 
-Díky této vizualizaci výsledků kalibrace je možné snadno odhalit případnou deviaci některého z~parametrů pro určitý pixel detektoru. Kalibrační hodnoty pro takto poškozený pixel je možné upravit, například pomocí interpolace hodnot čtyř sousedních pixelů (spojených hranou s~poškozeným pixelem). Pixely je možné interpolovat samostatně, nebo automaticky pomocí nástroje zvaném \texttt{Batch interpolating} (v záložce \texttt{Tools} hlavní lišty), který uživateli umožňuje zvolit rozsah hodnot daného parametru, ve kterém budou všechny pixely interpolovány.
+Díky této vizualizaci výsledků kalibrace je možné snadno odhalit případnou deviaci některého z~parametrů pro určitý pixel detektoru. Kalibrační hodnoty je pro takto poškozený pixel možné upravit, například pomocí interpolace hodnot čtyř sousedních pixelů (spojených hranou s~poškozeným pixelem). Pixely je možné interpolovat samostatně, nebo automaticky pomocí nástroje zvaném \texttt{Batch interpolating} (v záložce \texttt{Tools} hlavní lišty), který uživateli umožňuje zvolit rozsah hodnot daného parametru, ve kterém budou všechny pixely interpolovány.
 
 \begin{figure}[t]
 	\begin{center}

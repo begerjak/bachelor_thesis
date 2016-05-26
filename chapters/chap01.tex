@@ -3,9 +3,9 @@
 \chapter{Úvod}\label{chap01}
 Tato bakalářská práce se zabývá návrhem a~implementací software pro ovládání a~energetickou kalibraci sítě hybridních částicových pixelových detektorů umístěných uvnitř experimentu ATLAS na urychlovači LHC v~CERN. Tento projekt je nazývá ATLAS TPX (viz kapitola \ref{atlas}).
 
-Jelikož proces kalibrace je zcela nezávislý na následném řízné těchto detektorů, je software členěn na dvě nezávislé části, a~to na energetickou kalibraci a~řízení sítě  ATLAS TPX.
+Jelikož proces kalibrace je zcela nezávislý na následném řízení těchto detektorů, je software členěn na dvě nezávislé části, a~to na energetickou kalibraci a~řízení sítě  ATLAS TPX.
 
-Kalibrační software umožňuje průchod procesem zpracování kalibračních dat od sestavení spekter z~naměřených snímků, přes jejich analýzu a~vytvoření jednotlivých kalibračních bodů, až po sestavení kalibrační funkce pro jednotlivé pixely detektoru.
+Kalibrační software umožňuje průchod procesem zpracování kalibračních dat, od sestavení spekter z~naměřených snímků, přes jejich analýzu a~vytvoření jednotlivých kalibračních bodů, až po sestavení kalibrační funkce pro jednotlivé pixely detektoru.
 
 Řídící software sítě ATLAS TPX slouží pro nezávislé ovládání funkce těchto detektorů. Umožňuje nastavování různých parametrů detektorů, řízení akvizice snímků, vyčítání naměřených dat a~jejich ukládání, ev. jejich odesílání datovému serveru pro jejich hlubší analýzu a~uložení do perzistentní centrální CERNské databáze (tzv. \texttt{EOS}). Zároveň tento řídící software poskytuje \texttt{JSON REST API} pro své vzdálené řízení a~také pro poskytování stavových informací o teto sítí CERNu.
 
