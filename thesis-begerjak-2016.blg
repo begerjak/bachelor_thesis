@@ -9,44 +9,44 @@ A level-1 auxiliary file: chapters/chap05.aux
 The style file: csplainnat.bst
 A level-1 auxiliary file: chapters/app_cd.aux
 Database file #1: reference.bib
-You've used 17 entries,
+You've used 18 entries,
             2899 wiz_defined-function locations,
-            749 strings with 10095 characters,
-and the built_in function-call counts, 9250 in all, are:
-= -- 935
-> -- 625
+            755 strings with 10449 characters,
+and the built_in function-call counts, 10125 in all, are:
+= -- 1015
+> -- 712
 < -- 8
-+ -- 212
-- -- 194
-* -- 802
-:= -- 1503
-add.period$ -- 95
-call.type$ -- 17
-change.case$ -- 127
-chr.to.int$ -- 16
-cite$ -- 34
-duplicate$ -- 332
-empty$ -- 563
-format.name$ -- 237
-if$ -- 1925
++ -- 241
+- -- 222
+* -- 888
+:= -- 1640
+add.period$ -- 100
+call.type$ -- 18
+change.case$ -- 143
+chr.to.int$ -- 17
+cite$ -- 36
+duplicate$ -- 354
+empty$ -- 603
+format.name$ -- 268
+if$ -- 2103
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 24
-newline$ -- 119
-num.names$ -- 76
-pop$ -- 220
+missing$ -- 25
+newline$ -- 125
+num.names$ -- 80
+pop$ -- 251
 preamble$ -- 1
-purify$ -- 110
+purify$ -- 125
 quote$ -- 0
-skip$ -- 270
+skip$ -- 295
 stack$ -- 0
-substring$ -- 268
-swap$ -- 19
+substring$ -- 288
+swap$ -- 20
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 182
+type$ -- 193
 warning$ -- 0
-while$ -- 52
+while$ -- 55
 width$ -- 0
-write$ -- 281
+write$ -- 296

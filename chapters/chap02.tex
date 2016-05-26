@@ -1,9 +1,9 @@
 \addbibresource{reference.bib}
 
-\chapter{Polovodičové pixelové detektory ionizujícího záření}\label{det}
-Ionizující záření je lidskými smysly nedetekovatelné. Tento fakt, dal vzniku detekční technice a~metodám toto záření měřit. Tato kapitola bude věnována pokročilé instrumentaci pro detekci ionizujícího záření a~jeho charakteristických vlastností - hybridním polovodičovým pixelovým detektorům.
+\chapter{Polovodičové pixelové detektory ionizujícího záření rodiny Medipix}\label{det}
+Ionizující záření je lidskými smysly nedetekovatelné. Tento fakt, dal vzniku detekční technice a~metodám toto záření měřit. Tato kapitola je věnována pokročilé instrumentaci pro detekci ionizujícího záření  - hybridním polovodičovým pixelovým detektorům.
 
-Existuje celá řada částicových pixelových detektorů (CMS pixel detector, Pilatus apod.), v~této práci však budou zmíněny jen detektory z~rodiny Medipix, které jsou vyvíjeny v~rámci stejnojmenné kolaborace Medipix\footnote{\url{http://medipix.web.cern.ch/}} v~CERN. Tato kolaborace sdružuje několik desítek vědeckých institucí a~univerzit po celém světe, mezi které patří od roku 1999 i ÚTEF ČVUT v~Praze.
+Existuje celá řada částicových pixelových detektorů (AGH\_Fermilab, Pilatus, Philips Chromaix apod.) \cite{detectors_review}, tato práce se však zabývá pouze detektory z~rodiny Medipix, které jsou vyvíjeny v~rámci stejnojmenné kolaborace Medipix\footnote{\url{http://medipix.web.cern.ch/}} v~CERN. Tato kolaborace sdružuje několik desítek vědeckých institucí a~univerzit po celém světe, mezi které patří od roku 1999 i ÚTEF ČVUT v~Praze.
 
 
 \clearpage
@@ -12,19 +12,18 @@ Existuje celá řada částicových pixelových detektorů (CMS pixel detector, 
 % Princip detekce
 %********************************************************************************
 \section{Princip detekce}
-Činnost těchto detektorů je založena na známém principu detekce ionizujícího záření v~polovodiči. 
+Činnost hybridních pixelových detektorů je založena na známém principu detekce ionizujícího záření v~polovodiči. 
 
-Na obrázku \ref{fig:det:recomb} je znázorněn princip této detekce. V~horní části se nachází polovodičový senzor, pro který je jako materiál nejčastěji použit křemík, ale výjimkou není také \texttt{GaAs}, či \texttt{CdTe}. Pod tímto senzorem se nachází vyčítací elektronika, která tvoří jednotlivé pixely. Jako náhradní schéma tohoto obvodu si můžeme představit diodu zapojenou v~závěrném směru, skrze kterou protéká jen minimální proud. Vnikne-li ale do polovodičového senzoru ionizovaná částice, která v~senzoru zanechá jisté množství své energie, dojde ke vzniku elektron-děrových párů a~díky lavinovému jevu i k~následnému otevření PN přechodu. Tím dojde k~vyvolání proudového pulsu, které je pomocí měřícího odporu převeden na napětí, které je dále měřící elektronikou zpracováváno.
+Na obrázku \ref{fig:det:recomb} je znázorněn princip této detekce. V~horní části se nachází polovodičový senzor, pro který je jako materiál nejčastěji použit křemík, ale výjimkou není ani \texttt{GaAs}, či \texttt{CdTe}. Pod tímto senzorem se nachází vyčítací elektronika, která tvoří jednotlivé pixely. Jako náhradní schéma tohoto obvodu si lze představit diodu zapojenou v~závěrném směru, skrze kterou protéká jen minimální proud. 
 
 \begin{figure}[th]
 	\begin{center}
 		\includegraphics[width=8.5cm]{figures/det_recombination.png}
-		\caption{Princip detekce ionizujícího záření (převzato z~\cite{PlatkevicDisertace})}
+		\caption{Princip detekce ionizujícího záření (převzato z~\cite{PlatkevicDisertace}), kde červená šipka je procházející částice, žlutě jsou znázorněny elektrony, modře díry. Elektronika každého každého pixelu zpracovává napěťový pulz.}
 		\label{fig:det:recomb}
 	\end{center}
 \end{figure}
-
-Na obrázku \ref{fig:det:chip} je znázorněna struktura tohoto detektoru. Nahoře se nachází, polovodičový senzor, který je spojen s~integrovaným \texttt{ASIC}\footnote{z angl. Application Specific Integrated Circuit} vyčítacím čipem (tzv. \texttt{Readout chip}) pomocí technologie zvané \texttt{bump-bonding}. Odtud také pochází název "hybridní" - jedná se o spojení senzoru a~\texttt{ASIC} čipu. Každý pixel tedy tvoří jeden PN přechod. Vyčítací čip je dále spojen s~další nezbytnou elektronikou (na obr \ref{fig:det:chip} znázorněnou jako \texttt{Motherboard}) pomocí tzv. \texttt{wire-bonds}. Z~této elektroniky je dále vyvedeno napětí na polovodičový senzor - \texttt{bias}.
+Při vniku ionizující částice do detektoru dojde k předání části její energie detekčnímu materiálu. Vznikají elektron-děrové páry a díky lavinovému efektu dochází k otevření PN přechodu. Tím dojde ke vzniku proudového pulsu, jež je pomocí měřícího odporu převeden na napětí a dále měřící elektronikou zpracováván.
 
 \begin{figure}[th]
 	\begin{center}
@@ -34,9 +33,13 @@ Na obrázku \ref{fig:det:chip} je znázorněna struktura tohoto detektoru. Naho�
 	\end{center}
 \end{figure}
 
+Na obrázku \ref{fig:det:chip} je znázorněna struktura tohoto detektoru. Nahoře se nachází, polovodičový senzor, který je spojen s~integrovaným \texttt{ASIC}\footnote{z angl. Application Specific Integrated Circuit} vyčítacím čipem (tzv. \texttt{Readout chip}) pomocí technologie zvané \texttt{bump-bonding}. Odtud také pochází název "hybridní" - jedná se o spojení senzoru a~\texttt{ASIC} čipu. Každý pixel tedy tvoří jeden PN přechod. Vyčítací čip je dále spojen s~další nezbytnou elektronikou (na obr \ref{fig:det:chip} znázorněnou jako \texttt{Motherboard}) pomocí tzv. \texttt{wire-bonds}. Z~této elektroniky je dále vyvedeno napětí na polovodičový senzor - \texttt{bias}.
+
+
 %********************************************************************************
 % Medipix detektory
 %********************************************************************************
+\newpage
 \section{Detektory rodiny Medipix}\label{det:med}
 Mezi detektory rodiny Medipix patří: Medipix1, Medipix2 \cite{Llopart-medipix2}, Timepix \cite{Llopart2008106}, Medipix3, nově Timepix3 \cite{timepix3} a~v průběhu příštího roku k~nim přibude i Timepix2. 
 
