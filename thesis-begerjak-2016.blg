@@ -7,10 +7,11 @@ A level-1 auxiliary file: chapters/chap03.aux
 A level-1 auxiliary file: chapters/chap04.aux
 A level-1 auxiliary file: chapters/chap05.aux
 The style file: csplainnat.bst
+A level-1 auxiliary file: chapters/app_cd.aux
 Database file #1: reference.bib
 You've used 17 entries,
             2899 wiz_defined-function locations,
-            748 strings with 10076 characters,
+            749 strings with 10095 characters,
 and the built_in function-call counts, 9250 in all, are:
 = -- 935
 > -- 625

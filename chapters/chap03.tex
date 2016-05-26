@@ -26,7 +26,7 @@ Metoda kalibrace pixelových detektorů pracujících v~TOT módu \cite{Jakubek2
 což je děj ke kterému dochází, když je nějaký materiál\footnote{Pro kalibraci se používají kovy, na příklad Am, In, Cu, Fe apod.}
 ozařován rentgenovým zářením, které vyráží excitované elektrony z~jeho atomů. Je-li vyražen elektron na nižší energetické úrovní, tak elektron z~vyšší energetické úrovně deexcituje a~obsadí jeho místo. Přebytečnou energii ztratí ve formě vyzářeného fotonu, který je následně detektorem detekován. 
 
-Díky této fluorescenci je detektor pomocí různých mono-energetických zdrojů záření, jejichž energie je předem známa, postupně ozařován. v~rámci tohoto měření je třeba pro každý zdroj pořídit velké množství snímků, ze kterých jsou následně vyfiltrovány jen tzv. \texttt{Single-Hit} události, což jsou události, při kterých interagující částice zasáhla jen jeden pixel. Tyto události jsou filtrovány z~důvodu dosažení vyšší kvality kalibrace které je dosaženo potlačením zkreslení, způsobeným \texttt{Charge Sharing} efektem (viz \ref{det:mod}).
+Díky této fluorescenci je detektor pomocí různých mono-energetických zdrojů záření, jejichž energie je předem známa, postupně ozařován. V~rámci tohoto měření je třeba pro každý zdroj pořídit velké množství snímků, ze kterých jsou následně vyfiltrovány jen tzv. \texttt{Single-Hit} události, což jsou události, při kterých interagující částice zasáhla jen jeden pixel. Tyto události jsou filtrovány z~důvodu dosažení vyšší kvality kalibrace které je dosaženo potlačením zkreslení, způsobeným \texttt{Charge Sharing} efektem (viz \ref{det:mod}).
 
 \begin{figure}[th]
 	\begin{center}
@@ -72,14 +72,14 @@ Z těchto kalibračních bodů je možné sestavit kalibrační funkci (viz vzor
 % > LED
 %********************************************************************************
 \subsection{Kalibrace detektorů pomocí LED diod}\label{calib:led}
-Princip kalibrace pixelových detektorů (pracujících v~TOT módu) pomocí SMD LED diod spočívá v~působení přesného množství světelného záření na polovodičový senzor detektoru. v~současné době je tato metoda ve fázi vývoje a~doposud nebyla publikována. Metoda je použitelná pouze pro detektory, na jejiž senzoru není napařena tenká vrstva hliníku, která světelné záření nepropouští. 
+Princip kalibrace pixelových detektorů (pracujících v~TOT módu) pomocí SMD LED diod spočívá v~působení přesného množství světelného záření na polovodičový senzor detektoru. V~současné době je tato metoda ve fázi vývoje a~doposud nebyla publikována. Metoda je použitelná pouze pro detektory, na jejiž senzoru není napařena tenká vrstva hliníku, která světelné záření nepropouští. 
 
-Jako zdroj světla byl v~ÚTEF ČVUT v~Praze vyvinut modul s~maticí $8\times8$ LED diod, který je možné ovládat pomocí \texttt{RS232} sériové linky. k~tomuto modulu byl rovněž vyvinut plugin do softwarového balíku Pixelman \ref{det:pixelman}, který automatizuje proces nabírání dat této metody. Přes sériovou linku je schopen řídit modul s~LED diodami a~zároveň pomocí jádra Pixelmanu ovládá akvizici dat detektoru.
+Jako zdroj světla byl v~ÚTEF ČVUT v~Praze vyvinut modul s~maticí $8\times8$ LED diod, který je možné ovládat pomocí \texttt{RS232} sériové linky. K~tomuto modulu byl rovněž vyvinut plugin do softwarového balíku Pixelman \ref{det:pixelman}, který automatizuje proces nabírání dat této metody. Přes sériovou linku je schopen řídit modul s~LED diodami a~zároveň pomocí jádra Pixelmanu ovládá akvizici dat detektoru.
 
 Kroky algoritmu této kalibrace jsou následující:
 \begin{enumerate}
 	\item Inicializace - nastavení spouštění akvizice detektoru na externí hardwarový trigger (který bude ovládán modulem s~LED diodami), nastavení energie světelného záření (počet zabliknutí diody, délka periody jednoho bliknutí a~doba aktivace diody v~jedné periodě) a~také délku akvizice snímku (vypočtené dle periody blikání a~počet opakování).
-	\item Měřící smyčka (opakuje se pro všechny LED diody). v~rámci jednoho průchodu se provede následující:
+	\item Měřící smyčka (opakuje se pro všechny LED diody). V~rámci jednoho průchodu se provede následující:
 		\begin{itemize}
 			\item Zamaskování všech pixelů detektoru, krom těch pixelů, které jsou pod aktivní diodou.
 			\item Spuštění akvizice.
@@ -106,7 +106,7 @@ Tímto způsobem se pro každý pixel detektoru získají jednotlivé kalibračn
 %********************************************************************************
 \section{Software pro kalibraci detektorů za použití rentgenového záření}\label{calib:sw}
 
-Tato podkapitola pojednává o softwaru pro energetickou kalibraci pixelových detektorů za použití kalibrační metody s~rentgenovým zářením (viz \ref{calib:xray}). Tento software původně vznikal pro účely kalibrace sítě ATLAS TPX, avšak později byl rozšířen a~nyní je kompatibilní se všemi detektory, pracujícími v~TOT módu. Software vyl vyvinut v~jazyce \texttt{Java} a~grafické rozhraní bylo vytvořeno za pomoci knihovny \texttt{Swing}. v~rámci této práce rovněž vznikla vlastní knihovna pro vizualizaci 2D grafů.
+Tato podkapitola pojednává o softwaru pro energetickou kalibraci pixelových detektorů za použití kalibrační metody s~rentgenovým zářením (viz \ref{calib:xray}). Tento software původně vznikal pro účely kalibrace sítě ATLAS TPX, avšak později byl rozšířen a~nyní je kompatibilní se všemi detektory, pracujícími v~TOT módu. Software vyl vyvinut v~jazyce \texttt{Java} a~grafické rozhraní bylo vytvořeno za pomoci knihovny \texttt{Swing}. V~rámci této práce rovněž vznikla vlastní knihovna pro vizualizaci 2D grafů.
 
 Jak již bylo zmíněno v~kapitole \ref{calib:xray}, proces kalibrace se skládá z~několika kroků, a~to z~vytvoření spekter pro jednotlivé pixely a~zdroje záření, následném nalezení kalibračních bodů z~těchto spekter a~vytvoření kalibrační funkce pro každý pixel detektoru. Na obrázku \ref{fig:calib:sw_process_ops} je znázorněna možnost nastavení provedení jednotlivých kroků kalibračního procesu nad zvolenými měřeními (viz obr. \ref{fig:calib:sw_spektra} - levý postranní panel), v~rámci jednoho průchodu po stisknutí tlačítka \texttt{Start/Abort} (viz obr. \ref{fig:calib:sw_spektra} vlevo dole).
 
@@ -134,7 +134,7 @@ Vstupní data se skládají z~několika sad měření pro různé zdroje mono-en
 	\end{center}
 \end{figure}
 
-K výběru vstupních dat slouží postranní panel hlavního okna kalibračního softwaru, kde je seznam jednotlivých měření. k~manipulaci s~položkami v~tomto seznamu slouží \texttt{Measurement manager} (dostupný ze záložky \texttt{File} v~hlavní liště - viz obr. \ref{fig:calib:sw_measurmanag}). v~rámci tohoto nástroje je možné přidávat, odebírat, či jinak upravovat jednotlivá měření a~jejich parametry (příklad velikost spektra apod.). Každé měření může obsahovat až tři kalibrační body (resp. zdroje fluorescenčního záření), jejichž parametry je možné také nastavit skrze \texttt{Measurement manager}.
+K výběru vstupních dat slouží postranní panel hlavního okna kalibračního softwaru, kde je seznam jednotlivých měření. K~manipulaci s~položkami v~tomto seznamu slouží \texttt{Measurement manager} (dostupný ze záložky \texttt{File} v~hlavní liště - viz obr. \ref{fig:calib:sw_measurmanag}). V~rámci tohoto nástroje je možné přidávat, odebírat, či jinak upravovat jednotlivá měření a~jejich parametry (příklad velikost spektra apod.). Každé měření může obsahovat až tři kalibrační body (resp. zdroje fluorescenčního záření), jejichž parametry je možné také nastavit skrze \texttt{Measurement manager}.
 
 \begin{figure}[th!]
 	\begin{center}
@@ -157,7 +157,7 @@ Vstupní data jsou podporována ve třech formátech:
 % > Analýza spekter + maska + tabulka
 %********************************************************************************
 \subsection{Analýza spekter}\label{calib:sw:spektra}
-Máme-li načtená vstupní data a~z nich vytvořená spektra pro jednotlivé pixely detektoru a~jednotlivá měření, je třeba v~těchto spektrech nalézt hodnoty TOT, která odpovídá energii zdroje ionizujícího záření, použitém v~daném měření. k~tomu dochází pomocí proložení spekter funkcí \ref{eq:calib:gerf} (viz \ref{calib:xray}). 
+Máme-li načtená vstupní data a~z nich vytvořená spektra pro jednotlivé pixely detektoru a~jednotlivá měření, je třeba v~těchto spektrech nalézt hodnoty TOT, která odpovídá energii zdroje ionizujícího záření, použitém v~daném měření. K~tomu dochází pomocí proložení spekter funkcí \ref{eq:calib:gerf} (viz \ref{calib:xray}). 
 
 Tento algoritmus je v~softwaru implementován za použití metody nejmenších čtverců. Úkolem tohoto algoritmu je nalézt takové parametry $A,~\mu,~\sigma,~avg_{left}~\text{a}~avg_{right}$ funkce \ref{eq:calib:gerf} tak, aby hodnota funkce \ref{eq:sq:rms} byla minimální, resp. aby suma čtverců vzdáleností jednotlivých hodnot spektra a~jejich příslušných funkčních hodnot funkce \ref{eq:calib:gerf} (tzv. reziduí) byla minimální.
 
@@ -227,7 +227,7 @@ Jednotlivé parametry kalibrační funkce \ref{eq:calib:calib_function} jsou vz�
 	Poté pomocí metody bisekce a~metody nejmenších čtverců je nalezena taková hodnota parametru $t$, že jeho reziduum je minimální, v~ideálním případě nulové.
 
 	\item[Algoritmus pro pět a~více bodů]
-	První část algoritmu pro pět a~více bodů se od algoritmu pro čtyři body nikterak neliší - pomocí třech bodů (volba prostředního je opět na uživateli) jsou vypočteny parametry $a,~b~\text{a}~c$ a~poté pomocí metody bisekce a~čtvrtého bodu je určen parametr $t$. v~ideálním případě prochází funkce \ref{eq:calib:calib_function} všemi čtyřmi body, nebo alespoň jejich rezidua jsou minimální. 
+	První část algoritmu pro pět a~více bodů se od algoritmu pro čtyři body nikterak neliší - pomocí třech bodů (volba prostředního je opět na uživateli) jsou vypočteny parametry $a,~b~\text{a}~c$ a~poté pomocí metody bisekce a~čtvrtého bodu je určen parametr $t$. V~ideálním případě prochází funkce \ref{eq:calib:calib_function} všemi čtyřmi body, nebo alespoň jejich rezidua jsou minimální. 
 
 	Nyní je třeba ještě zohlednit pátý bod (po př. další body). Tomu se děje pomocí metody bisekce a~metody nejmenších čtverců, přičemž v~rámci jedné iterace tohoto algoritmu se mění všechny parametry (jelikož jsou vzájemně závislé). Postupně se ke každému parametru přičte konstanta základního kroku a~sleduje se změna sumy residuí. Z~těchto změn se vytvoří vektor směru změny všech parametrů. Pomocí metody bisekce se násobek tohoto vektoru v~jednotlivých krocích k~parametrům funkce přičítá, přičemž se sleduje změna sumy reziduí. Daná iterace končí, když suma reziduí se přestane zmenšovat.
 
@@ -245,7 +245,7 @@ Výstupní data tvoří $a~,b~,c~\text{a}~t$ parametry kalibrační funkce \ref{
 % > Dodatečné úpravy
 %********************************************************************************
 \subsection{Dodatečné úpravy}\label{calib:sw:post_process}
-Tento kalibrační software rovněž nabízí i nástroje pro vizualizaci kvality kalibrace. k~tomuto účelu slouží záložka \texttt{Calibration results}, kde v~rámci bočního pohledu na detektor je možné si v~grafu zobrazit všechny hodnoty vybraného parametru kalibrační funkce \ref{eq:calib:calib_function} - viz obr. \ref{fig:calib:sw_calib_results}.
+Tento kalibrační software rovněž nabízí i nástroje pro vizualizaci kvality kalibrace. K~tomuto účelu slouží záložka \texttt{Calibration results}, kde v~rámci bočního pohledu na detektor je možné si v~grafu zobrazit všechny hodnoty vybraného parametru kalibrační funkce \ref{eq:calib:calib_function} - viz obr. \ref{fig:calib:sw_calib_results}.
 
 Díky této vizualizaci výsledků kalibrace je možné snadno odhalit případnou deviaci některého z~parametrů pro určitý pixel detektoru. Kalibrační hodnoty pro takto poškozený pixel je možné upravit - na příklad pomocí interpolace hodnot čtyřech sousedních pixelů (spojených hranou s~daným pixelem). Pixely je možné interpolovat samostatně, nebo automaticky pomocí nástroje zvaném \texttt{Batch interpolating} (v záložce \texttt{Tools} lavní lišty), který uživateli umožňuje zvolit rozsah hodnot daného parametru, ve kterém budou všechny pixely interpolovány.
 

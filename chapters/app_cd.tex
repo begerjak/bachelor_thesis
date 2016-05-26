@@ -1,0 +1,70 @@
+\chapter{Obsah přiloženého CD}
+
+\definecolor{fblue}{RGB}{92,144,192}
+\definecolor{fgreen}{RGB}{34,162,70}
+
+\def\Size{4pt}
+\newcommand\myfolder[2][fblue]{%
+\begin{tikzpicture}[overlay]
+%\begin{scope}[xshift=20pt]
+%\tikzset{
+\filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+      (-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);  
+    \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+      (-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
+%\end{scope}  
+\end{tikzpicture}%
+\makebox[2cm]{\raisebox{-3pt}{{\ttfamily#2}}}%
+%}
+}
+
+
+\begin{figure}[th!]
+\begin{center}
+\begin{forest}
+  for tree={
+    font=\ttfamily,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    inner xsep=7pt,
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(7.5pt,0) |- (.child anchor) \forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=15pt},
+  }  
+[CD
+	[atlas\_tpx
+		[dokumentace
+		]
+		[exe
+			[readme.txt - fadsjfadsf fdsaf af asf afdsfa afdsfdfdsa fas]
+		]
+		[src
+		]
+	]
+	[kalibrace
+		[exe
+			[...
+			]
+		]
+		[src
+		]
+	]
+	[text
+	]
+]
+\end{forest}
+\end{center}
+\caption{Contents of the attached DVD}
+\label{fig:attached-cd}
+\end{figure}

@@ -87,7 +87,7 @@ striktním nárokům ze strany CERNu na síťovou bezpečnost bylo možné ovlá
 % Hardwarová architektura sítě ATLAS TPX
 %********************************************************************************
 \section{Hardwarová architektura sítě ATLAS TPX}\label{atlas:hw_arch}
-Při návrhu hardwarové architekty sítě ATLAS TPX musela být zohledněna zvýšená intenzita radiačního a~elektromagnetického pole v~prostorách ATLAS detektoru. Snahou proto bylo, co nejvíce hardwarových komponent umístit z~dosahu tohoto pole. Z~pohledu hardwarové instalace této detektorové sítě se prostory ATLAS experimentu dělí na dvě části - \texttt{UX15} a~\texttt{USA15} (viz obr. \ref{fig:tpx_hw_diagram}). v~\texttt{UX15} se nachází vlastní experiment. v~tomto prostoru byly umístěny jen detektory (na obr. \ref{fig:tpx_hw_diagram} \texttt{TPX01} až \texttt{TPX15}) a~zbytek sítě byl instalován v~\texttt{USA15}, kterou od zbytku experimentu dělí cca $60~m$ tlustá železobetonová stěna. Tady se nachází vyčítací elektronika a~další nezbytný hardware.
+Při návrhu hardwarové architekty sítě ATLAS TPX musela být zohledněna zvýšená intenzita radiačního a~elektromagnetického pole v~prostorách ATLAS detektoru. Snahou proto bylo, co nejvíce hardwarových komponent umístit z~dosahu tohoto pole. Z~pohledu hardwarové instalace této detektorové sítě se prostory ATLAS experimentu dělí na dvě části - \texttt{UX15} a~\texttt{USA15} (viz obr. \ref{fig:tpx_hw_diagram}). V~\texttt{UX15} se nachází vlastní experiment. V~tomto prostoru byly umístěny jen detektory (na obr. \ref{fig:tpx_hw_diagram} \texttt{TPX01} až \texttt{TPX15}) a~zbytek sítě byl instalován v~\texttt{USA15}, kterou od zbytku experimentu dělí cca $60~m$ tlustá železobetonová stěna. Tady se nachází vyčítací elektronika a~další nezbytný hardware.
 
 \begin{figure}[t]
 	\begin{center}
@@ -170,14 +170,14 @@ Tato kapitola je věnována návrhu a~implementaci řídícího software sítě 
 % Řídící software a~jeho implementace - Řízení detektorů
 %********************************************************************************
 \subsection{Řízení detektorů}\label{atlas:cont:det} % + komunikační protokol
-Jak již bylo zmíněno výše, detektor se skládá ze dvou \texttt{Timepix} detekčních čipů, \texttt{FPGA} a~minipočítače \texttt{Raspberry Pi}, který implementuje komunikační protokol, díky kterému umožňuje řídícímu software ovládání činnosti detektoru. v~podkapitole \ref{atlas:cont:det:comunikacni_protokol} naleznete popis tohoto komunikačního protokolu.
+Jak již bylo zmíněno výše, detektor se skládá ze dvou \texttt{Timepix} detekčních čipů, \texttt{FPGA} a~minipočítače \texttt{Raspberry Pi}, který implementuje komunikační protokol, díky kterému umožňuje řídícímu software ovládání činnosti detektoru. V~podkapitole \ref{atlas:cont:det:comunikacni_protokol} naleznete popis tohoto komunikačního protokolu.
 
 %********************************************************************************
 % Řídící software a~jeho implementace - Řízení detektorů
 % > Komunikační protokol
 %********************************************************************************
 \subsubsection{Komunikační protokol}\label{atlas:cont:det:comunikacni_protokol}
-Tabulka \ref{tab:com_packet} znázorňuje strukturu komunikačního rámce (tzv. paketu) tohoto protokolu pomocí posloupnosti bytů z~pohledu ATLAS TPX serveru, resp. z~pohledu řídícího software. v~horní části se nachází struktura odchozího paketu, kde:
+Tabulka \ref{tab:com_packet} znázorňuje strukturu komunikačního rámce (tzv. paketu) tohoto protokolu pomocí posloupnosti bytů z~pohledu ATLAS TPX serveru, resp. z~pohledu řídícího software. V~horní části se nachází struktura odchozího paketu, kde:
 \begin{description}
 	\item[0x55]\footnote{\label{hexa}značení v~hexadecimální soustavě} je tzv. \texttt{START BYTE}, který značí začátek paketu,
 	\item[CMD] je typ příkazu (tzv. \texttt{COMMAND TYPE}) - viz tabulka přehledu příkazů \ref{tab:commands},
@@ -475,7 +475,7 @@ Následuje struční popis příkazů komunikačního protokolu z~pohledu obsahu
 \subsubsection{Synchronní a~asynchronní příkazy komunikačního protokolu}\label{atlas:com:synchonni_a_asynchonni_prikazy}
 Téměř všechny příkazy komunikačního protokolu jsou synchronní, tzn. server vyšle odchozí paket (s typem příkazu a~jeho daty), který detektor zpracuje a~bezprostředně vygeneruje a~pošle odchozí paket (s příslušnými daty, typem příkazu a~informací, zda-li při jeho zpracování došlo k~chybě). Příkladem této synchronní komunikace je příkaz ping na obrázku \ref{fig:uml:com_priklad} nahoře.
 
-Vedle synchronních příkazů existuje i jeden asynchronní - \texttt{0xFD - Asynchronous Event From Device}. v~současné verzi komunikačního protokolu je tento příkaz využit jen pro oznámení serveru, že detektor dokončil akvizici a~má data připravena k~vyčtení.
+Vedle synchronních příkazů existuje i jeden asynchronní - \texttt{0xFD - Asynchronous Event From Device}. V~současné verzi komunikačního protokolu je tento příkaz využit jen pro oznámení serveru, že detektor dokončil akvizici a~má data připravena k~vyčtení.
 
 Na obrázku \ref{fig:uml:com_priklad} je znázorněn příklad kombinace synchronní a~asynchronní komunikace pro pořízení snímku. Nejprve server vyšle synchronní příkaz s~žádostí o provedení akvizice (s parametry: doba akvizice, počet snímků a~mód triggeru) na který hned dostane odpověď. Následuje vyčítací smyčka - detektor udělá akvizici snímku (pokud již všechny neudělal) a~vyšle serveru asynchronní příkaz s~kódem právě dokončené akvizice a~s ID\footnote{unikátní číslo snímku od spuštění detektoru} snímku. Tuto asynchronní zprávu server zachytí a~provede vyčítací sekvenci (pomocí příkazu \texttt{0x0C - Read Measured Data}), jejíž kroky se mohou lišit dle konfigurace. Ve výchozím nastavení tato sekvence vypadá následovně:
 \begin{enumerate}
@@ -634,13 +634,13 @@ V příloze \ref{app:config} naleznete strukturu tohoto konfiguračního souboru
 	\item[Nastavení webového serveru] (server - viz \ref{app:config} řádek 11)\\
 		V rámci tohoto objektu je možné nastavit použitý typ protokolu spojení (\texttt{HTTP}/\texttt{HTTPS}), port, počty vláken a~další.
 	\item[Logování] (logging - viz \ref{app:config} řádek 30)\\
-		Pomocí tohoto parametru je možné nastavit úroveň a~cíl vytvářených logů. v~přiloženém konfiguračním souboru bylo použito dvojího logování a~to na standardní výstup a~do souboru (oba úrovně \texttt{INFO}). Při logování do souboru je možné navíc nastavit automatickou archivaci.
+		Pomocí tohoto parametru je možné nastavit úroveň a~cíl vytvářených logů. V~přiloženém konfiguračním souboru bylo použito dvojího logování a~to na standardní výstup a~do souboru (oba úrovně \texttt{INFO}). Při logování do souboru je možné navíc nastavit automatickou archivaci.
 	\item[Automatické vyčítání snímků] (readOutDataAutomatically - viz \ref{app:config} řádek 54)\\
 		Tento parametr typu \texttt{boolean} udává, když přijde asynchronní událost z~detektoru o datech připravených k~vyčtení, zda-li budou vyčtena automaticky (při hodnotě parametru \texttt{true}), nebo manuálně (při hodnotě \texttt{false}).
 	\item[Výstupní adresář] (outputDir - viz \ref{app:config} řádek 57)\\
 		Parametr udávající cestu v~souborovém systému pro ukládání dat z~detektorů.
 	\item[Formát výstupních dat] (outputFramesType - viz \ref{app:config} řádek 68)\\
-		Tento parametr obsahuje pole výstupních formátu dat, ve kterých získaná data z~detektorů budou ukládána. v~této verzi programu je podporovaný jediný formát - \texttt{MULTIFRAME}.
+		Tento parametr obsahuje pole výstupních formátu dat, ve kterých získaná data z~detektorů budou ukládána. V~této verzi programu je podporovaný jediný formát - \texttt{MULTIFRAME}.
 	\item[Konfigurace data serveru] (v \ref{app:config} od řádku 77)\\
 		Na tomto místě je možné nastavit parametry (url a~port) serveru, sloužícího pro příjem a~zpracování naměřených dat a~zda-li má být použit. Více o tomto serveru bude zmíněno v~\ref{atlas:cont:output:dataserver}.
 \end{description}
@@ -683,13 +683,13 @@ V tomto balíčku se nachází třída \texttt{RestServerApplication}, která ob
 	\end{center}
 \end{figure}
 
-Na obrázku \ref{fig:atlas:apiserver-init} je znázorněn BPMN\footnote{z angl. Business Process Model and Notation} diagram procesu inicializace REST API serveru (tělo metody \texttt{run()} zmíněné výše). v~rámci tohoto procesu nejprve dojde k~validaci existence konfiguračního "*.csv" souboru, obsahujícím tabulku s~detektory a~jeho parametry (viz \ref{atlas:cont:api:conf}), pokud tato validace selže, program vypíše chybovou hlášku a~ukončí se.  Následuje ověření platnosti výstupního adresáře (pokud selže, program terminuje). Poté dojde k~inicializaci \texttt{FrameSaverController}(viz kapitola o zpracování a~ukládání dat \ref{atlas:cont:output}) a~\texttt{DetectorUnitStorage} (úložiště všech \texttt{DetectorUnit}, již zmíněné v~\ref{atlas:cont:impl}). Pokud se toto úložiště nepodaří vytvořit (z~důvodu chyby parsování tabulky detektorů) aplikace opět terminuje. Dalším krokem je inicializace nástroje pro řízení detektorů (\texttt{DetectorUnitsController}) a~registrace jednotlivých komponent REST API serveru. Na závěr procesu inicializace dojde k~vytvoření spojení s~datových serverem (viz \ref{atlas:cont:output:dataserver}) pro odesílání naměřených dat, je-li v~konfiguračním souboru serveru povolen. 
+Na obrázku \ref{fig:atlas:apiserver-init} je znázorněn BPMN\footnote{z angl. Business Process Model and Notation} diagram procesu inicializace REST API serveru (tělo metody \texttt{run()} zmíněné výše). V~rámci tohoto procesu nejprve dojde k~validaci existence konfiguračního "*.csv" souboru, obsahujícím tabulku s~detektory a~jeho parametry (viz \ref{atlas:cont:api:conf}), pokud tato validace selže, program vypíše chybovou hlášku a~ukončí se.  Následuje ověření platnosti výstupního adresáře (pokud selže, program terminuje). Poté dojde k~inicializaci \texttt{FrameSaverController}(viz kapitola o zpracování a~ukládání dat \ref{atlas:cont:output}) a~\texttt{DetectorUnitStorage} (úložiště všech \texttt{DetectorUnit}, již zmíněné v~\ref{atlas:cont:impl}). Pokud se toto úložiště nepodaří vytvořit (z~důvodu chyby parsování tabulky detektorů) aplikace opět terminuje. Dalším krokem je inicializace nástroje pro řízení detektorů (\texttt{DetectorUnitsController}) a~registrace jednotlivých komponent REST API serveru. Na závěr procesu inicializace dojde k~vytvoření spojení s~datových serverem (viz \ref{atlas:cont:output:dataserver}) pro odesílání naměřených dat, je-li v~konfiguračním souboru serveru povolen. 
 
 %********************************************************************************
 % Řídící software a~jeho implementace - Zpracování a~ukládání dat
 %********************************************************************************
 \subsection{Zpracování a~ukládání dat}\label{atlas:cont:output}
-Zpracovávání a~ukládání dat, resp. získaných snímků z~detektoru, bylo navrženo s~ohledem modularitu a~možnosti rozšíření o podporu nových výstupních formátů. v~současné verzi je podporovaný jen jeden formát, a~to tzv. \texttt{Multiframe}. Tento formát spočívá v~ukládání snímků do tří souboru a~to:
+Zpracovávání a~ukládání dat, resp. získaných snímků z~detektoru, bylo navrženo s~ohledem modularitu a~možnosti rozšíření o podporu nových výstupních formátů. V~současné verzi je podporovaný jen jeden formát, a~to tzv. \texttt{Multiframe}. Tento formát spočívá v~ukládání snímků do tří souboru a~to:
 \begin{description}
 	\item[Frame File] v~tomto souboru je ukládán vlastní snímek - hodnoty jednotlivých pixelů. Struktura tohoto souboru je taková, že při ukládání snímku jsou po řádcích zapsány indexy a~hodnoty jednotlivých pixelů (oddělených znakem tabulátoru a~mezerou), které mají nenulovou hodnotu (z~důvodu úspory místa). Jednotlivé snímky jsou odděleny novým řádkem se znakem \texttt{'\#'}. Tento soubor má příponu \texttt{"*.txt"}.
 	\item[Description File] Tento soubor nese metadata o snímku, jako například akviziční čas, časové razítko začátku akvizice, ale také hardwarové parametry detektoru v~době akvizice (napětí detekčního čipu, měřící frekvenci, hodnoty DAC apod.). Každá snímek v~tomto souboru začíná svým ID (začínajícím od nuly, unikátní v~rámci souboru), následovaným výčtem parametru, oddělenými prázdnými řádky. Každý parametr je uložen na tři řádky, kde

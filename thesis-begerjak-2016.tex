@@ -53,7 +53,19 @@ unicode=true,
 \usepackage{minted}				% slouží k~Syntax Highlighting
 \usepackage{amsmath}
 
+\usepackage{forest}
+\definecolor{folderbg}{RGB}{124,166,198}
+\definecolor{folderborder}{RGB}{110,144,169}
 
+\def\Size{4pt}
+\tikzset{
+  folder/.pic={
+    \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+      (-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);  
+    \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+      (-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
+  }
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % příkazy šablony
@@ -121,7 +133,7 @@ unicode=true,
 
 	During the year 2014, 16 Timepix based hybrid particle pixel detectors were installed at various positions within the ATLAS experiment at LHC at CERN.
 	The goal of this bachelor thesis is to develop software for controlling and energy calibration of this network. The control software provides control of these detectors independently, such as settings of measurement parameters, data acquisition control, data readout and their processing, etc. This software also provides \texttt{JSON REST API} server for remote control and for to providing status informations of this network to CERN.
-	Calibration software provides user to pass through the calibration process from calibration spectra assembly, to spectra analysis and creation of the individual calibration points, to make the calibration functions for the individual pixels of the detector. 
+	Calibration software provides to user to pass through the calibration process from calibration spectra assembly, to spectra analysis and creation of the individual calibration points, to make the calibration functions for the individual pixels of the detector. 
 
 	
 	\vglue60mm
@@ -260,27 +272,6 @@ dataServerPort: 8042
 \end{code}
 
 
-\chapter{Obsah přiloženého CD}
-\textbf{\large Tato příloha je povinná pro každou práci. Každá práce musí totiž obsahovat přiložené CD. Viz dále.}
-
-Může vypadat například takto. Váš seznam samozřejmě bude odpovídat typu vaší práce... \cite{TurecekThesis2011} fasfassaafsaf
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=14cm]{figures/seznamcd}
-\caption{Seznam přiloženého CD --- příklad}
-\label{fig:seznamcd}
-\end{center}
-\end{figure}
-
-Na GNU/Linuxu si strukturu přiloženého CD můžete snadno vyrobit příkazem:\\ 
-\verb|$ tree . >tree.txt|\\
-Ve vzniklém souboru pak stačí pouze doplnit komentáře.
-
-Z \textbf{README.TXT} (případne index.html apod.)  musí být rovněž zřejmé, jak programy instalovat, spouštět a~jaké požadavky mají tyto programy na hardware.
-
-Adresář \textbf{text}  musí obsahovat soubor s~vlastním textem práce v~PDF nebo PS formátu, který bude později použit pro prezentaci diplomové práce na WWW.
-
-
+\include{chapters/app_cd}
 
 \end{document}
