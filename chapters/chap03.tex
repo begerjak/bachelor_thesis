@@ -7,10 +7,23 @@ Tato kapitola pojednává o metodách pro energetickou kalibraci hybridních č�
 % Motivace
 %********************************************************************************
 \section{Motivace}
-Hybridní částicové pixelové detektory typu Timepix (viz \ref{det:tim}), disponují módem TOT (Time-Over-Treshold), který lze využít pro měření energie. 
-Když s pixel pracuje v~tomto módu a~intaraguje s~ním částice, dojde k~vygenerování napěťového pulzu, jehož velikost je úměrná deponované energii interagující částice (viz kapitola \ref{det:mod}).
-%Jak již bylo uvedeno v~kapitole \ref{det:mod}, když částice interaguje s~pixelem, pracujícím v~tomto módu, ve kterém zanechá část své energie, dojde k~vygenerování napěťového pulzu. 
-Je-li velikost tohoto pulzu větší, než treshold zasaženého pixelu, tak dojde ke spuštění čítače, který začne počítat hodinové cykly měřící frekvence a~zastaví se tehdy, když klesne hodnota napětí na původní hodnotu, pod úroveň tresholdu. Po skončení akvizice je hodnota tohoto čítače rovna hodnotě TOT, která odpovídá deponované energii interagující částice. Vztah mezi TOT a~energií je ale nelineární a~je podmíněn různými elektronickými a~fyzikálními vlastnostmi daného pixelu. Určení tohoto vztahu je předmětem kalibrace, o které tato kapitola bude pojednávat.
+%Hybridní částicové pixelové detektory typu Timepix (viz \ref{det:tim}), disponují módem TOT (Time-Over-Treshold), který lze využít pro měření energie ionigujícího záření dopadajícího na aktivní plochu detektoru. Když s pixel pracuje v~tomto módu a~intaraguje s~ním částice, dojde k~vygenerování napěťového pulzu, jehož velikost je úměrná deponované energii interagující částice (viz kapitola \ref{det:mod}). Je-li velikost tohoto pulzu větší, než treshold zasaženého pixelu, tak dojde ke spuštění čítače, který začne počítat hodinové cykly měřící frekvence a~zastaví se tehdy, když klesne hodnota napětí na původní hodnotu, pod úroveň tresholdu. Po skončení akvizice je hodnota tohoto čítače rovna hodnotě TOT, která odpovídá deponované energii interagující částice. Vztah mezi TOT a~energií je ale nelineární a~je podmíněn různými elektronickými a~fyzikálními vlastnostmi daného pixelu. Určení tohoto vztahu je předmětem kalibrace, o které tato kapitola bude pojednávat.
+
+Každý detektor ionizujícího záření je třeba pře použitím zkalibrovat pomocí známých zrojů záření. Vzniká tak přepočet vnitřních elektrických veličin detektoru na energii. Pro účely fyzikálních měření je zvykem užívat jako jednotku energie eV, resp. keV. 
+V případě detektoru Timepix se z důvodu nelineární odezvy (obr. \ref{fig:calib:calib_function}) pixelové elektroniky jedná o netriviální úlohu. Cílem kalibrace je nalézt parametry analyticky popisující kalibrační funkci (viz vzorec \ref{eq:calib:calib_function}).
+
+\begin{figure}[th!]
+	\begin{center}
+		\includegraphics[width=13cm]{figures/calib_function.png}
+		\caption{Kalibrační funkce (převzato z~\cite{Jakubek2011S262})}
+		\label{fig:calib:calib_function}
+	\end{center}
+\end{figure}
+
+
+\begin{equation}\label{eq:calib:calib_function}
+	f_{calib}(x) = ax + b - \frac{c}{x-t}
+\end{equation}
 
 %********************************************************************************
 % Přehled kalibračních metod
@@ -51,20 +64,8 @@ Parametry funkce \ref{eq:calib:gerf} jsou následující:
 		$\sigma = \frac{2\sqrt{2ln_2}}{FWHM}$, kde $FWHM$\footnote{z angl. Full Width at Half Maximum} udává šířku gausiánu v~polovině jeho výšky.
 	\item $\mathbf{avg_{right}}$ (resp. $\mathbf{avg_{left}}$) je průměrná hodnoty spektra na pravém (resp. levém) úpatí gausiánu.
 \end{itemize}
- 
-\begin{figure}[th]
-	\begin{center}
-		\includegraphics[width=13cm]{figures/calib_function.png}
-		\caption{Kalibrační funkce (převzato z~\cite{Jakubek2011S262})}
-		\label{fig:calib:calib_function}
-	\end{center}
-\end{figure}
 
 Z těchto kalibračních bodů je možné sestavit kalibrační funkci (viz vzorec \ref{eq:calib:calib_function}), udávající závislost mezi energií a~TOT. Tato funkce vznikla složením hyperboly (popisující nelineární oblast nižších energií) a~přímky (pro oblast s~vyšší energií). Na obrázku \ref{fig:calib:calib_function} je znázorněn příklad této funkce.
-
-\begin{equation}\label{eq:calib:calib_function}
-	f_{calib}(x) = ax + b - \frac{c}{x-t}
-\end{equation}
 
 
 %********************************************************************************

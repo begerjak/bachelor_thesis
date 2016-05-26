@@ -78,8 +78,8 @@ Do této rodiny patří především: Medipix1, Medipix2 \cite{Llopart-medipix2}
 %********************************************************************************
 % Módy detektorů
 %********************************************************************************
-\section{Provozní módy detektorů Timepix}\label{det:mod}
-V této podkapitole jsou popsány módy detektor Timepix. 
+\section{Provozní módy detektoru Timepix}\label{det:mod}
+V této podkapitole jsou popsány módy detektoru Timepix \cite{timepix}. 
 V levé části obrázku \ref{fig:det:signal_proc} je znázorněn pixel detektoru s~blokovým schématem vyčítací elektroniky. Interagující částice (na obr. znázorněna červenou šipkou) v~detekčním materiálu vyvolá proudový pulz. Ten je měřícím odporem převeden na napětí, které je dále zesilovačem (\texttt{Amplifier}) zesíleno. Toto napětí je dále porovnáno komparátorem (\texttt{Comparator}) s~komparačním napětím (tzv. tresholdem\footnote{Treshold je úroveň komparačního napětí, které je porovnáváno s~aktuálním měřícím napětím na každém pixelu. Je-li tato úroveň překročena, dojde k~detekováni události.}). 
 Výsledek komparace je zpracován dle módu detektoru. Pro úplnost je třeba dodat, že \texttt{Shutter} na obr. \ref{fig:det:signal_proc} slouží pro spouštění, resp. ukončování akvizice.
 
@@ -93,9 +93,8 @@ Výsledek komparace je zpracován dle módu detektoru. Pro úplnost je třeba do
 
 \begin{description}
 	\item[Medipix mód] Tento mód počítá počet částic, které během doby akvizice dopadly na aktivní plochu detektoru. Na obrázku \ref{fig:det:signal_proc} znázorněn, jako \texttt{Medipix mode}.
-	\item[TOT (Time-Over-Treshold)] Tento mód udává, jak dlouhou dobu (v počtu hodinových cyklů měřící frekvence) bylo zesílené napětí na detektoru vyšší, než komparační (treshold). Počet těchto cyklů je ekvivalentní deponované energii částice. Tento vztach je ale nelineární a~pro získání energie z~TOT je třeba detektor kalibrovat - o tom pojednává kapitola \ref{calib}. Tento mód je podporovaný všemi Timepix detektory (ze zde uvedených detektorů).
-	\item[TOA (Time-Of-Arrival)] Pixel v~tomto módu spustí svůj čítač po překročení tresholdu, čily vůči akvizičnímu času udává čas příletu částice. Tento mód je také známý pod označením \texttt{Timepix mode} a~nalézá své uplatnění především při měření koincidencí (rekonstrukce trajektorie částice, interagující s~více detektory pomocí času dopadu a~souřadnic zasažených pixelů). Tento mód je podporovaný všemi Timepix detektory (ze zde uvedených detektorů).
-	%\item[SPM (Single Pixel Mode)] v~tomto módu každý pixel operuje zcela samostatně a~to v~Medipix módu.\item[CSM (Charge Summing Mode)]\label{det:mod:csm} Tento mód odstraňuje zkreslení vzniklé \texttt{Charge Sharing} efektem pomocí přičtení energie do zasaženého pixelu z~pixelů okolních. Jako zasažený pixel se určí pixel s~nejvyšší energií. Tento mód podporuje jen Medipix3 (ze zde uvedených detektorů).
+	\item[TOT (Time-Over-Treshold)] Tento mód udává, jak dlouhou dobu (v počtu hodinových cyklů měřící frekvence) bylo zesílené napětí na detektoru vyšší, než komparační (treshold). Počet těchto cyklů je ekvivalentní deponované energii částice. Tento vztah je nelineární a~pro získání energie z~TOT je třeba detektor kalibrovat - o tom pojednává kapitola \ref{calib}.
+	\item[TOA (Time-Of-Arrival)] Čítač pro daný pixel je spuštěn po překročení tresholdu a zůstává v běhu až do konce akvizice. Tím je určena doba příletu částice. Tento mód je také známý pod označením \texttt{Timepix mode} a~nalézá své uplatnění především při měření koincidencí (rekonstrukce trajektorie částice, interagující s~více detektory pomocí času dopadu a~souřadnic zasažených pixelů).
 
 \end{description}
 
@@ -103,12 +102,12 @@ Výsledek komparace je zpracován dle módu detektoru. Pro úplnost je třeba do
 % FITPix
 %********************************************************************************
 \section{FITPix}\label{det:fitpix}
-FITPix\footnote{z angl. Fast Interface for Timepix Pixel Detectors} \cite{fitpix} je vyčítací rozhraní, pracující téměř se všemi detektory rodiny Medipix, vyvíjené v~ÚTEF ČVUT v~Praze od roku 2010 - viz obr. \ref{fig:det:fitpix}. Toto rozhraní se skládá z~FPGA\footnote{z angl. Feld Programmable Gate Array} obvodu, USB 2.0 rozhraní, DAC převodníků (převodník digitálního signálu na analogový), ADC převodníků (převodník analogového signálu na digitální) a~z obvodů generující napětí pro polovodičový senzor (tzv. bias). Toto zařízení umožňuje plnohodnotné ovládání připojeného detekčního čipu, včetně nastavování měřící frekvence, tresholdu, řízení shutteru (sloužícího pro ovládání akvizice, viz \ref{det:mod}) apod. Také přináší možnost ovládat shutter pomocí hardwarového trigger signálu pro měření s~více detektory současně, resp. pro jejich synchronizaci.
+FITPix\footnote{z angl. Fast Interface for Timepix Pixel Detectors} \cite{fitpix} je vyčítací rozhraní, pracující téměř se všemi detektory rodiny Medipix, vyvíjené v~ÚTEF ČVUT v~Praze od roku 2010 - viz obr. \ref{fig:det:fitpix}. Toto rozhraní se skládá z~FPGA\footnote{z angl. Field Programmable Gate Array} obvodu, USB 2.0 rozhraní, DAC převodníků (převodník digitálního signálu na analogový), ADC převodníků (převodník analogového signálu na digitální) a~z obvodů generujících napětí pro polovodičový senzor (tzv. bias). Toto zařízení umožňuje plnohodnotné ovládání připojeného detekčního čipu, včetně nastavování měřící frekvence, tresholdu, řízení shutteru (sloužícího pro ovládání akvizice, viz \ref{det:mod}) apod. Také přináší možnost ovládat shutter pomocí hardwarového trigger signálu pro měření s~více detektory současně, resp. pro jejich synchronizaci.
 
 \begin{figure}[th!]
 	\begin{center}
 		\includegraphics[width=11cm]{figures/fitpix.png}
-		\caption{FITPix}
+		\caption{FITPix (vlevo zařízení FITPix, vpravo DPS zařízení FITPix)}
 		\label{fig:det:fitpix}
 	\end{center}
 \end{figure}
@@ -119,17 +118,18 @@ Tato architektura s~FPGA byla použita především z~důvodu dosažení vyšš�
 % Pixelman
 %********************************************************************************
 \section{Pixelman}\label{det:pixelman}
-Pixelman \cite{pixelman} je softwarový balík, vyvíjený v~ÚTEF ČVUT v~Praze, sloužící pro řízení detektorů z~rodiny Medipix pomocí vyčítacího rozhraní FITPix \ref{det:fitpix}. Tento software umožňuje akvizici dat, jejich vizualizaci a~následnou analýzu.
+Pixelman \cite{pixelman} je softwarový balík, vyvíjený v~ÚTEF ČVUT v~Praze, sloužící pro řízení detektorů z~rodiny Medipix pomocí vyčítacího rozhraní FITPix \ref{det:fitpix}, Muros a dalších. Tento software umožňuje akvizici dat, jejich vizualizaci a~následnou analýzu.
 
-Jedná se o vysoce modulární systém, který mimo jiné umožňuje rozšíření své funkcionality o pluginy, které mají přístup k~funkcím, poskytovaným jádrem Pixelmanu. Dokonce každý plugin může zaregistrovat své funkce, takže i ostatní pluiny mohou využívat jeho funkcionalitu. Jsou podporovány pluginy, vyvinuté v~jazycích Java, C/C++ a~Python. Na obrázku \ref{fig:det:pixelman} je znázorněna softwarová architektura Pixelmana.
+Jedná se o vysoce modulární systém, který mimo jiné umožňuje rozšíření své funkcionality o pluginy, které mají přístup k~funkcím, poskytovaným jádrem Pixelmanu. Každý plugin může zaregistrovat své funkce, takže i ostatní pluiny mohou využívat jeho funkcionalitu. Jsou podporovány pluginy, vyvinuté v~jazycích Java, C/C++ a~Python. 
+%Na obrázku \ref{fig:det:pixelman} je znázorněna softwarová architektura Pixelmana.
 
-\begin{figure}[th!]
-	\begin{center}
-		\includegraphics[width=10.25cm]{figures/pixelman.png}
-		\caption{Pixelman - sw architektura (převzato z~\cite{pixelman})}
-		\label{fig:det:pixelman}
-	\end{center}
-\end{figure}
+%\begin{figure}[th!]
+%	\begin{center}
+%		\includegraphics[width=10.25cm]{figures/pixelman.png}
+%		\caption{Pixelman - sw architektura (převzato z~\cite{pixelman})}
+%		\label{fig:det:pixelman}
+%	\end{center}
+%\end{figure}
 
 
 
