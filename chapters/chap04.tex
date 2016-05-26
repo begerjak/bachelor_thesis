@@ -1,22 +1,32 @@
 \addbibresource{reference.bib}
 
 \chapter{ATLAS TPX}\label{atlas}
-ATLAS TPX, síť 16\footnote{V průběhu LS3\textsuperscript{\ref{ls}} (plánováno 2017 - 2018) je plánováno rozšíření teto sítě o nové detektory} hybridních částicových pixelových detektorů typu Timepix \ref{det:tim}, instalovaných na různé pozice experimentu ATLAS na LHC\footnote{z angl. Large Hadron Collider} v~CERN během LS2\footnote{\label{ls}z angl. long shutdown - dlouhodobá technologická přestávka LHC} (leden 2013 až březen 2015) je následníkem svého předchůdce - sítě ATLAS MPX (viz \ref{atlas:mpx}). Hlavní motivací výměny této sítě bylo využití nových technologií, především pak nového detekčního čipu Timepix. Ten na rozdíl od svého předchůdce Medipix2 \ref{det:med} umožňuje rozšíření naměřené informace i o časovou oblast (viz \ref{det:tim}). To nově umožňuje provozovat detektory v~módech TOA\footnote{z angl. Time of Arrival - čas příletu částice v~hodinových cyklech detektoru od začátku akvizice} a~TOT\footnote{z angl. Time Over Treshold - počet hodinových cyklů, kdy komparační napětí je větší, než referenční (ekvivalent energie deponované částice, viz kapitola \ref{calib})}. 
+ATLAS TPX, síť 16\footnote{V průběhu LS3\textsuperscript{\ref{ls}} (plánováno 2017 - 2018) je plánováno rozšíření teto sítě o další detektory} hybridních částicových pixelových detektorů typu Timepix \ref{det:tim}, instalovaných na různé pozice experimentu ATLAS na LHC\footnote{z angl. Large Hadron Collider} v~CERN (viz obr. \ref{fig:tpx_positions}) během LS2\footnote{\label{ls}z angl. long shutdown - dlouhodobá technologická přestávka LHC} (leden 2013 až březen 2015) je následníkem svého předchůdce - sítě ATLAS MPX (viz \ref{atlas:mpx}). Cílem modernizace této sítě bylo využití nových technologií, především pak nového detekčního čipu Timepix. Ten na rozdíl od svého předchůdce Medipix2 \ref{det:med} umožňuje rozšíření měřené informace o časovou oblast (viz \ref{det:tim}). To nově umožňuje provozovat detektory v~módech TOA\footnote{z angl. Time of Arrival - čas příletu částice v~hodinových cyklech detektoru od začátku akvizice} a~TOT\footnote{z angl. Time Over Treshold - počet hodinových cyklů, kdy komparační napětí je větší, než referenční (ekvivalent energie deponované částice, viz kapitola \ref{calib})}. 
 
-Další změnou nové detektorové sítě ATLAS TPX oproti svému předchůdci je, že každý detektor obsahuje dva detekční čipy s~tloušťkami $300~\mu m$ a~$500~\mu m$, umístěné předními stranami k~sobě - viz \ref{fig:tpx_detector_layers}. To přináší možnost měřit koincidence - když částice projde oběma vrstvami  detektoru a~zároveň v~každé nechá jisté měřitelné množství své energie, je detekována oběma vrstvami a~je možné zpětně zrekonstruovat její trajektorii. Tyto koincidence se nejsnáze detekují, pokud oba Timepix čipy pracují v~módu TOA - jelikož rychlost částic se blíží rychlosti světla, je vysoce pravděpodobné, že zasažené pixely budou mít stejnou hodnotu.
+
+\begin{figure}[th!]
+	\begin{center}
+		\includegraphics[width=11cm]{figures/tpx_positions.png}
+		\caption{ATLAS TPX - přehledem rozmístění detektorů v experimentu ATLAS}
+		\label{fig:tpx_positions}
+	\end{center}
+\end{figure}
+
+
+Další změnou nové detektorové sítě ATLAS TPX oproti svému předchůdci je, že každý detektor obsahuje dva detekční čipy (senzory) s~tloušťkami $300~\mu m$ a~$500~\mu m$, umístěné předními stranami k~sobě - viz \ref{fig:tpx_detector_layers}. To přináší možnost měřit koincidence. Pokud částice projde oběma vrstvami  detektoru a~zároveň v~každé zanechá jisté měřitelné množství své energie, je detekována oběma vrstvami a~je možné zpětně zrekonstruovat její trajektorii. Tyto koincidence se nejsnáze detekují, pokud oba Timepix čipy pracují v~módu TOA. Jelikož rychlost částice se blíží rychlosti světla, je vysoce pravděpodobné, že zasažené pixely budou mít stejnou hodnotu.
 
 
 \begin{figure}[th]
 	\begin{center}
 		\begin{subfigure}{6cm}
 			\includegraphics[width=6cm]{figures/tpx_lay.png}	
-			\caption{Vrstvy detektoru}
+			\caption{Vrstvy detektoru se zobrazením detekce rychlých a termálních neutronů}
 			\label{fig:tpx_detector_layers}
 		\end{subfigure}
 		\hspace{0.5cm}
-		\begin{subfigure}{5cm}
-			\includegraphics[width=5cm]{figures/tpx_conv.png}
-			\caption{Rozmístění konvetorů}
+		\begin{subfigure}{6cm}
+			\includegraphics[width=6cm]{figures/tpx_conv.png}
+			\caption{Rozmístění konvertorů (LiF je Lithium fluoride, Al je hliník, PE je Polyethylen a free je místo bez konvertorů)}
 			\label{fig:tpx_detector_convertors}
 		\end{subfigure}
 		\caption{ATLAS TPX detektor - vrstvy a~rozmístění konvertorů}
@@ -24,20 +34,12 @@ Další změnou nové detektorové sítě ATLAS TPX oproti svému předchůdci j
 	\end{center}			
 \end{figure}
 
-Mezi vrstvami detektoru je umístěn konvertující materiál pro detekci termálních a~rychlých neutronů. Rozmístění těchto konvertorů je na obrázku \ref{fig:tpx_detector_convertors}.
+Mezi vrstvami detektoru jsou umístěny konvertory pro detekci termálních a~rychlých neutronů. Rozmístění těchto konvertorů je na obrázku \ref{fig:tpx_detector_convertors}.
 
 Hlavním úkolem ATLAS TPX experimentu je online monitorování spektrálních charakteristik velice různorodého radiačního prostředí ATLAS experimentu, založené na prostorovém uspořádání sítě a~(vzhledem k~aktuálním módu detektoru) i na informaci o deponované energii interagujících částic, či na času jejich interakce. 
 
 
 Detektory, instalované blízko interakčnímu bodu, jsou rovněž použity jako monitory integrované luminozity, což je veličina, která udává počet realizovaných srážek, resp. s~intenzitou svazku urychlovače. Podle \cite{wagner:o_lhc} je to veličina, která v~případě srážení dvou proti sobě letících svazků ukazuje, jaký je součin počtů částic v~jednotlivých svazcích prolétajících jednotkovou plochou v~srážkové oblasti, vynásobený počtem obletů svazků za jednotku času (nejčastěji se vyjadřuje v~jednotkách na centimetr čtvereční a~sekundu).
-
-\begin{figure}[ht]
-	\begin{center}
-		\includegraphics[width=12cm]{figures/tpx_positions.png}
-		\caption{ATLAS TPX - přehledem rozmístění detektorů}
-		\label{fig:tpx_positions}
-	\end{center}
-\end{figure}
 
 %********************************************************************************
 % ATLAS MPX
