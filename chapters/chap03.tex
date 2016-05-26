@@ -10,12 +10,12 @@ Tato kapitola pojednává o metodách pro energetickou kalibraci hybridních č�
 %Hybridní částicové pixelové detektory typu Timepix (viz \ref{det:tim}), disponují módem TOT (Time-Over-Treshold), který lze využít pro měření energie ionigujícího záření dopadajícího na aktivní plochu detektoru. Když s pixel pracuje v~tomto módu a~intaraguje s~ním částice, dojde k~vygenerování napěťového pulzu, jehož velikost je úměrná deponované energii interagující částice (viz kapitola \ref{det:mod}). Je-li velikost tohoto pulzu větší, než treshold zasaženého pixelu, tak dojde ke spuštění čítače, který začne počítat hodinové cykly měřící frekvence a~zastaví se tehdy, když klesne hodnota napětí na původní hodnotu, pod úroveň tresholdu. Po skončení akvizice je hodnota tohoto čítače rovna hodnotě TOT, která odpovídá deponované energii interagující částice. Vztah mezi TOT a~energií je ale nelineární a~je podmíněn různými elektronickými a~fyzikálními vlastnostmi daného pixelu. Určení tohoto vztahu je předmětem kalibrace, o které tato kapitola bude pojednávat.
 
 Každý detektor ionizujícího záření je třeba pře použitím zkalibrovat pomocí známých zrojů záření. Vzniká tak přepočet vnitřních elektrických veličin detektoru na energii. Pro účely fyzikálních měření je zvykem užívat jako jednotku energie eV, resp. keV. 
-V případě detektoru Timepix se z důvodu nelineární odezvy (obr. \ref{fig:calib:calib_function}) pixelové elektroniky jedná o netriviální úlohu. Cílem kalibrace je nalézt parametry analyticky popisující kalibrační funkci (viz vzorec \ref{eq:calib:calib_function}).
+V případě detektoru Timepix se z důvodu nelineární odezvy (obr. \ref{fig:calib:calib_function}) pixelové elektroniky jedná o netriviální úlohu. Cílem kalibrace je nalézt parametry analyticky popisující kalibrační křivku, na příklad pomocí funkce \ref{eq:calib:calib_function}.
 
 \begin{figure}[th!]
 	\begin{center}
-		\includegraphics[width=13cm]{figures/calib_function.png}
-		\caption{Kalibrační funkce (převzato z~\cite{Jakubek2011S262})}
+		\includegraphics[width=8cm]{figures/calib_function.png}
+		\caption{Kalibrační funkce (převzato z~\cite{Jakubek2011S262}) udává závislost mezi energií a TOT. Vzniká proložením naměřených kalibračních bodů pomocí funkce \ref{eq:calib:calib_function}. Tato funkce vznikla složením hyperboly (popisující nelineární oblast nižších energií) a přímky (pro oblast s vyšší energií).}
 		\label{fig:calib:calib_function}
 	\end{center}
 \end{figure}
@@ -24,6 +24,8 @@ V případě detektoru Timepix se z důvodu nelineární odezvy (obr. \ref{fig:c
 \begin{equation}\label{eq:calib:calib_function}
 	f_{calib}(x) = ax + b - \frac{c}{x-t}
 \end{equation}
+
+%\newpage
 
 %********************************************************************************
 % Přehled kalibračních metod
@@ -35,11 +37,14 @@ V případě detektoru Timepix se z důvodu nelineární odezvy (obr. \ref{fig:c
 % > X-ray
 %********************************************************************************
 \subsection{Kalibrace detektorů za použití rentgenového záření}\label{calib:xray}
-Metoda kalibrace pixelových detektorů pracujících v~TOT módu \cite{Jakubek2011S262} spočívá v~měření rentgenové fluorescence (viz \cite{Jakubek-radiography_and_charge_sharing}),
-což je děj ke kterému dochází, když je nějaký materiál\footnote{Pro kalibraci se používají kovy, na příklad Am, In, Cu, Fe apod.}
-ozařován rentgenovým zářením, které vyráží excitované elektrony z~jeho atomů. Je-li vyražen elektron na nižší energetické úrovní, tak elektron z~vyšší energetické úrovně deexcituje a~obsadí jeho místo. Přebytečnou energii ztratí ve formě vyzářeného fotonu, který je následně detektorem detekován. 
-
-Díky této fluorescenci je detektor pomocí různých mono-energetických zdrojů záření, jejichž energie je předem známa, postupně ozařován. V~rámci tohoto měření je třeba pro každý zdroj pořídit velké množství snímků, ze kterých jsou následně vyfiltrovány jen tzv. \texttt{Single-Hit} události, což jsou události, při kterých interagující částice zasáhla jen jeden pixel. Tyto události jsou filtrovány z~důvodu dosažení vyšší kvality kalibrace které je dosaženo potlačením zkreslení, způsobeným \texttt{Charge Sharing} efektem (viz \ref{det:mod}).
+Tato kalibrační metoda \cite{Jakubek2011S262} spočívá v~měření rentgenové fluorescence (viz \cite{Jakubek-radiography_and_charge_sharing}),
+což je děj ke kterému dochází, když je materiál\footnote{Pro kalibraci se používají kovy, na příklad Am, In, Cu, Fe apod.}
+ozařován rentgenovým zářením, které vyráží excitované elektrony z~jeho atomů. Je-li vyražen elektron na nižší energetické úrovní, tak elektron z~vyšší energetické úrovně deexcituje a~obsadí jeho místo. 
+Přebytečnou energii ztratí ve formě vyzářeného fotonu (tzv. charakteristické záření). Spojitou část rentgenového spektra je potřeba odstínit. Výběrem vhodných terčů lze získat několik diskrétních energií záření, tzv. kalibrační body. Z důvodů statistických vlastností záření je třeba prokaždý kalibrační bod pořídit velké množství snímků, ze kterých jsou následně vyfiltrovány jen tzv. \texttt{Single-Hit} události,
+%Díky této fluorescenci je detektor pomocí různých mono-energetických zdrojů záření, jejichž energie je předem známa, postupně ozařován. V~rámci tohoto měření je třeba pro každý zdroj pořídit velké množství snímků, ze kterých jsou následně vyfiltrovány jen tzv. \texttt{Single-Hit}
+ což jsou události, při kterých interagující částice zasáhla jen jeden pixel. 
+Tyto události jsou filtrovány z důvodu dosažení vyšší kvality kalibrace pomocí potlačení zkreslení, způsobeného Charge Sharing efektem\footnote{Když dopadne nabitá částice na polovodičový senzor, vzniknou elektron-děrové páry, které jsou staženy nejen zasaženým pixelem, ale vetšinou i několika sousedními.}.
+ Tyto události jsou filtrovány z~důvodu dosažení vyšší kvality kalibrace které je dosaženo potlačením zkreslení, způsobeným \texttt{Charge Sharing} efektem (viz \ref{det:mod}).
 
 \begin{figure}[th]
 	\begin{center}
