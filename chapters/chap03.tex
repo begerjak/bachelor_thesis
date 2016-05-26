@@ -38,13 +38,12 @@ V případě detektoru Timepix se z důvodu nelineární odezvy (obr. \ref{fig:c
 %********************************************************************************
 \subsection{Kalibrace detektorů za použití rentgenového záření}\label{calib:xray}
 Tato kalibrační metoda \cite{Jakubek2011S262} spočívá v~měření rentgenové fluorescence (viz \cite{Jakubek-radiography_and_charge_sharing}),
-což je děj ke kterému dochází, když je materiál\footnote{Pro kalibraci se používají kovy, na příklad Am, In, Cu, Fe apod.}
+což je děj ke kterému dochází, když je materiál\footnote{Pro kalibraci se používají kovy, na příklad Am, In, Cu, Fe apod.} (terč)
 ozařován rentgenovým zářením, které vyráží excitované elektrony z~jeho atomů. Je-li vyražen elektron na nižší energetické úrovní, tak elektron z~vyšší energetické úrovně deexcituje a~obsadí jeho místo. 
 Přebytečnou energii ztratí ve formě vyzářeného fotonu (tzv. charakteristické záření). Spojitou část rentgenového spektra je potřeba odstínit. Výběrem vhodných terčů lze získat několik diskrétních energií záření, tzv. kalibrační body. Z důvodů statistických vlastností záření je třeba prokaždý kalibrační bod pořídit velké množství snímků, ze kterých jsou následně vyfiltrovány jen tzv. \texttt{Single-Hit} události,
 %Díky této fluorescenci je detektor pomocí různých mono-energetických zdrojů záření, jejichž energie je předem známa, postupně ozařován. V~rámci tohoto měření je třeba pro každý zdroj pořídit velké množství snímků, ze kterých jsou následně vyfiltrovány jen tzv. \texttt{Single-Hit}
  což jsou události, při kterých interagující částice zasáhla jen jeden pixel. 
-Tyto události jsou filtrovány z důvodu dosažení vyšší kvality kalibrace pomocí potlačení zkreslení, způsobeného Charge Sharing efektem\footnote{Když dopadne nabitá částice na polovodičový senzor, vzniknou elektron-děrové páry, které jsou staženy nejen zasaženým pixelem, ale vetšinou i několika sousedními.}.
- Tyto události jsou filtrovány z~důvodu dosažení vyšší kvality kalibrace které je dosaženo potlačením zkreslení, způsobeným \texttt{Charge Sharing} efektem (viz \ref{det:mod}).
+Tyto události jsou filtrovány z důvodu dosažení vyšší kvality kalibrace pomocí potlačení zkreslení, způsobeného \texttt{Charge Sharing} efektem\footnote{Když dopadne nabitá částice na polovodičový senzor, vzniknou elektron-děrové páry, které jsou staženy nejen zasaženým pixelem, ale vetšinou i několika sousedními. To je dáno jednou společnou elektrodou pro všechny pixely senzoru (viz obr. \ref{fig:det:chip}).}.
 
 \begin{figure}[th]
 	\begin{center}
@@ -54,7 +53,8 @@ Tyto události jsou filtrovány z důvodu dosažení vyšší kvality kalibrace 
 	\end{center}
 \end{figure}
 
-Dalším krokem tohoto procesu je získání jednotlivých kalibračních bodů, udávající závislost mezi jednotlivými energiemi a~TOT hodnotami. Toho je možné docílit vytvořením spekter pro jednotlivé pixely a~zdroje záření. Na obrázku \ref{fig:calib:gerf} je příklad takového spektra pro jeden pixel detektoru a~fluorescenčního záření z~mědi. Na vodorovné ose tohoto spektra se nachází jednotlivé TOT hodnoty a~na svislé pak jejich četnost ve všech snímcích. Z~obrázku je patrné, že nejčetnější hodnotou TOT je zhruba hodnota $53$, které odpovídá energii fotonu, vyraženého z~mědi, což je $5,9~keV$. Hodnotu TOT je ale třeba znát přesně, toho je docíleno proložením spektra funkcí \ref{eq:calib:gerf}, která vznikla z~Gaussovy funkce, ke které z~důvodu levé nesymetrie kvůli \texttt{Charge Sahring} efektu byla přičtena Gaussova chybová funkce. 
+%Dalším krokem tohoto procesu je získání jednotlivých kalibračních bodů, udávajících závislost mezi jednotlivými energiemi a~TOT hodnotami. Toho je možné docílit vytvořením spekter pro jednotlivé pixely a~zdroje záření.
+Na obrázku \ref{fig:calib:gerf} je příklad spektra pro jeden pixel detektoru a~fluorescenčního záření z~mědi. Na vodorovné ose tohoto spektra se nachází jednotlivé TOT hodnoty a~na svislé pak jejich četnost ve všech snímcích. Z~obrázku je patrné, že nejčetnější hodnotou TOT je zhruba hodnota $53$, která odpovídá energii fluorescenčního záření mědi, což je $5,9~keV$. Požadonou hodnotu TOT proložením spektra funkcí \ref{eq:calib:gerf}. Ta vznikla z~Gaussovy funkce, ke které byla z~důvodu levé nesymetrie, způspbené \texttt{Charge Sahring} efektem, přičtena Gaussova chybová funkce. 
 
 \begin{equation}\label{eq:calib:gerf}
 	f_{GERF}(x) = \underbrace{Ae^{ -\frac{(x-\mu)^2}{2\sigma^2} }}_{\text{Gaussova funkce}} +
