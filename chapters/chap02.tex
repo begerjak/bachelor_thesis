@@ -28,12 +28,12 @@ Při vniku ionizující částice do detektoru dojde k předání části její 
 \begin{figure}[th]
 	\begin{center}
 		\includegraphics[width=12cm]{figures/det_chip.png}
-		\caption{Struktura hybridního polovodičového pixelového detektoru (převzato z~\cite{PlatkevicDisertace})}
+		\caption{Struktura hybridního polovodičového pixelového detektoru rodiny Medipix (převzato z~\cite{PlatkevicDisertace})}
 		\label{fig:det:chip}
 	\end{center}
 \end{figure}
 
-Na obrázku \ref{fig:det:chip} je znázorněna struktura tohoto detektoru. Nahoře se nachází, polovodičový senzor, který je spojen s~integrovaným \texttt{ASIC}\footnote{z angl. Application Specific Integrated Circuit} vyčítacím čipem (tzv. \texttt{Readout chip}) pomocí technologie zvané \texttt{bump-bonding}. Odtud také pochází název "hybridní" - jedná se o spojení senzoru a~\texttt{ASIC} čipu. Každý pixel tedy tvoří jeden PN přechod. Vyčítací čip je dále spojen s~další nezbytnou elektronikou (na obr \ref{fig:det:chip} znázorněnou jako \texttt{Motherboard}) pomocí tzv. \texttt{wire-bonds}. Z~této elektroniky je dále vyvedeno napětí na polovodičový senzor - \texttt{bias}.
+Na obrázku \ref{fig:det:chip} je znázorněna struktura Medipix detektoru. Nahoře se nachází, polovodičový senzor (\texttt{Sensor chip}), který je spojen s~integrovaným \texttt{ASIC}\footnote{z angl. Application Specific Integrated Circuit} vyčítacím čipem (tzv. \texttt{Readout chip}) pomocí technologie zvané \texttt{bump-bonding} (na obr. \ref{fig:det:chip} jako \texttt{Solder bonds}). Odtud také pochází název "hybridní" - jedná se o spojení senzoru a~\texttt{ASIC} čipu. Každý pixel senzoru tvoří jeden PN přechod. Vyčítací čip je spojen s~další nezbytnou elektronikou (na obr \ref{fig:det:chip} znázorněnou jako \texttt{Motherboard}) pomocí tzv. \texttt{wire-bonds}. Z~této elektroniky je vyvedeno napětí na polovodičový senzor - \texttt{bias}, zajištující vyprázdnění detekčního objemu polovodičového senzoru.
 
 
 %********************************************************************************
@@ -41,40 +41,47 @@ Na obrázku \ref{fig:det:chip} je znázorněna struktura tohoto detektoru. Naho�
 %********************************************************************************
 \newpage
 \section{Detektory rodiny Medipix}\label{det:med}
-Mezi detektory rodiny Medipix patří: Medipix1, Medipix2 \cite{Llopart-medipix2}, Timepix \cite{Llopart2008106}, Medipix3, nově Timepix3 \cite{timepix3} a~v průběhu příštího roku k~nim přibude i Timepix2. 
+Pro realizaci sítě ATLAS TPX byly použity pouze detektory typu Timepix. Pro srovnání je níže uveden stručný popis ostatních detektorů rodiny Medipix.
+Do této rodiny patří především: Medipix1, Medipix2 \cite{Llopart-medipix2}, Timepix \cite{timepix}, Medipix3, nově Timepix3 \cite{timepix3} a~ další jsou ve vývoji, například Timepix2 a Dosepix. 
 
 \begin{description}
-	\item[Medipix1] Medipix1 byl prvním detektorem z~této rodiny a~byl uvedený v~roce 1997. Také je známy pod názvem PCC (z~angl. Photon Counting Chip). Jednalo se o prototyp digitálního \texttt{CMOS}\footnote{z angl. Complementary Metal–Oxide–Semiconductor} zobrazovacího čipu, který našel uplatnění ve vysokoenergetických fyzikálních experimentech \cite{medipix-www} a~byl schopný operovat jen v~\texttt{Medipix módu} (viz \ref{det:mod}). Tento detektor měl matici $64\times64$ pixelů, každý s~hranou o délce $170~\mu m$ a~celková aktivní plocha byla $1,2~cm^2$. Detektor obsahoval $15$-bitový čítač, kterým byl schopen v~rámci jedné akvizice zaregistrovat až $32767$ událostí.
+	\item[Medipix1] Medipix1 je prvním detektorem z~této rodiny a~byl uveden v~roce 1997. Také je známy pod názvem PCC (z~angl. Photon Counting Chip). Jedná se o prototyp digitálního \texttt{CMOS}\footnote{z angl. Complementary Metal–Oxide–Semiconductor} zobrazovacího čipu, který nachází uplatnění ve vysokoenergetických fyzikálních experimentech \cite{medipix-www}. Je schopný operovat jen v~\texttt{Medipix módu} (viz \ref{det:mod}). Tento detektor má matici $64\times64$ pixelů, každý s~hranou o délce $170~\mu m$ a~celková aktivní plocha je $1,2~cm^2$. Detektor obsahuje $15$-bitový čítač, kterým umožňuje v~rámci jedné akvizice zaregistrovat až $32767$ událostí.
 
-	\item[Medipix2] Medipix2 je přímým následníkem Medipix1. Tento model především profitoval z~rychlého pokroku \texttt{CMOS} technologie, díky kterému bylo možné přidání nové funkcionality a~především zmenšení velikosti pixelů. Detektor obsahoval matici $256\times256$ pixelů, délka hrany jednoho pixelu se zmenšila na $55~\mu m$ a~celková aktivní plocha vzrostla na $2~cm^2$.
+	\item[Medipix2] Medipix2 je přímým následníkem detektoru Medipix1. 
+	%Tento model především profite z~rychlého pokroku \texttt{CMOS} technologie, díky kterému bylo možné přidání nové funkcionality a~především zmenšení velikosti pixelů. 
+	Díky větší integraci \texttt{CMOS} technologie bylo možné přidat novou funkcionalitu a~zmenšit velikost pixelů.
+	Detektor obsahuje matici $256\times256$ pixelů, délka hrany jednoho pixelu se zmenšila na $55~\mu m$ a~celková aktivní plocha vzrostla na $2~cm^2$.
 
-	\item[Timepix]\label{det:tim} Tento detektor vychází z~detektoru Medipix2, prodělal však výraznou obměnu digitální části. Byla přidána synchronizační logika, která přinesla dva nové módy - TOT (měření energie) a~TOA (měření doby příletu částice), přičemž každý pixel v~jeden okamžik umožňuje měřit jen v~jednom módu
-	(více o módech v~\ref{det:mod}). Další možností je nastavení globálního tresholdu\footnote{Treshold je úroveň komparačního napětí, které je porovnáváno s~aktuálním měřícím napětím na každém pixelu. Je-li tato úroveň překročena, dojde k~detekováni události.} s~lokální úpravou pro jednotlivé pixely o $4 b$. 
+	\item[Timepix]\label{det:tim} Tento detektor je na bázi detektoru Medipix2, prodělal však výraznou obměnu digitální části. Byla přidána synchronizační logika, která přinesla dva nové módy - TOT (měření energie) a~TOA (měření doby příletu částice), přičemž každý pixel v~jeden okamžik umožňuje měřit jen v~jednom módu
+	(více o módech v~\ref{det:mod}). 
+	%Další možností je nastavení globálního tresholdu\footnote{Treshold je úroveň komparačního napětí, které je porovnáváno s~aktuálním měřícím napětím na každém pixelu.Je-li tato úroveň překročena, dojde k~detekováni události.} s~lokální úpravou pro jednotlivé pixely o $4 b$. 
 
-	\item[Medipix3] U Medipix3, jehož předchůdce byl Medipix2, byla výrazným způsobem přepracována vyčítací elektronika za cílem snížení zkreslení, způsobeném sdílením náboje mezi sousedními pixely (tento efekt je také znám pod pojmem \texttt{Charge Sharing} efekt \cite{Jakubek-radiography_and_charge_sharing}). 
+	\item[Medipix3] U Medipix3, byla výrazným způsobem přepracována vyčítací elektronika za cílem snížení zkreslení, způsobeném sdílením náboje mezi sousedními pixely (tento efekt je také znám pod pojmem \texttt{Charge Sharing} efekt \cite{Jakubek-radiography_and_charge_sharing}). 
 
-	\begin{figure}[th]
-	\begin{center}
-		\includegraphics[width=8cm]{figures/det_charge_sharing.png}
-		\caption{Charge Sharing Efekt (převzato z~\cite{medipix-www})}
-		\label{fig:det:charge_sharing}
-	\end{center}
-	\end{figure}
 
-	Když dopadne nabitá částice na polovodičový senzor, vzniknou elektron-děrové páry, které jsou staženy nejen zasaženým pixelem, ale vetšinou i několika sousedními. To samo o sobě je žádoucí jev, problém ale nastává, když vyčtená energie sousedními pixely je nižší, než jejich prahová, potom dochází ke, již výše zmíněnému, zkreslení. 
+	%\begin{figure}[th]
+	%\begin{center}
+	%	\includegraphics[width=8cm]{figures/det_charge_sharing.png}
+	%	\caption{Charge Sharing Efekt (převzato z~\cite{medipix-www})}
+	%	\label{fig:det:charge_sharing}
+	%\end{center}
+	%\end{figure}
+
+	%Když dopadne nabitá částice na polovodičový senzor, vzniknou elektron-děrové páry, které jsou staženy nejen zasaženým pixelem, ale vetšinou i několika sousedními. To samo o sobě je žádoucí jev, problém ale nastává, když vyčtená energie sousedními pixely je nižší, než jejich prahová, potom dochází ke, již výše zmíněnému, zkreslení. 
 	
-	Obrázek \ref{fig:det:charge_sharing} je demonstrací tohoto jevu. Zobrazuje histogram detekovaných energií pro jeden pixel. Když každý pixel operuje zcela nezávisle (na obrázku modře), je patrné, že daný pixel registroval i události sousedních pixelů, vzniklé \texttt{Charge Sharing} efektem. Tento problém odstraňuje \texttt{CSM} \ref{det:mod:csm} mód a~především možnost vyčítat jednotlivé události (nikoliv až celé snímky), což také odstraňuje mrtvou dobu detektoru. \texttt{CSM} mód přičte k~energii zasaženého pixelu i energii sousedních pixelů - viz obr. \ref{fig:det:charge_sharing} červeně.
+	%Obrázek \ref{fig:det:charge_sharing} je demonstrací tohoto jevu. Zobrazuje histogram detekovaných energií pro jeden pixel. Když každý pixel operuje zcela nezávisle (na obrázku modře), je patrné, že daný pixel registroval i události sousedních pixelů, vzniklé \texttt{Charge Sharing} efektem. Tento problém odstraňuje \texttt{CSM} \ref{det:mod:csm} mód a~především možnost vyčítat jednotlivé události (nikoliv až celé snímky), což také odstraňuje mrtvou dobu detektoru. \texttt{CSM} mód přičte k~energii zasaženého pixelu i energii sousedních pixelů - viz obr. \ref{fig:det:charge_sharing} červeně.
 
-	\item[Timepix3] Nejnovějším přírůstkem této rodiny detektorů je Timepix3. Oproti svému předchůdci Timepix má tento detektor vylepšenou vyčítací logiku a~o jeden čítač více. To mu mimo jiné umožňuje měřit v~TOT a~TOA módu současně. Navíc ještě přináší \texttt{Data-driven} vyčítací mód (obdobně, jako Medipix3), který na rozdíl od \texttt{Frame-based} vyčítání minimalizuje mrtvou dobu detektoru.
+	\item[Timepix3] Timepix3 vychází z detektoru Timepix, oproti kterému má tento detektor vylepšenou vyčítací logiku a~o jeden čítač na pixel více. To mu mimo jiné umožňuje měřit v~TOT a~TOA módu současně. Navíc ještě přináší \texttt{Data-driven} vyčítací mód (obdobně, jako Medipix3), který na rozdíl od \texttt{Frame-based} vyčítání minimalizuje mrtvou dobu detektoru.
 
 \end{description}
 
 %********************************************************************************
 % Módy detektorů
 %********************************************************************************
-\section{Módy detektorů}\label{det:mod}
-V této podkapitole budou popsány všechny nejpoužívanější módy detektorů z~rodiny Medipix. 
-Na obrázku \ref{fig:det:signal_proc} jsou znázorněny tři pixely detektoru s~blokovým schématem vyčítací elektroniky. Jak již bylo zmíněno výše, interagující částice s~polovodičovým povrchem detektoru vyvolá proudový pulz. Ten je měřícím odporem převeden na napětí, které je dále zesilovačem zesíleno (na obr. \ref{fig:det:signal_proc} jako \texttt{Amplifier}). Toto napětí je dále porovnáno komparátorem s~komparačním napětím (tzv. tresholdem), jak je znázorněno na obr. \ref{fig:det:signal_proc}. S~informací z~tohoto komparátoru je dále naloženo dle módu detektoru. Pro úplnost je třeba dodat, že \texttt{Shutter} na obr. \ref{fig:det:signal_proc} slouží pro spouštění, resp. ukončování akvizice.
+\section{Provozní módy detektorů Timepix}\label{det:mod}
+V této podkapitole jsou popsány módy detektor Timepix. 
+V levé části obrázku \ref{fig:det:signal_proc} je znázorněn pixel detektoru s~blokovým schématem vyčítací elektroniky. Interagující částice (na obr. znázorněna červenou šipkou) v~detekčním materiálu vyvolá proudový pulz. Ten je měřícím odporem převeden na napětí, které je dále zesilovačem (\texttt{Amplifier}) zesíleno. Toto napětí je dále porovnáno komparátorem (\texttt{Comparator}) s~komparačním napětím (tzv. tresholdem\footnote{Treshold je úroveň komparačního napětí, které je porovnáváno s~aktuálním měřícím napětím na každém pixelu. Je-li tato úroveň překročena, dojde k~detekováni události.}). 
+Výsledek komparace je zpracován dle módu detektoru. Pro úplnost je třeba dodat, že \texttt{Shutter} na obr. \ref{fig:det:signal_proc} slouží pro spouštění, resp. ukončování akvizice.
 
 \begin{figure}[th!]
 	\begin{center}
@@ -88,8 +95,7 @@ Na obrázku \ref{fig:det:signal_proc} jsou znázorněny tři pixely detektoru s~
 	\item[Medipix mód] Tento mód počítá počet částic, které během doby akvizice dopadly na aktivní plochu detektoru. Na obrázku \ref{fig:det:signal_proc} znázorněn, jako \texttt{Medipix mode}.
 	\item[TOT (Time-Over-Treshold)] Tento mód udává, jak dlouhou dobu (v počtu hodinových cyklů měřící frekvence) bylo zesílené napětí na detektoru vyšší, než komparační (treshold). Počet těchto cyklů je ekvivalentní deponované energii částice. Tento vztach je ale nelineární a~pro získání energie z~TOT je třeba detektor kalibrovat - o tom pojednává kapitola \ref{calib}. Tento mód je podporovaný všemi Timepix detektory (ze zde uvedených detektorů).
 	\item[TOA (Time-Of-Arrival)] Pixel v~tomto módu spustí svůj čítač po překročení tresholdu, čily vůči akvizičnímu času udává čas příletu částice. Tento mód je také známý pod označením \texttt{Timepix mode} a~nalézá své uplatnění především při měření koincidencí (rekonstrukce trajektorie částice, interagující s~více detektory pomocí času dopadu a~souřadnic zasažených pixelů). Tento mód je podporovaný všemi Timepix detektory (ze zde uvedených detektorů).
-	\item[SPM (Single Pixel Mode)] v~tomto módu každý pixel operuje zcela samostatně a~to v~Medipix módu.
-	\item[CSM (Charge Summing Mode)]\label{det:mod:csm} Tento mód odstraňuje zkreslení vzniklé \texttt{Charge Sharing} efektem pomocí přičtení energie do zasaženého pixelu z~pixelů okolních. Jako zasažený pixel se určí pixel s~nejvyšší energií. Tento mód podporuje jen Medipix3 (ze zde uvedených detektorů).
+	%\item[SPM (Single Pixel Mode)] v~tomto módu každý pixel operuje zcela samostatně a~to v~Medipix módu.\item[CSM (Charge Summing Mode)]\label{det:mod:csm} Tento mód odstraňuje zkreslení vzniklé \texttt{Charge Sharing} efektem pomocí přičtení energie do zasaženého pixelu z~pixelů okolních. Jako zasažený pixel se určí pixel s~nejvyšší energií. Tento mód podporuje jen Medipix3 (ze zde uvedených detektorů).
 
 \end{description}
 
@@ -97,6 +103,7 @@ Na obrázku \ref{fig:det:signal_proc} jsou znázorněny tři pixely detektoru s~
 % FITPix
 %********************************************************************************
 \section{FITPix}\label{det:fitpix}
+FITPix\footnote{z angl. Fast Interface for Timepix Pixel Detectors} \cite{fitpix} je vyčítací rozhraní, pracující téměř se všemi detektory rodiny Medipix, vyvíjené v~ÚTEF ČVUT v~Praze od roku 2010 - viz obr. \ref{fig:det:fitpix}. Toto rozhraní se skládá z~FPGA\footnote{z angl. Feld Programmable Gate Array} obvodu, USB 2.0 rozhraní, DAC převodníků (převodník digitálního signálu na analogový), ADC převodníků (převodník analogového signálu na digitální) a~z obvodů generující napětí pro polovodičový senzor (tzv. bias). Toto zařízení umožňuje plnohodnotné ovládání připojeného detekčního čipu, včetně nastavování měřící frekvence, tresholdu, řízení shutteru (sloužícího pro ovládání akvizice, viz \ref{det:mod}) apod. Také přináší možnost ovládat shutter pomocí hardwarového trigger signálu pro měření s~více detektory současně, resp. pro jejich synchronizaci.
 
 \begin{figure}[th!]
 	\begin{center}
@@ -105,8 +112,6 @@ Na obrázku \ref{fig:det:signal_proc} jsou znázorněny tři pixely detektoru s~
 		\label{fig:det:fitpix}
 	\end{center}
 \end{figure}
-
-FITPix\footnote{z angl. Fast Interface for Timepix Pixel Detectors} \cite{fitpix} je vyčítací rozhraní, pracující téměř se všemi detektory rodiny Medipix, vyvíjené v~ÚTEF ČVUT v~Praze od roku 2010 - viz obr. \ref{fig:det:fitpix}. Toto rozhraní se skládá z~FPGA\footnote{z angl. Feld Programmable Gate Array} obvodu, USB 2.0 rozhraní, DAC převodníků (převodník digitálního signálu na analogový), ADC převodníků (převodník analogového signálu na digitální) a~z obvodů generující napětí pro polovodičový senzor (tzv. bias). Toto zařízení umožňuje plnohodnotné ovládání připojeného detekčního čipu, včetně nastavování měřící frekvence, tresholdu, řízení shutteru (sloužícího pro ovládání akvizice, viz \ref{det:mod}) apod. Také přináší možnost ovládat shutter pomocí hardwarového trigger signálu pro měření s~více detektory současně, resp. pro jejich synchronizaci.
 
 Tato architektura s~FPGA byla použita především z~důvodu dosažení vyšších datových toků a~také vyšší radiační odolnosti, které by za použití konvenčních mikroprocesorů nemohlo být dosaženo. Další výhodou je menší počet aktivních prvků, což se projeví krom spotřeby i na nižších tepelných ztrátách. Tento parametr je velice důležitý, především pro nasazení ve vakuu.
 
@@ -125,16 +130,6 @@ Jedná se o vysoce modulární systém, který mimo jiné umožňuje rozšířen
 		\label{fig:det:pixelman}
 	\end{center}
 \end{figure}
-
-
-%********************************************************************************
-% Aplikace
-%********************************************************************************
-%\section{Aplikace}
-
-
-
-
 
 
 
