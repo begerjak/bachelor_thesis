@@ -26,7 +26,7 @@ Další změnou nové detektorové sítě ATLAS TPX oproti svému předchůdci j
 		\hspace{0.5cm}
 		\begin{subfigure}{6cm}
 			\includegraphics[width=6cm]{figures/tpx_conv.png}
-			\caption{Rozmístění konvertorů (LiF je Lithium fluoride, Al je hliník, PE je Polyethylen a free je místo bez konvertorů)}
+			\caption{Rozmístění konvertorů (LiF je Lithium fluoride, Al je hliník, PE je Polyethylen a~free je místo bez konvertorů)}
 			\label{fig:tpx_detector_convertors}
 		\end{subfigure}
 		\caption{ATLAS TPX detektor - vrstvy a~rozmístění konvertorů}
@@ -46,7 +46,7 @@ Detektory, instalované blízko interakčnímu bodu, jsou rovněž použity jako
 \section{ATLAS MPX}\label{atlas:mpx}
 ATLAS MPX\cite{Vykydal200935}\cite{atlasmpx} je předchůdcem detektorové sítě ATLAS TPX, který je v~současné době plně nahrazen. Detektorová síť ATLAS MPX se skládala z~16 Medipix2 detektorů, které byly instalovány na různé pozice ATLAS detektoru. Hlavním cílem této sítě bylo měření vlastností radiačního pole uvnitř experimentu Atlas, jeho složení, spektroskopických charakteristik a~částečně také přispěla k~měření neutronů. 
 
-Všechny detektory operovaly v~tzv. \texttt{Medipix módu}, který se vyznačuje tím, že v~rámci jedné akvizice počítá počet částic, které interagovaly s pixelovou maticí detektoru a~jejichž deponovaná energie byla vyšší než prahová. Na obrázku \ref{fig:mpx_cluster} je znázorněn snímek z~jednoho detektoru s~detailem zachycených částic. Vpravo nahoře je částice typu \texttt{heavy blob} (těžká nabitá částice, jejíž trajektorie byla kolmá k~povrchem detektoru), vpravo dole je pak zachycena částice typu \texttt{heavy track} (také těžká nabitá částice, která ale přiletěla pod větším úhlem a~proto zanechala delší stopu). Více o klasifikaci částic v~podkapitole \ref{atlas:sw_arch}.
+Všechny detektory operovaly v~tzv. \texttt{Medipix módu}, který se vyznačuje tím, že v~rámci jedné akvizice počítá počet částic, které interagovaly s pixelovou maticí detektoru a~jejichž deponovaná energie byla vyšší než prahová. Na obrázku \ref{fig:mpx_cluster} je znázorněn snímek z~jednoho detektoru s~detailem zachycených částic. Vpravo nahoře je částice typu \texttt{heavy blob} (těžká nabitá částice, jejíž trajektorie byla kolmá s~povrchem detektoru), vpravo dole je pak zachycena částice typu \texttt{heavy track} (také těžká nabitá částice, která ale přiletěla pod větším úhlem a~proto zanechala delší stopu). Více o klasifikaci částic v~podkapitole \ref{atlas:sw_arch}.
 
 
 \begin{figure}[ht]
@@ -63,7 +63,7 @@ Každý detektor sítě ATLAS MPX byl osazen $300~\mu m$ tlustým křemíkovým 
 \begin{figure}[ht]
 	\begin{center}
 		\includegraphics[width=7cm]{figures/mpx-layers.jpg}
-		\caption{Fotografie znázorňující Medipix2 detektor s~neutronovými konvertory (\textbf{a}) a struktura neutronových konvertorů (\textbf{b})) \cite{Vykydal200935}}
+		\caption{Fotografie znázorňující Medipix2 detektor s~neutronovými konvertory (\textbf{a}) a~struktura neutronových konvertorů (\textbf{b})) \cite{Vykydal200935}}
 		\label{fig:mpx_lay}
 	\end{center}
 \end{figure}
@@ -71,8 +71,7 @@ Každý detektor sítě ATLAS MPX byl osazen $300~\mu m$ tlustým křemíkovým 
 \subsection{Hardwarová a~softwarová architektura sítě ATLAS MPX}
 Tato síť se skládala z~16 \texttt{Medipix2} \ref{det:med} detektorů, které byly pomocí USB vyčítacího rozhraní \texttt{FITPix} \ref{det:fitpix} připojeny ke třem počítačům (z~důvodu distribuce toku dat a~výkonu). Na každém počítači se o komunikaci s~detektory staral software \texttt{Pixelman} \ref{det:pixelman}, který řídil akvizici dat, nastavování parametrů detektorů apod. 
 
-Pro vzdálené ovládání byl vyvinut plugin pro Pixelman, který umožňoval jeho rozšíření o TCP/IP ovládací vrstvu. Pomocí jednoduchého textového protokolu bylo tedy možné řídit každý ze třech uzlů. Pro tyto účely byla vyvinuta centrální řídící aplikace \cite{Turecek2011S45}, pomocí které bylo možné řídit akvizici všech detektorů a~nastavovat jejich parametry. Tato aplikace poskytovala webové rozhraní (obr. \ref{fig:mpx_web}), které díky tou dobou méně 
-striktním nárokům ze strany CERNu na síťovou bezpečnost bylo možné ovládat odkudkoliv z~internetu.
+Pro vzdálené ovládání byl vyvinut plugin pro Pixelman, který umožňoval jeho rozšíření o TCP/IP ovládací vrstvu. Pomocí jednoduchého textového protokolu bylo tedy možné řídit každý ze třech uzlů. Pro tyto účely byla vyvinuta centrální řídící aplikace \cite{Turecek2011S45}, pomocí které bylo možné řídit akvizici všech detektorů a~nastavovat jejich parametry. Tato aplikace poskytovala webové rozhraní (obr. \ref{fig:mpx_web}), které bylo možné ovládat odkudkoliv z~internetu díky tou dobou méně striktním nárokům ze strany CERNu na síťovou bezpečnost.
 %striktní CERNské politice síťové bezpečnosti bylo možné tento experiment ovládat odkudkoliv z~internetu.
 
 \begin{figure}[ht]
@@ -87,7 +86,7 @@ striktním nárokům ze strany CERNu na síťovou bezpečnost bylo možné ovlá
 % Hardwarová architektura sítě ATLAS TPX
 %********************************************************************************
 \section{Hardwarová architektura sítě ATLAS TPX}\label{atlas:hw_arch}
-Při návrhu hardwarové architekty sítě ATLAS TPX musela být zohledněna zvýšená intenzita radiačního a~elektromagnetického pole v~prostorách ATLAS detektoru. Snahou proto bylo, co nejvíce hardwarových komponent umístit z~dosahu těchto polí. Z~pohledu hardwarové instalace této detektorové sítě se prostory ATLAS experimentu dělí na dvě části - \texttt{UX15} a~\texttt{USA15} (viz obr. \ref{fig:tpx_hw_diagram}). V~\texttt{UX15} se nachází vlastní experiment. V~tomto prostoru jsou umístěny pouze detektory (na obr. \ref{fig:tpx_hw_diagram} \texttt{TPX01} až \texttt{TPX15}) a~zbytek sítě je instalován v~\texttt{USA15}, kterou od zbytku experimentu odděluje masivní stínění. Tady se nachází vyčítací elektronika a~další nezbytný hardware.
+Při návrhu hardwarové architekty sítě ATLAS TPX musela být zohledněna zvýšená intenzita radiačního a~elektromagnetického pole v~prostorách ATLAS detektoru. Snahou proto bylo, umístit co nejvíce hardwarových komponent z~dosahu těchto polí. Z~pohledu hardwarové instalace této detektorové sítě se prostory ATLAS experimentu dělí na dvě části - \texttt{UX15} a~\texttt{USA15} (viz obr. \ref{fig:tpx_hw_diagram}). V~\texttt{UX15} se nachází vlastní experiment. V~tomto prostoru jsou umístěny pouze detektory (na obr. \ref{fig:tpx_hw_diagram} \texttt{TPX01} až \texttt{TPX15}) a~zbytek sítě je instalován v~\texttt{USA15}, kterou od zbytku experimentu odděluje masivní stínění. Tady se nachází vyčítací elektronika a~další nezbytný hardware.
 
 \begin{figure}[t]
 	\begin{center}
@@ -97,7 +96,7 @@ Při návrhu hardwarové architekty sítě ATLAS TPX musela být zohledněna zv�
 	\end{center}
 \end{figure}
 
-Na obrázku \ref{fig:tpx_hw_foto} je fotografie jednotlivých komponent sítě. Každý detektor je složen z~dvojice detekčních čipů \texttt{Timepix}, které jsou pomocí \texttt{LVDS} zesilovačů a~cca $100~m$ dlouhých ethernetových kabelů propojeny se zařízením \texttt{AtlasPix} (obr. \ref{fig:tpx_hw_foto} dole). To vzniklo modifikací vyčítacího rozhraní \texttt{FITPix} \ref{det:fitpix}. Toto zařízení obsahuje \texttt{FPGA}\footnote{z angl. Field Programmable Gate Array (programovatelné hradlové pole)}, minipočítač \texttt{Raspberry Pi} a~další podpůrnou elektroniku. 
+Na obrázku \ref{fig:tpx_hw_foto} je fotografie jednotlivých komponent sítě. Každý detektor je složen z~dvojice detekčních čipů \texttt{Timepix}, které jsou pomocí \texttt{LVDS} zesilovačů a~cca $100~m$ dlouhých ethernetových kabelů propojeny se zařízením \texttt{AtlasPix} (obr. \ref{fig:tpx_hw_foto} dole). Toto zařízení vzniklo modifikací vyčítacího rozhraní \texttt{FITPix} \ref{det:fitpix}. Toto zařízení obsahuje \texttt{FPGA}\footnote{z angl. Field Programmable Gate Array (programovatelné hradlové pole)}, minipočítač \texttt{Raspberry Pi} a~další podpůrnou elektroniku. 
 
 \texttt{FPGA} zajišťuje komunikaci s~\texttt{Timepix} detektory, v~rámci které dochází k~nastavování řídících registrů \texttt{Timepix} čipů, ovládání akvizice, vyčítání dat, řízení triggeru\footnote{řídící signál, který spouští resp. zastavuje (dle konfigurace) akvizici detektoru} apod.
 
@@ -139,7 +138,7 @@ Na obrázku \ref{fig:tpx_sw_diagram} je znázorněn diagram návrhu softwarové 
 			\item \texttt{ATLAS TPX server} uloží získaná data v~textové podobě do lokálního (či síťového) datového úložiště, odkud jsou přenesena do \texttt{Data analysis serveru} pomocí automatického kopírovacího skriptu.
 			\item Druhou možností je přenesení dat pomocí JSON REST API protokolu, který je \texttt{Data analysis serverem} implementován. Tento druhý způsob minimalizuje prodlevu mezi dobou pořízení snímku a~následném zpracováním \texttt{Data analysis serverem} a~dostupností jeho vizualizace pomocí web serveru. Zároveň přináší úsporu objemu přenesených dat.
 		\end{enumerate}
-		Hlavní úlohou \texttt{Data analysis serveru} je provedení tzv. Cluter analýzy \cite{Holy2008287}. Jde o proces, při kterém jsou z~každého snímku získány shluky sousedních pixelů (tzv. clusterů), které mají nenulovou hodnotu. Z~těchto clusterů, resp. z~jejich tvaru a~celkové deponované energie částice (pokud zasažení pixely operovaly v~TOT módu) je možné zjistit typ částice, která danou událost způsobila. Na obrázku \ref{fig:tpx_ca} můžete vidět 6 základních typů clusterů, kde
+		Hlavní úlohou \texttt{Data analysis serveru} je provedení tzv. Cluster analýzy \cite{Holy2008287}. Jde o proces, při kterém jsou z~každého snímku získány shluky sousedních pixelů (tzv. clusterů), které mají nenulovou hodnotu. Z~těchto clusterů, resp. z~jejich tvaru a~celkové deponované energie částice (pokud zasažené pixely operovaly v~TOT módu) je možné zjistit typ částice, která danou událost způsobila. Na obrázku \ref{fig:tpx_ca} můžete vidět 6 základních typů clusterů, kde
 		 \begin{enumerate}[label=(\alph*)]
 			\item je tzv. \texttt{DOT}, způsobený fotony, či elektrony o energii do $10~keV$
 			\item je tzv. \texttt{SMALL BLOB}, způsobený fotony, či elektrony s~energií vetšinou nad $10~keV$
@@ -187,7 +186,7 @@ Tabulka \ref{tab:com_packet} znázorňuje strukturu komunikačního rámce (tzv.
 	\item[DATA 1 .. DATA n] je pole vlastních přenesených dat o velikosti $n$,
 	\item[0xAA] \texttt{STOP BYTE}, který značí konec paketu.
 \end{description}
-Struktura odchozího paketu je velice podobná, až na byte \texttt{ERR}, který oproti příchozího paketu obsahuje. Tento byte může nabývat hodnoty 0x00 (když zpracování požadavku serveru detektorem proběhlo bez chyby), nebo 0x01 (jinak).
+Struktura odchozího paketu je velice podobná, až na byte \texttt{ERR}, který oproti příchozímu paketu obsahuje. Tento byte může nabývat hodnoty 0x00 (když zpracování požadavku serveru detektorem proběhlo bez chyby), nebo 0x01 (jinak).
 
 \begin{table}[th]
 	\begin{center}
@@ -309,7 +308,7 @@ Následuje struční popis příkazů komunikačního protokolu z~pohledu obsahu
 			\item[Příchozí data:] nic
 		\end{description}
 	\item[0x05 - Get Bias and Timepix clock]:
-		Příkaz pro vyčtení úrovně napětí z~obou Timepix čipů a~jejich meřící frekvenci
+		Příkaz pro vyčtení úrovně napětí z~obou Timepix čipů a~jejich měřící frekvence
 		\begin{description}
 			\item[Odchozí data:] nic
 			\item[Příchozí data ($24~B$):] BIAS1($8~B$) BIAS2($8~B$) CLK($8~B$)
@@ -329,24 +328,24 @@ Následuje struční popis příkazů komunikačního protokolu z~pohledu obsahu
 							\item 0x01 - Konfigurace určena prvnímu čipu (délka PIXCFG je $65536~B$)
 							\item 0x02 - Konfigurace určena druhému čipu (délka PIXCFG je $65536~B$)
 						\end{itemize}
-					\item PIXCFG - Pole konfiguračních bytů (každý byte je pro jeden pixel) pro jednotlivé pixely. Délka tohoto pole je závyslá na parametru TYPE. Struktura bytu pro konfiguraci pixelu je následovná: \\ MASK\_BITE($1~b$) TEST\_BITE($1~b$) THL($4~b$) MODE($2~b$)
+					\item PIXCFG - Pole konfiguračních bytů (každý byte je pro jeden pixel) pro jednotlivé pixely. Délka tohoto pole je závislá na parametru TYPE. Struktura bytu pro konfiguraci pixelu je následovná: \\ MASK\_BITE($1~b$) TEST\_BITE($1~b$) THL($4~b$) MODE($2~b$)
 						\begin{itemize}
 							\item MASK\_BITE - Pixel je aktivní při hodnotě $1$, zamaskovaný při $0$.
-							\item TEXT\_BITE - Slouží pro zapnutí testovacího módu pixelu, pomocí externího generátoru pulzů.
-							\item THL - Tyto čtyři bity udávají číslo od 0 do 15, které je použito pro posun globální hodnoty THL
+							\item TEST\_BITE - Slouží pro zapnutí testovacího módu pixelu, pomocí externího generátoru pulzů.
+							\item THL - Tyto čtyři bity udávají číslo od 0 do 15, které je použito pro posun vůči globální hodnotě THL
 							\item MODE - Mód pixelu (0 - Medipix, 1 - Time-Over-Treshold, 2 One-Hit, 3 - Time-of-Arrival)
 						\end{itemize}
 				\end{itemize}
 			\item[Příchozí data:] nic
 		\end{description}
 	\item[0x07 - Get Pixel Configuration]:
-		Příkaz pro vyčtení konfigurace pixelů detektoru.
+		Příkaz pro vyčtení konfigurace z každého pixelů detektoru.
 		\begin{description}
 			\item[Odchozí data ($1~B$):] TYPE - Výběr čipu, pro který je konfigurace určena (viz předchozí příkaz)
 			\item[Příchozí data ($(65536~nebo~2*65536)~B$):] PIXCFG (viz předchozí příkaz)
 		\end{description}
 	\item[0x08 - Set DAC]:
-		Příkaz pro nastavení hodnot DAC převodníků detektoru.
+		Příkaz pro nastavení hodnot DAC převodníku detektoru.
 		\begin{description}
 			\item[Odchozí data ($3~B$):] DAC\_IDX DAC\_VAL DAC\_VAL
 				\begin{itemize}
@@ -356,7 +355,7 @@ Následuje struční popis příkazů komunikačního protokolu z~pohledu obsahu
 			\item[Příchozí data:] nic
 		\end{description}
 	\item[0x09 - Get DAC]:
-		Příkaz pro vyčtení hodnoty DAC převodníků detektoru.
+		Příkaz pro vyčtení hodnoty DAC převodníku detektoru.
 		\begin{description}
 			\item[Odchozí data ($1~B$):] DAC\_IDX
 				\begin{itemize}
@@ -368,7 +367,7 @@ Následuje struční popis příkazů komunikačního protokolu z~pohledu obsahu
 				\end{itemize}
 		\end{description}
 	\item[0x0A - Perform Digital Test]:
-		Příkaz pro vykonání testu digitálních částí detektoru.
+		Příkaz pro vykonání testu digitální části detektoru.
 		\begin{description}
 			\item[Odchozí data:] nic
 			\item[Příchozí data ($3~B$):] BPC BPC BPC
@@ -382,7 +381,7 @@ Následuje struční popis příkazů komunikačního protokolu z~pohledu obsahu
 			\item[Odchozí data ($13~B$):] ACQTM($8~B$) ACQCNT($4~B$) TGRMOD
 				\begin{itemize}
 					\item ACQTIM - Akviziční čas v~sekundách (zakódovaný jako 64-bitové double-precision číslo dle standartu \texttt{IEEE 754}).
-					\item ACQCNT - Počet snímku (pokud je 0, detektor bude opakovat akvizici s~těmito parametry až do její zastavení)
+					\item ACQCNT - Počet snímku (pokud je 0, detektor bude opakovat akvizici s~těmito parametry až do jejího manuálního zastavení - viz příkaz \texttt{0x0E - Stop acquisition})
 					\item TRIGMOD - Mód triggeru
 						\begin{itemize}
 							\item 0x00 - bez triggeru
@@ -418,7 +417,7 @@ Následuje struční popis příkazů komunikačního protokolu z~pohledu obsahu
 					\item Pro TYPE 0x01 přijdou blíže nespecifikovaná surová data z~FPGA
 					\item Pro TYPE 0x02 přijdou metadata, vázající se k~danému snímku s~následující strukturou:
 						\begin{itemize}
-							\item UNIX časové razítko začátku akvizice [$ms$] ($5~B$)
+							\item UNIX TIME časové razítko začátku akvizice [$ms$] ($5~B$)
 							\item Bias1 - měřící napětí prvního čipu [$V$] ($8~B$, double-precision dle \texttt{IEEE 757})
 							\item Bias2 - měřící napětí druhého čipu [$V$] ($8~B$, double-precision dle \texttt{IEEE 757})
 							\item Měřící frekvence [$Hz$] ($8~B$, double-precision dle \texttt{IEEE 757})
@@ -479,10 +478,10 @@ Téměř všechny příkazy komunikačního protokolu jsou synchronní, tzn. ser
 
 Vedle synchronních příkazů existuje i jeden asynchronní - \texttt{0xFD - Asynchronous Event From Device}. V~současné verzi komunikačního protokolu je tento příkaz využit jen pro oznámení serveru, že detektor dokončil akvizici a~má data připravena k~vyčtení.
 
-Na obrázku \ref{fig:uml:com_priklad} je znázorněn příklad kombinace synchronní a~asynchronní komunikace pro pořízení snímku. Nejprve server vyšle synchronní příkaz s~žádostí o provedení akvizice (s parametry: doba akvizice, počet snímků a~mód triggeru) na který hned dostane odpověď. Následuje vyčítací smyčka - detektor udělá akvizici snímku (pokud již všechny neudělal) a~vyšle serveru asynchronní příkaz s~kódem právě dokončené akvizice a~s ID\footnote{unikátní číslo snímku od spuštění detektoru} snímku. Tuto asynchronní zprávu server zachytí a~provede vyčítací sekvenci (pomocí příkazu \texttt{0x0C - Read Measured Data}), jejíž kroky se mohou lišit dle konfigurace. Ve výchozím nastavení tato sekvence vypadá následovně:
+Na obrázku \ref{fig:uml:com_priklad} je znázorněn příklad kombinace synchronní a~asynchronní komunikace pro pořízení snímku. Nejprve server vyšle synchronní příkaz s~žádostí o provedení akvizice (s parametry: doba akvizice, počet snímků a~mód triggeru), na který hned dostane odpověď. Následuje vyčítací smyčka - detektor udělá akvizici snímku (pokud již všechny neudělal) a~vyšle serveru asynchronní příkaz s~kódem právě dokončené akvizice a~s ID\footnote{unikátní číslo snímku od spuštění detektoru} snímku. Tuto asynchronní zprávu server zachytí a~provede vyčítací sekvenci (pomocí příkazu \texttt{0x0C - Read Measured Data}), jejíž kroky se mohou lišit dle konfigurace. Ve výchozím nastavení tato sekvence vypadá následovně:
 \begin{enumerate}
 	\item Vyčtení vlastního snímku (hodnot jednotlivých pixelů).
-	\item Vyčtení metadat (tzv. \texttt{DSC}). Tato data obsahují dodatečné informace ke snímku, jako například přesnou dobu akvizice, čas začátku akvizice a~měřící napětí a~frekvenci Timepix čipů.
+	\item Vyčtení metadat (tzv. \texttt{DSC}). Tato data obsahují dodatečné informace ke snímku, jako například přesnou dobu akvizice, čas začátku akvizice, měřící napětí a~frekvenci Timepix čipů.
 \end{enumerate}
 
 \begin{figure}[t]
@@ -518,14 +517,16 @@ Na obrázku \ref{fig:uml:com_priklad} je znázorněn příklad kombinace synchro
 \end{figure}
 
 
+\newpage
+
 %********************************************************************************
 % Řídící software a~jeho implementace - Řízení detektorů
 % > Implementace modulu pro řízení detektorů na straně serveru
 %********************************************************************************
-\subsubsection{Implementace modulu pro řízení detektorů na straně serveru}\label{atlas:cont:impl}
-V této podkapitole bude popsána implementace řízení detektorů v~řídícím softwaru sítě ATLAS TPX. Celý software byl implementován v~jazyce \texttt{JAVA} za pomoci build nástroje \texttt{Maven}\footnote{\url{https://maven.apache.org/}} a~knihoven \texttt{Dropwizard}\footnote{\url{http://www.dropwizard.io}}, \texttt{Retrofit}\footnote{\url{http://square.github.io/retrofit/}} a~\texttt{RxJava}\footnote{\url{https://github.com/ReactiveX/RxJava}}.
+\subsubsection{Implementace modulu pro řízení detektorové sítě na straně serveru}\label{atlas:cont:impl}
+V této podkapitole bude popsána implementace řízení detektorů v~řídícím softwaru sítě ATLAS TPX. Software byl implementován v~jazyce \texttt{JAVA} za pomoci build nástroje \texttt{Maven}\footnote{\url{https://maven.apache.org/}} a~knihoven \texttt{Dropwizard}\footnote{\url{http://www.dropwizard.io}}, \texttt{Retrofit}\footnote{\url{http://square.github.io/retrofit/}} a~\texttt{RxJava}\footnote{\url{https://github.com/ReactiveX/RxJava}}.
 
-Jak již bylo zmíněno výše, detektory jsou připojeny k~ATLAS TPX serveru přes ethernetové rozhraní a~pomocí TPC/IP protokolu je vlastní komunikace realizována pomocí výše popsaného komunikačního protokolu. Z~pohledu navazování spojení byla použita architektura klient-server tak, že detektor plní roli serveru a~ATLAS TPX server zase klienta. Tato architektura bylo použita s~ohledem na robustnost a~stabilitu této sítě a~aby úloha navazování spojení zůstala v~kompetenci ATLAS TPX serveru. Když by například došlo k~přerušení napájení nebo jiné chybě jednoho z~detektorů, ATLAS TPX server by nebyl schopen se pokusit o znovu navázání spojení.
+Jak již bylo zmíněno výše, detektory jsou připojeny k~ATLAS TPX serveru přes ethernetové rozhraní a~pomocí TPC/IP protokolu. Vlastní komunikace je realizována pomocí komunikačního protokolu \ref{atlas:cont:det:comunikacni_protokol}. Z~pohledu navazování spojení byla použita architektura klient-server tak, že detektor plní roli serveru a~ATLAS TPX server zase klienta. Tato architektura byla použita s~ohledem na robustnost a~stabilitu sítě a~z~důvodu zachování úlohy navazování spojení v~kompetenci ATLAS TPX serveru. Pokud by například došlo k~přerušení napájení nebo jiné chybě jednoho z~detektorů, ATLAS TPX server by nebyl schopen pokusit se o znovu navázání spojení.
 
 \begin{figure}[th]
 	\begin{center}
@@ -535,23 +536,23 @@ Jak již bylo zmíněno výše, detektory jsou připojeny k~ATLAS TPX serveru p�
 	\end{center}
 \end{figure}
 
-Na obrázku \ref{fig:class:detectors} můžete vidět diagram tříd modulu pro práci s~detektory řídícího softwaru. Tento diagram není úplný a~obsahuje jen několik nejdůležitějších tříd, zbytek je k~nalezení na přiloženém CD.
+Na obrázku \ref{fig:class:detectors} je zobrazen diagram tříd modulu pro práci s~detektory řídícího softwaru. Tento diagram obsahuje pouze nejdůležitější třídy, zbytek je k~nalezení na přiloženém CD.
 
 Při návrhu tohoto modulu bylo vycházeno z~návrhového vzoru Model-View-Controller \cite{DesignPatterns-Gamma:1995:DPE:186897}, resp. z~jeho modifikace Model-Controller, protože tento modul žádnou prezentační vrstvu nemá. 
 
-Začněme popisem balíčku \texttt{model}. Jeho nejdůležitější třídou je třída \texttt{DetectorUnit}, která uchovává všechny informace o jednom detektoru, jako například název, tpxID, unitID, ip adresu, port, \texttt{SettingsStorage} (úložiště nastavení detektoru, jako například bias, clock, parametry akvizice, DAC hodnoty atd.) a~\texttt{HwStatus} (tento objekt nese informace o posledních naměřeních údajích získaných z~detektoru, jako třeba aktuální hodnoty bias, ping, obecný a~měřící status apod.).
+Hlavní třídou balíčku \texttt{model} je třída \texttt{DetectorUnit}, která uchovává všechny informace o jednom detektoru, jako například název, tpxID, unitID, ip adresu, port, \texttt{SettingsStorage} (úložiště nastavení detektoru, obsahující bias, clock, parametry akvizice, DAC hodnoty atd.) a~\texttt{HwStatus} (tento objekt nese informace o posledních naměřeních údajích získaných z~detektoru, jako třeba aktuální hodnoty bias, ping, obecný a~měřící status apod.).
 
-Pro uchovávání všech instancí třídy \texttt{DetectorUnit} slouží singleton \cite{DesignPatterns-Gamma:1995:DPE:186897} třída \texttt{DetectorUnit\\Storage}, která tyto instance uchovává v~kolekci HashMap, jejímž klíčem je TpxID (Integer). Instanci tohoto singletonu je možné získat pomocí třídy \texttt{DetectorUnitStorageFactory}, resp. pomocí její statické metody \texttt{getStorage()}. Před prvním použití je třeba nejprve toto úložiště inicializovat pomocí statické metody \texttt{DetectorUnitStorageFactory.initStorage(String\\initFilePath)}, které se coby parametr předá cesta v~souborovém systému k~"*.csv" souboru s~tabulkou s~detektory. Každý řádek tohoto souboru reprezentuje jeden detektor a~je v~následujícím formátu:
+Pro uchovávání všech instancí třídy \texttt{DetectorUnit} slouží singleton \cite{DesignPatterns-Gamma:1995:DPE:186897} třída \texttt{DetectorUnit\\Storage}, která tyto instance uchovává v~kolekci HashMap, jejímž klíčem je TpxID (Integer). Instanci tohoto singletonu je možné získat pomocí třídy \texttt{DetectorUnitStorageFactory}, resp. pomocí její statické metody \texttt{getStorage()}. Před prvním použití je třeba nejprve toto úložiště inicializovat pomocí statické metody \texttt{DetectorUnitStorageFactory.initStorage(String\\initFilePath)}, které se coby parametr předá cesta v~souborovém systému k~"*.csv" souboru se seznamem detektorů. Každý řádek tohoto souboru reprezentuje jeden detektor a~je v~následujícím formátu:
 \begin{center}
 	název\_detektoru\textbf{\Large{;}}ip\_adresa\textbf{\Large{;}}unit\_id\textbf{\Large{;}}tpx\_id\textbf{\Large{;}}port
 \end{center}
 
 V balíčku \texttt{controller.services} se nachází vlastní logika tohoto modulu. 
-Třída \texttt{Detector\\CommunicationService} se stará o vlastní komunikaci s~detektorem (jedna instance = jeden detektor). Tato třída obsahuje instanci třídy \texttt{DetectorUnit} (předané v~konstruktoru), která mimo jiné obsahuje IP adresu a~port příslušného detektoru. Tyto parametry se používají v~metodě \texttt{connect()}, ve které se vytvoří spojení s~detektorem (socket, BufferedOutputStream, BufferedInputStream apod.). Pro odpojení detektoru zase slouží metoda \texttt{dicconnect()}. Krom metod pro síťovou komunikaci obsahuje i všechny metody implementované z~interface \texttt{CommunicationProtocolIntf} - všechny synchronní metody komunikačního protokolu. 
+Třída \texttt{Detector\\CommunicationService} se stará o vlastní komunikaci s~detektorem (jedna instance rovná se jeden detektor). Tato třída obsahuje instanci třídy \texttt{DetectorUnit} (předané v~konstruktoru), která mimo jiné obsahuje IP adresu a~port příslušného detektoru. Tyto parametry se používají v~metodě \texttt{connect()}, ve které se vytvoří spojení s~detektorem (\texttt{socket}, \texttt{BufferedOutputStream}, \texttt{BufferedInputStream} apod.). Pro odpojení detektoru slouží metoda \texttt{dicconnect()}. Mimo metod pro síťovou komunikaci třída \texttt{DetectorCommunicationService} obsahuje i všechny metody implementované z~interface \texttt{CommunicationProtocolIntf} - všechny synchronní metody komunikačního protokolu. 
 
-Pro příjem příchozích paketů z~detektoru vznikl \texttt{PacketsReceiverController}. Ten ve vlastním vlákně vyčítá proud bytů přicházejících z~detektoru a~následně provádí jejich parsování, jehož výsledkem je instance objektu \texttt{IncomingPacket}, které obsahuje typ příkazu, příznak chyby a~vlastní data. Takto vzniklý paket je zařazen do fronty příchozích paketů detektoru (implementované jako \texttt{ConcurrentLinkedQueue<IncomingPacket>}). Nad touto frontou pracují jednak všechny metody se synchronními příkazy komunikačního protokolu (které sledují, zda-li se v~ní v~daném časovém intervalu objeví odpověď), ale také instance objektu \texttt{AsynchronousEventHandlerController}. Ten ve vlastním vlákně tuto frontu sleduje a~objeví-li se paket s~typem příkazu \texttt{0xFD (Asynchronous Event From Device)}, tak ho z~fronty odebere, jeho vlastní data rozparsuje a~dále zpracuje. Pokud se například jedná o událost dokončené akvizice, tak \texttt{ReadOutService} snímek z~detektoru vyčte a~pomocí \texttt{RxJava event bus} vyšle asynchronní zprávu napříč celou aplikací s~vyčteným snímkem. Zde byl použit návrhový vzor Producer - Consumer, kde \texttt{AsynchronousEventHandlerController} představuje Producer a~na kterémkoliv jiném místě aplikace se Consumer (možno i více Consumerů) může zaregistrovat ke sledování událostí v~event bus. Příkladem takového consumera může být \texttt{FrameSaverController}, který se postará o uložení získaného snímku (viz kapitola \ref{atlas:cont:output}).
+Pro příjem příchozích paketů z~detektoru vznikla třída \texttt{PacketsReceiverController}. Ten ve vlastním vlákně vyčítá proud bytů přicházejících z~detektoru a~následně provádí jejich parsování, jehož výsledkem je instance objektu \texttt{IncomingPacket}. Ten obsahuje typ příkazu, příznak chyby a~vlastní data. Takto vzniklý paket je zařazen do fronty příchozích paketů detektoru (implementované jako \texttt{ConcurrentLinkedQueue<IncomingPacket>}). Nad touto frontou pracují jednak všechny metody se synchronními příkazy komunikačního protokolu (které sledují, zda-li se v~ní v~daném časovém intervalu objeví odpověď), ale také instance objektu \texttt{AsynchronousEventHandlerController}. Ten ve vlastním vlákně tuto frontu sleduje a~objeví-li se paket s~typem příkazu \texttt{0xFD (Asynchronous Event From Device)}, tak ho z~fronty odebere, jeho vlastní data rozparsuje a~dále zpracuje. Pokud se například jedná o událost dokončené akvizice, tak \texttt{ReadOutService} snímek z~detektoru vyčte a~pomocí \texttt{RxJava event bus} vyšle asynchronní zprávu napříč celou aplikací s~vyčteným snímkem. Zde byl použit návrhový vzor Producer - Consumer, kde \texttt{AsynchronousEventHandlerController} představuje Producer a~na kterémkoliv jiném místě aplikace se Consumer (možno i více Consumerů) může zaregistrovat ke sledování událostí v~event bus. Příkladem takového consumera může být \texttt{FrameSaverController}, který se postará o uložení získaného snímku (viz kapitola \ref{atlas:cont:output}).
 
-Aby bylo možné pohodlně ovládat více detektorů současně, vznikl\\\texttt{DetectorUnitsController}. Ten implementuje interface \texttt{DetectorUnitsControllerIntf}, jehož metody pokrývají veškerou funkcionalitu detektoru, jako třeba metody k~navázání a~ukončení spojení, ale také všechny metody komunikačního protokolu. Všechny tyto metody mají jeden společní parametr - \texttt{int[] tpxIDs} (pole TpxID detektorů). Tento parametr určuje, nad kterými detektory se má daná metoda hromadně vykonat. Jejich výstupem je zase pole, jehož typ se liší dle příkazu (například pro metodu connect je to pole boolean proměnných - značící úspěch připojení, pro ping zase double čísel, udávajících odezvu spojení v~$ns$). Tento objekt je zase typu singleton a~jeho instanci lze získat pomocí metody \texttt{getInstance()}. Po spuštění aplikace je však třeba tento singleton nainicializovat pomocí metody \texttt{init()}, která pomocí \texttt{DetectorUnitStorageFactory} vytvoří datovou strukturu  s~\texttt{DetectorCommunicationService} jednotlivých detektorů.
+Aby bylo možné pohodlně ovládat více detektorů současně, vznikla třída\\\texttt{DetectorUnitsController}. Ten implementuje interface \texttt{DetectorUnitsControllerIntf}, jehož metody pokrývají veškerou funkcionalitu detektoru, jako třeba metody k~navázání a~ukončení spojení, ale také všechny metody komunikačního protokolu. Všechny tyto metody mají jeden společní parametr - \texttt{int[] tpxIDs} (pole TpxID detektorů). Tento parametr určuje, nad kterými detektory se má daná metoda hromadně vykonat. Jejich výstupem je pole, jehož typ se liší dle příkazu (například pro metodu connect je to pole boolean proměnných - značící úspěch připojení, pro ping zase double čísel, udávajících odezvu spojení v~$ns$). Tato třída je typu singleton a~její instanci lze získat pomocí metody \texttt{getInstance()}. Po spuštění aplikace je však třeba tento singleton nainicializovat pomocí metody \texttt{init()}, která pomocí třídy \texttt{DetectorUnitStorageFactory} vytvoří datovou strukturu  s~\texttt{DetectorCommunicationService} jednotlivých detektorů.
 
 
 %********************************************************************************
@@ -559,12 +560,12 @@ Aby bylo možné pohodlně ovládat více detektorů současně, vznikl\\\texttt
 % > Emulátor detektoru
 %********************************************************************************
 \subsubsection{Emulátor detektoru}\label{atlas:cont:emulator}
-Pro účely vývoje a~testování řídícího software pro \texttt{ATLAS TPX server} byl vyvinut emulátor detektoru, který plně emuluje jeho činnost. Emulátor byl rovněž napsán v~jazyce \texttt{JAVA} a~jeho zdrojové kódy a~spustitelný \texttt{jar} soubor naleznete na přiloženém CD.
+Pro účely vývoje a~testování řídícího software pro \texttt{ATLAS TPX server} byl vyvinut plnohodnotný emulátor detektoru. Emulátor je rovněž napsán v~jazyce \texttt{JAVA} a~jeho zdrojové kódy a~spustitelný \texttt{jar} soubor jsou na přiloženém CD.
 
-Emulátor se spouští se dvěma povinnými parametry, kde
+Emulátor se spouští se dvěma povinnými parametry, kde:
 \begin{enumerate}
-	\item je port, na kterém server emulátoru naslouchá (celé číslo),
-	\item je pravděpodobnost, s~jakou při zpracovávání požadavku bude simulována chyba - $0$ znamená bez chyb, $1$ samé chyby (desetinné číslo).
+	\item parametr je port, na kterém server emulátoru naslouchá (celé číslo) a
+	\item parametr je pravděpodobnost ve formě desetinného čísla, s~jakou při zpracovávání požadavku bude simulována chyba, kde $0$ znamená bez chyb a $1$ samé chyby.
 \end{enumerate}
 
 \begin{figure}[t]
@@ -597,13 +598,12 @@ Emulátor se spouští se dvěma povinnými parametry, kde
 	\end{center}
 \end{figure}
 
-Na obrázku \ref{fig:uml:emulator} je zobrazen sekvenční diagram dvou případů užití tohoto emulátoru. První případ užití znázorňuje připojení klienta (např. \texttt{ATLAS TPX serveru}) a~druhý pak proces zpracování žádosti o snímek a~jeho vygenerování.
+Na obrázku \ref{fig:uml:emulator} je zobrazen sekvenční diagram dvou případů užití tohoto emulátoru.
 
-Pojďme si nyní popsat první část - připojení klienta. Ve třídě \texttt{AtlasPix}, resp. v~její metodě \texttt{startServer()} se nachází nekonečná smyčka, ve které je pomocí instance třídy \texttt{ServerSocket} navázáno spojení s~novými klienty. Když spojení s~klientem je navázáno, je vytvořen klientský socket, pomocí kterého dojde v~vytvoření instance třídy \texttt{ClientHandler}. Ta se v~samostatném novém vláknu stará o obsluhu nově připojeného klienta. Zároveň \texttt{ClientHandler} vytvoří instanci třídy \texttt{PaketReceiver}, který čte proud bytů přijatých od klienta a~parsuje jej do objektů typu \texttt{IncomingPacket}.
+První případ užití znázorňuje připojení klienta (např. \texttt{ATLAS TPX serveru}). Ve třídě \texttt{AtlasPix}, resp. v~její metodě \texttt{startServer()} se nachází nekonečná smyčka, ve které je pomocí instance třídy \texttt{ServerSocket} navázáno spojení s~novými klienty. Když je spojení s~klientem navázáno, je vytvořen klientský socket, pomocí kterého dojde k~vytvoření instance třídy \texttt{ClientHandler}. Ta se v~samostatném novém vláknu stará o obsluhu nově připojeného klienta. Zároveň \texttt{ClientHandler} vytvoří instanci třídy \texttt{PaketReceiver}, která čte proud bytů přijatých od klienta a~parsuje jej do objektů typu \texttt{IncomingPacket}.
 
-Tím se dostáváme k~druhému příkladu případu užití - akvizici snímku. Poté, co \\\texttt{PaketReceiver} přijme nový paket, tak ho vloží do fronty paketů. Tuto frontu z~druhé strany čte a~zpracovává \texttt{ClientHandler}. Všechny příchozí pakety od klienta mohou obsahovat jen synchronní příkazy komunikačního protokolu, takže může být okamžitě nasimulován příslušný stav emulátoru a~vygenerována odpověď klientovi. 
-\
-V našem případě akvizice snímku je situace trochu složitější. \texttt{PaketReceiver} odchytí nový paket, obsahující žádost o provedení akvizice, který předá do fronty příchozích paketů. Když se \texttt{ClientHandler} dostane k~jeho zpracování, tak vytvoří objekt typu \texttt{AcquisitionRequest} a~předá ho instanci třídy \texttt{AcquisitionPerformer}. Ten žádost o akvizici zařadí do příslušní fronty, kde čeká, až samostatné akviziční vlákno se dostane k~jejímu zpracování. Při zpracovávání žádosti o akvizici je vygenerováno náhodná matice hodnot pixelů (o velikosti $256\times512$) a~také příslušná metadata, jako například akviziční čas, bias obou čipů (s přičtenou náhodnou veličinou, simulující fluktuaci napětí na křemíkovém povrchu detekčních čipů) apod. Po vygenerování těchto hodnot se akviziční vlákno uspí na dobu akvizice, aby se chování emulátoru co nejvíce přiblížilo skutečnému detektoru.
+Druhý případ užití znázorňuje proces zpracování žádosti o snímek a~jeho vygenerování. Poté, co \texttt{PaketReceiver} přijme nový paket, tak ho vloží do fronty paketů. Tuto frontu z~druhé strany čte a~zpracovává \texttt{ClientHandler}. Všechny příchozí pakety od klienta mohou obsahovat jen synchronní příkazy komunikačního protokolu, takže může být okamžitě nasimulován příslušný stav emulátoru a~vygenerována odpověď klientovi. 
+V případě akvizice snímku \texttt{PaketReceiver} odchytí nový paket, obsahující žádost o provedení akvizice, který předá do fronty příchozích paketů. Když se \texttt{ClientHandler} dostane k~jeho zpracování, tak vytvoří objekt typu \texttt{AcquisitionRequest} a~předá ho instanci třídy \texttt{AcquisitionPerformer}. Ten žádost o akvizici zařadí do příslušné fronty, kde čeká, až se samostatné akviziční vlákno dostane k~jejímu zpracování. Při zpracovávání žádosti o akvizici je vygenerována náhodná matice hodnot pixelů (o velikosti $256\times512$) a~také příslušná metadata, jako například akviziční čas, bias obou čipů (s přičtenou náhodnou veličinou, simulující fluktuaci napětí na křemíkovém povrchu detekčních čipů) apod. Po vygenerování těchto hodnot se akviziční vlákno uspí na dobu akvizice, aby se chování emulátoru co nejvíce přiblížilo skutečnému detektoru.
 
 Následně je připojenému klientovi poslána asynchronní zpráva o dokončené akvizici. Tato zpráva obsahuje příznak, že naměřená data jsou připravena k~vyčtení a~také ID vygenerovaného snímku. 
 
@@ -613,14 +613,14 @@ Poté klient pošle příkaz pro vyčtení naměřených dat (resp. dva příkaz
 % Řídící software a~jeho implementace - REST API server
 %********************************************************************************
 \subsection{REST API server}\label{atlas:cont:api}
-Řídící software se svému ovládání poskytuje rozhraní přes \texttt{JSON REST\footnote{z angl. Representational State Transfer} API}. Pro toto rozhraní byla použita knihovna Dropwizard\cite{dropwizard}, která vznikla složením několika dalších knihoven, zejména pak:
+Řídící software ke svému vzdálenému ovládání poskytuje rozhraní přes \texttt{JSON REST\footnote{z angl. Representational State Transfer} API}. Pro toto rozhraní byla použita knihovna Dropwizard\cite{dropwizard}, která vznikla složením několika dalších knihoven, zejména pak:
 \begin{description}
-	\item[Jetty] je open-source software, v~současné době vyvíjen Eclipse Foundation. Tato knihovna obsahuje Java HTTP webový server, který na rozdíl od běžných webových serveru (které vetšinou přes HTTP protokol poskytují soubory koncovým uživatelům) byl navržen pro strojově orientovanou komunikaci.
-	\item[Jersey] je open-source knihovna (která dle \cite{dropwizard} vychází z~\texttt{JAX-RS}\footnote{\url{http://jcp.org/en/jsr/detail?id=311}}) a~byla použita pro zajištění REST API. Tato knihovna umožňuje elegantně pomocí anotací mapovat HTTP dotazy na jednoduché Java objety.
+	\item[Jetty] je open-source software, v~současné době vyvíjen Eclipse Foundation. Tato knihovna obsahuje Java HTTP webový serverů, který na rozdíl od běžných webových serveru (které vetšinou přes HTTP protokol poskytují soubory koncovým uživatelům) byl navržen pro strojově orientovanou komunikaci.
+	\item[Jersey] je open-source knihovna (dle \cite{dropwizard} vycházející z~\texttt{JAX-RS}\footnote{\url{http://jcp.org/en/jsr/detail?id=311}}), která byla použita pro zajištění REST API. Tato knihovna umožňuje elegantně pomocí anotací mapovat HTTP dotazy na jednoduché Java objety.
 	\item[Jackson] je výkonný nástroj pro práci s~\texttt{JSON}\footnote{JSON je v~dnešní době standardem pro zápis a~výměnu strukturovaných, člověkem i strojem čitelných dat.} objekty v~jazyce Java. Tato knihovna umožňuje ergonomicky mapovat data v~JSON do Java objektů pomocí anotací.
 \end{description}
 
-V této podkapitole bude popsána implementace této knihovny do \texttt{ATLAS TPX serveru} a~její provázanost na modul pro řízení detektorů (\ref{atlas:cont:impl}).
+V následujících podkapitolách je popsána implementace knihovny Dropwizard do \texttt{ATLAS TPX serveru} a~její provázanost na modul pro řízení detektorů (\ref{atlas:cont:impl}).
 
 %********************************************************************************
 % Řídící software a~jeho implementace - REST API server
@@ -632,17 +632,17 @@ Server je možné spustit z~příkazové řádky pomocí příkazu \texttt{"java
 V příloze \ref{app:config} naleznete strukturu tohoto konfiguračního souboru, ve kterém je možné nastavit následující:
 \begin{description}
 	\item[Umístění tabulky s~detektory] (detectorsConfigPath - viz \ref{app:config} řádek 8)\\
-		Tento parametr udává cestu v~souborovém systému ke konfiguračnímu "*.csv" souboru, obsahující tabulku všech detektoru a~jejich parametrů, popsanou v~\ref{atlas:cont:impl}.
+		Tento parametr udává cestu v~souborovém systému ke konfiguračnímu "*.csv" souboru, obsahujícímu tabulku všech detektorů a~jejich parametrů, popsanou v~\ref{atlas:cont:impl}.
 	\item[Nastavení webového serveru] (server - viz \ref{app:config} řádek 11)\\
 		V rámci tohoto objektu je možné nastavit použitý typ protokolu spojení (\texttt{HTTP}/\texttt{HTTPS}), port, počty vláken a~další.
 	\item[Logování] (logging - viz \ref{app:config} řádek 30)\\
 		Pomocí tohoto parametru je možné nastavit úroveň a~cíl vytvářených logů. V~přiloženém konfiguračním souboru bylo použito dvojího logování a~to na standardní výstup a~do souboru (oba úrovně \texttt{INFO}). Při logování do souboru je možné navíc nastavit automatickou archivaci.
 	\item[Automatické vyčítání snímků] (readOutDataAutomatically - viz \ref{app:config} řádek 54)\\
-		Tento parametr typu \texttt{boolean} udává, když přijde asynchronní událost z~detektoru o datech připravených k~vyčtení, zda-li budou vyčtena automaticky (při hodnotě parametru \texttt{true}), nebo manuálně (při hodnotě \texttt{false}).
+		Tento parametr typu \texttt{boolean}. Když přijde asynchronní událost z~detektoru o datech připravených k~vyčtení, dojde k automatickému vyčtení dat (při hodnotě parametru \texttt{true}), nebo je třeba data vyčíst manuálně (při hodnotě \texttt{false}).
 	\item[Výstupní adresář] (outputDir - viz \ref{app:config} řádek 57)\\
 		Parametr udávající cestu v~souborovém systému pro ukládání dat z~detektorů.
 	\item[Formát výstupních dat] (outputFramesType - viz \ref{app:config} řádek 68)\\
-		Tento parametr obsahuje pole výstupních formátu dat, ve kterých získaná data z~detektorů budou ukládána. V~této verzi programu je podporovaný jediný formát - \texttt{MULTIFRAME}.
+		Tento parametr obsahuje pole výstupních formátů dat, ve kterých získaná data z~detektorů budou ukládána. V~této verzi programu je podporovaný jediný formát - \texttt{MULTIFRAME}.
 	\item[Konfigurace data serveru] (v \ref{app:config} od řádku 77)\\
 		Na tomto místě je možné nastavit parametry (url a~port) serveru, sloužícího pro příjem a~zpracování naměřených dat a~zda-li má být použit. Více o tomto serveru bude zmíněno v~\ref{atlas:cont:output:dataserver}.
 \end{description}
@@ -652,7 +652,7 @@ V příloze \ref{app:config} naleznete strukturu tohoto konfiguračního souboru
 % > Metody poskytované serverem
 %********************************************************************************
 \subsubsection{Metody poskytované serverem}
-Tento JSON REST API server poskytuje metody pro získání stavových \texttt{ATALS TPX serveru}, ale také pro jeho řízení, zejména pak pro ovládání detektorů. Seznam všech těchto metod s~jejich popisem je k~nalezení v~dokumentaci na přiloženém CD.
+Tento JSON REST API server poskytuje metody pro získání stavových informací \texttt{ATALS TPX serveru} a také pro jeho řízení, zejména pak pro ovládání detektorů. Seznam všech těchto metod s~jejich popisem je k~nalezení v~dokumentaci na přiloženém CD.
 
 URL schéma jednotlivých metod je následující - \texttt{protokol://host:port/vx/skupina/metoda}, kde
 \begin{description}
@@ -673,9 +673,9 @@ Server byl implementován za použití následujících standardů:
 
 
 \subsubsection{Implementace serveru}\label{atlas:cont:api:init}
-Jak již bylo zmíněno výše, server byl implementován za použití knihovny \texttt{Dropwizard} a~veškeré s~ním související třídy jsou v~balíčku \texttt{rest\_server}.
+Server byl implementován za použití knihovny \texttt{Dropwizard} a~veškeré s~ním související třídy jsou v~balíčku \texttt{rest\_server}.
 
-V tomto balíčku se nachází třída \texttt{RestServerApplication}, která obsahuje statickou metodu \texttt{main()}, která slouží ke spuštění celé aplikace. Zároveň tato třída dědí od \\\texttt{io.dropwizard.Application} a~přepisuje její metodu \texttt{run()}, ve které dochází ke konfiguraci serveru, spuštění jeho podpůrných služeb a~k registraci komponent REST API serveru (v URL výše uvedených jako skupina).
+V tomto balíčku se nachází třída \texttt{RestServerApplication}, která obsahuje statickou metodu \texttt{main()}, která slouží ke spuštění celé aplikace. Zároveň tato třída je potomkem třídy \\\texttt{io.dropwizard.Application} a~přepisuje její metodu \texttt{run()}, ve které dochází ke konfiguraci serveru, spuštění jeho podpůrných služeb a~k registraci komponent REST API serveru (v URL výše uvedených jako skupina).
 
 \begin{figure}[th]
 	\begin{center}
@@ -685,26 +685,26 @@ V tomto balíčku se nachází třída \texttt{RestServerApplication}, která ob
 	\end{center}
 \end{figure}
 
-Na obrázku \ref{fig:atlas:apiserver-init} je znázorněn BPMN\footnote{z angl. Business Process Model and Notation} diagram procesu inicializace REST API serveru (tělo metody \texttt{run()} zmíněné výše). V~rámci tohoto procesu nejprve dojde k~validaci existence konfiguračního "*.csv" souboru, obsahujícím tabulku s~detektory a~jeho parametry (viz \ref{atlas:cont:api:conf}), pokud tato validace selže, program vypíše chybovou hlášku a~ukončí se.  Následuje ověření platnosti výstupního adresáře (pokud selže, program terminuje). Poté dojde k~inicializaci \texttt{FrameSaverController}(viz kapitola o zpracování a~ukládání dat \ref{atlas:cont:output}) a~\texttt{DetectorUnitStorage} (úložiště všech \texttt{DetectorUnit}, již zmíněné v~\ref{atlas:cont:impl}). Pokud se toto úložiště nepodaří vytvořit (z~důvodu chyby parsování tabulky detektorů) aplikace opět terminuje. Dalším krokem je inicializace nástroje pro řízení detektorů (\texttt{DetectorUnitsController}) a~registrace jednotlivých komponent REST API serveru. Na závěr procesu inicializace dojde k~vytvoření spojení s~datových serverem (viz \ref{atlas:cont:output:dataserver}) pro odesílání naměřených dat, je-li v~konfiguračním souboru serveru povolen. 
+Na obrázku \ref{fig:atlas:apiserver-init} je znázorněn BPMN\footnote{z angl. Business Process Model and Notation} diagram procesu inicializace REST API serveru (tělo metody \texttt{run()} zmíněné výše). V~rámci tohoto procesu nejprve dojde k~validaci existence konfiguračního "*.csv" souboru, obsahujícím tabulku s~detektory a~jeho parametry (viz \ref{atlas:cont:api:conf}), pokud tato validace selže, program vypíše chybovou hlášku a~ukončí se.  Následuje ověření platnosti výstupního adresáře (pokud selže, program terminuje). Poté dojde k~inicializaci \texttt{FrameSaverController}(viz kapitola o zpracování a~ukládání dat \ref{atlas:cont:output}) a~\texttt{DetectorUnitStorage} (úložiště všech \texttt{DetectorUnit}, již zmíněné v~\ref{atlas:cont:impl}). Pokud se toto úložiště nepodaří vytvořit (z~důvodu chyby parsování tabulky detektorů) aplikace opět terminuje. Dalším krokem je inicializace nástroje pro řízení detektorů (\texttt{DetectorUnitsController}) a~registrace jednotlivých komponent REST API serveru. Na závěr procesu inicializace dojde k~vytvoření spojení s~datovým serverem (viz \ref{atlas:cont:output:dataserver}) pro odesílání naměřených dat, je-li v~konfiguračním souboru serveru povolen. 
 
 %********************************************************************************
 % Řídící software a~jeho implementace - Zpracování a~ukládání dat
 %********************************************************************************
 \subsection{Zpracování a~ukládání dat}\label{atlas:cont:output}
-Zpracovávání a~ukládání dat, resp. získaných snímků z~detektoru, bylo navrženo s~ohledem modularitu a~možnosti rozšíření o podporu nových výstupních formátů. V~současné verzi je podporovaný jen jeden formát, a~to tzv. \texttt{Multiframe}. Tento formát spočívá v~ukládání snímků do tří souboru a~to:
+Zpracovávání a~ukládání dat, resp. získaných snímků z~detektoru, bylo navrženo s~ohledem na modularitu a~možnost rozšíření o podporu nových výstupních formátů. V~současné verzi je podporován jeden formát, a~to tzv. \texttt{Multiframe}. Tento formát spočívá v~ukládání snímků do tří souboru a~to:
 \begin{description}
 	\item[Frame File] v~tomto souboru je ukládán vlastní snímek - hodnoty jednotlivých pixelů. Struktura tohoto souboru je taková, že při ukládání snímku jsou po řádcích zapsány indexy a~hodnoty jednotlivých pixelů (oddělených znakem tabulátoru a~mezerou), které mají nenulovou hodnotu (z~důvodu úspory místa). Jednotlivé snímky jsou odděleny novým řádkem se znakem \texttt{'\#'}. Tento soubor má příponu \texttt{"*.txt"}.
-	\item[Description File] Tento soubor nese metadata o snímku, jako například akviziční čas, časové razítko začátku akvizice, ale také hardwarové parametry detektoru v~době akvizice (napětí detekčního čipu, měřící frekvenci, hodnoty DAC apod.). Každá snímek v~tomto souboru začíná svým ID (začínajícím od nuly, unikátní v~rámci souboru), následovaným výčtem parametru, oddělenými prázdnými řádky. Každý parametr je uložen na tři řádky, kde
+	\item[Description File] Tento soubor nese metadata o snímku, jako například akviziční čas, časové razítko začátku akvizice, ale také hardwarové parametry detektoru v~době akvizice (napětí detekčního čipu, měřící frekvenci, hodnoty DAC apod.). Každý snímek v~tomto souboru začíná svým ID (začínajícím od nuly, unikátní v~rámci souboru), následovaným výčtem parametrů, oddělených prázdnými řádky. Každý parametr je uložen na tři řádky, kde
 		\begin{enumerate}
-			\item řádek obsahuje název parametru, jeho jednotku, po př. další informace.
+			\item řádek obsahuje název parametru, jeho jednotku, popř. další informace.
 			\item řádek udává datový typ a~velikost vlastní hodnoty parametru - třetího řádku.
 			\item řádek obsahuje hodnotu parametru.
 		\end{enumerate}
 	Přípona tohoto souboru je "*.txt.dsc".
-	\item[Index File] Třetím souborem je tzv. \texttt{Index File}. Tento soubor nese binární informace, které spojují \texttt{Data File} a~\texttt{Description File}. Pro každý snímek je to tohoto souboru zapsána bytová adresa začátku snímku v~obou výše zmíněných souborech (pro každý $8~B$). Z~důvodu možného rozšíření do budoucna a~zachování zpětné kompatibility, těchto $16~B$ je následováno dalšími $8~B$ (s nulovou hodnotou). Přípona tohoto souboru je "*.txt.idx".
+	\item[Index File] Třetím souborem je tzv. \texttt{Index File}. Tento soubor nese binární informace, které spojují \texttt{Data File} a~\texttt{Description File}. Pro každý snímek je do tohoto souboru zapsána bytová adresa začátku snímku v~obou výše zmíněných souborech (pro každý $8~B$). Z~důvodu možného rozšíření do budoucna a~zachování zpětné kompatibility, těchto $16~B$ je následováno dalšími $8~B$ (s nulovou hodnotou). Přípona tohoto souboru je "*.txt.idx".
 \end{description}
 
-Když ATLAS TPX server odchytí asynchronní událost od nějakého z~detektorů o tom, že daný detektor dokončil akvizici a~že má data připravena k~vyčtení, postará se o jejich vyčtení a~vygeneruje objet typu \texttt{Frame}. Tento objekt obsahuje všechna data, vázající se k~dané akvizici, jako například hodnoty jednotlivých pixelů, ale i různá metadata (akviziční čas, bias apod.). Po vygenerování objektu \texttt{Frame} je napříč celou aplikací vyslána asynchronní událost o této skutečnosti, obsahující právě vygenerovaný objekt typu \texttt{Frame}, pomocí \texttt{RxJava event bus}.
+Když ATLAS TPX server odchytí asynchronní událost od nějakého z~detektorů o tom, že daný detektor dokončil akvizici a~že má data připravena k~vyčtení, postará se o jejich vyčtení a~vygeneruje objet typu \texttt{Frame}. Tento objekt obsahuje všechna data, vázající se k~dané akvizici, jako například hodnoty jednotlivých pixelů, ale i některá metadata. Po vygenerování objektu \texttt{Frame} je napříč celou aplikací vyslána asynchronní událost o této skutečnosti, obsahující právě vygenerovaný objekt typu \texttt{Frame}, pomocí \texttt{RxJava event bus}.
 
 \begin{figure}[t]
 	\begin{center}
@@ -714,33 +714,34 @@ Když ATLAS TPX server odchytí asynchronní událost od nějakého z~detektorů
 	\end{center}
 \end{figure}
 
-Nyní je třeba tuto asynchronní událost odchytit a~zpracovat, k~tomu slouží singleton třída \texttt{FrameSaverController} - viz obr. \ref{fig:atlas:saver-service}. Ta je po spuštění aplikace inicializována (viz \ref{atlas:cont:api:init}). Tomuto procesu jsou předány všechny výstupní typy dat, uvedených v~konfiguračním souboru \ref{atlas:cont:api:conf}. Pomocí třídy \texttt{SaverServiceHelper} dojde k~vytvoření instancí tříd všech příslušných služeb pro ukládání dat (dědících od třídy \texttt{AbstractFrameSaverService}).
+Tato asynchronní událost je odchycena a zpracována pomocí pomocí singleton třídy \texttt{FrameSaverController} - viz obr. \ref{fig:atlas:saver-service}. Ta je po spuštění aplikace inicializována (viz \ref{atlas:cont:api:init}). Tomuto procesu jsou předány všechny výstupní typy dat, uvedené v~konfiguračním souboru \ref{atlas:cont:api:conf}. Pomocí třídy \texttt{SaverServiceHelper} dojde k~vytvoření instancí tříd všech příslušných služeb pro ukládání dat (dědících od třídy \texttt{AbstractFrameSaverService}).
 
-Jelikož každý z~16 detektorů může generovat několik snímků za sekundu, bylo třeba vyvinout robustní řešení, které se bude přizpůsobovat dané zátěži. Za těmito účely byl implementován \texttt{ThreadPoolExecutor}, který sleduje a~vykonává frontu úkolů (instancí třídy \texttt{FrameSaverWorker}, implementujících interface \texttt{Runnable}). Dle velikosti této fronty, resp. podle počtu snímků čekajících na uložení, je počet exekucích vláken dynamicky měněn (ve stávající konfiguraci od 3 o 50). 
+Jelikož každý z~16 detektorů může generovat několik snímků za sekundu, bylo třeba vyvinout robustní řešení, které se bude přizpůsobovat dané zátěži. Za těmito účely byl implementován \texttt{ThreadPoolExecutor}, který sleduje a~vykonává frontu úkolů (instancí třídy \texttt{FrameSaverWorker}, implementujících interface \texttt{Runnable}). Dle velikosti této fronty, resp. podle počtu snímků čekajících na uložení, je počet pracujících vláken dynamicky měněn (ve stávající konfiguraci od 3 do 50). 
 
-Nyní se vraťme ke příchodu asynchronní události s~vyčteným snímkem. Když je tato událost zachycena, dojde vytvoření instance třídy \texttt{FrameSaverWorker} pro každou ukládací službu (dědící od \texttt{AbstractFrameSaverService}, např. \texttt{MultiframeSaverService}) a~následném zařazení této instance do fronty, kterou obsluhuje již výše zmíněný \texttt{ThreadPoolExecutor}.
+Když je zachycena asynchronní události s~vyčteným snímkem, dojde k vytvoření instance třídy \texttt{FrameSaverWorker} pro každou ukládací službu (dědící od \texttt{AbstractFrameSaverService}, např. \texttt{MultiframeSaverService}) a~následnému zařazení této instance do fronty, kterou obsluhuje již výše zmíněný \texttt{ThreadPoolExecutor}.
 
+\newpage
 
 %********************************************************************************
 % Řídící software a~jeho implementace - Zpracování a~ukládání dat
 % > Data server
 %********************************************************************************
 \subsubsection{Datový server}\label{atlas:cont:output:dataserver}
-Současně s~možností ukládání dat \texttt{ATLAS TPX serverem} na lokální, či síťové úložiště (jak bylo popsáno výše) existuje i druhý způsob nakládání s~pořízenými daty - jejich přímé odesílání datovému serveru (viz \ref{atlas:sw_arch}), pomocí jeho API, což bude předmětem této podkapitoly.
+Současně s~možností ukládání dat \texttt{ATLAS TPX serverem} na lokální, či síťové úložiště je možné i jejich přímé odeslání datovému serveru (viz \ref{atlas:sw_arch}), pomocí jeho API, což je předmětem této podkapitoly.
 
-Přehled všech metod s~jejich technickými specifikacemi je k~nalezení v~dokumentaci na přiloženém CD, zde bude uveden jen jejich stručný popis.
+Přehled všech metod s~jejich technickými specifikacemi je k~nalezení v~dokumentaci na přiloženém CD, zde je uveden jen jejich stručný popis.
 
-Kvůli optimalizaci přenášenému obejmu dat byl navržen úsporný komunikační protokol, který odstraňuje redundanci přenášených dat (oproti \texttt{Multiframe} formátu, popsaném výše). Toho je dosaženo především tím, že s~každým snímkem jsou přenášena jen data, přímo související a~unikátní k~dané akvizici. To jsou zejména vlastní hodnoty jednotlivých pixelů, časové razítko začátku akvizice, napětí v~době akvizice na polovodičovém povrchu detekčních čipů apod. Mezi údaje, které se v~průběhu akvizice nemění (a tudíž je zbytečné je s~každým snímkem přenášet) patří konfigurace pixelů, měřící frekvence, hodnoty DAC apod.
+Kvůli optimalizaci přenášeného obejmu dat byl navržen úsporný komunikační protokol, který odstraňuje redundanci přenášených dat (oproti \texttt{Multiframe} formátu, popsaném výše). Toho je dosaženo především tím, že s~každým snímkem jsou přenášena jen data, přímo související a~unikátní k~dané akvizici. To jsou zejména vlastní hodnoty jednotlivých pixelů, časové razítko začátku akvizice, napětí v~době akvizice na polovodičovém povrchu detekčních čipů apod. Mezi údaje, které se v~průběhu akvizice nemění (a tudíž je zbytečné je s~každým snímkem přenášet) patří konfigurace pixelů, měřící frekvence, hodnoty DAC apod.
 
 \begin{description}
-	\item[Metoda Status] Metoda status slouží pro získání základních informací datového serveru, jako třeba volné místo v~jeho úložišti, ale také informaci o přenesených snímcích (celkový počet, zpracováno, atd.).
+	\item[Metoda Status] Metoda status slouží pro získání základních informací datového serveru, jako třeba volné místo v~jeho úložišti, ale také informace o přenesených snímcích (celkový počet, zpracováno, atd.).
 	\item[Metoda pro odeslání snímků] v~rámci této metody je přenesen vlastní snímek a~příslušná metadata s~ním související, uvedená výše. Zde je dobré zmínit, že oproti formátu \texttt{Multiframe} jsou vyloučeny pixely ne s~nulovou, nýbrž s~nejčetnější hodnotou. Tím je docíleno minimalizace počtu přenesených pixelů. Tento mechanismus je účinný především na přeexponované snímky. Jako jeden z~parametrů se rovněž odesílá i ID konfigurace, získané z~datového serveru - viz další bod.
-	\item[Metoda pro odeslání konfigurace] Touto metodou je přenášena statická konfigurace jednotlivých detektorů. Tuto metodu je třeba provést nad všemi detektory před zahájením odesílání snímků a~potom až při změně některého z~parametrů konfigurace. Výstupem této metody je totiž seznam ID, které byly jednotlivým konfiguracím přiděleny datovým serverem, které je třeba datovému serveru posílat společně se snímkami.
+	\item[Metoda pro odeslání konfigurace] Touto metodou je přenášena statická konfigurace jednotlivých detektorů. Tuto metodu je třeba provést nad všemi detektory před zahájením odesílání snímků a~potom až při změně některého z~parametrů konfigurace. Výstupem této metody je seznam ID, které byly jednotlivým konfiguracím přiděleny datovým serverem a které je třeba datovému serveru posílat společně se snímky.
 \end{description}
 
 Spojení s~tímto serverem zajišťuje modul \texttt{data\_sender}, resp. jeho třída \texttt{DataSenderController}. Jedná se opět o singleton, který při své inicializaci vytvoří dvě fronty - frontu snímků a~frontu konfigurací (obě implementované, jako \texttt{ConcurrentLinkedQueue}) a~také vytvoří mapu (mapující ID interních konfigurací detektorů na ID, získané z~datového serveru). Zároveň dojde ke spuštění samostatného vlákna, které tyto fronty sleduje a~jejich položky odebírá a~posílá datovému serveru.
 
-Odesílání dat datovému serveru je realizováno pomocí knihovny \texttt{Retrofit}\footnote{\url{http://square.github.io/retrofit/}}, který poskytuje nástroje pro implementaci jednoduchého \texttt{HTTP} klienta.
+Odesílání dat datovému serveru je realizováno pomocí knihovny \texttt{Retrofit}\footnote{\url{http://square.github.io/retrofit/}}, která poskytuje nástroje pro implementaci jednoduchého \texttt{HTTP} klienta.
 
 
 
