@@ -1,3 +1,5 @@
-k336_sablona
-============
-LaTeX template pro psaní bakalářské práce na katedře počítačů.
+# Bachelor thesis
+## Calibration and control software for network of particle pixel detectors within the Atlas experiment at the LHC at CERN
+**Abstract:** During the year 2014, a network of 16 Timepix based hybrid particle pixel detectors were installed at various positions within the ATLAS experiment at LHC at CERN.
+	The goal of this bachelor thesis is to develop software for controlling and energy calibration of this network. The control software provides control of these detectors independently, such as settings of measurement parameters, data acquisition control, data readout, data processing, etc. This software provides \texttt{JSON REST API} server for remote control and for transfer of status informations of this network to CERN's systems.
+	Calibration software provides to user to pass through the calibration process from calibration spectra assembly, to spectra analysis and creation of the individual calibration points, to make the calibration functions for the individual pixels of the detector.
